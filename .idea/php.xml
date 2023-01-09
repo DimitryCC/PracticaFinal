@@ -109,6 +109,12 @@
       <path value="$PROJECT_DIR$/PoryectoFinal/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/PoryectoFinal/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/PoryectoFinal/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/PoryectoFinal/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/PoryectoFinal/vendor/swagger-api/swagger-ui" />
+      <path value="$PROJECT_DIR$/PoryectoFinal/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/PoryectoFinal/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/PoryectoFinal/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/PoryectoFinal/vendor/darkaonline/l5-swagger" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

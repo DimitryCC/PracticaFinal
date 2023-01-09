@@ -114,6 +114,12 @@
       <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/sebastian/code-unit-reverse-lookup" />
       <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/sebastian/diff" />
       <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/swagger-api/swagger-ui" />
+      <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/zircote/swagger-php" />
+      <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/darkaonline/l5-swagger" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
