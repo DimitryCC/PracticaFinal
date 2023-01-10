@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Ordenes alojamiento
 Route::group(['prefix'=>'alojamiento'],function() {
     // * /api/alojamiento/
     Route::get('', [AlojamientosController::class, 'tots']);
@@ -29,6 +30,11 @@ Route::group(['prefix'=>'alojamiento'],function() {
     // * /api/alojamiento/crea
     Route::post('/crea', [AlojamientosController::class, 'crea']);
 });
-Route::get('/alojamiento', [\App\Http\Controllers\AlojamientosController::class, 'tots'])-> name("alojamiento1");
-
-Route::get('/alojamiento/{id}', [\App\Http\Controllers\AlojamientosController::class, 'show'])-> name("alojamiento2");
+Route::group(['prefix'=>'usuarios'],function (){
+    // * /api/usuarios/
+    Route::get('',[\App\Http\Controllers\UsuarioControler::class,'tots']);
+    //* /api/usuarios/1
+    Route::get('/{id}',[\App\Http\Controllers\UsuarioControler::class, 'show']);
+    //* /api/usuarios/admin
+    Route::get('/admin',[\App\Http\Controllers\UsuarioControler::class, 'admin']);
+});
