@@ -25,4 +25,6 @@ Route::group(['prefix'=>'alojamiento'],function() {
     // * /api/alojamiento/1
     Route::get('/{id}', [AlojamientosController::class, 'show']);
 });
+Route::get('/alojamiento', [\App\Http\Controllers\AlojamientosController::class, 'tots'])-> name("alojamiento1");
 
+Route::get('/alojamiento/{id}', [\App\Http\Controllers\AlojamientosController::class, 'show'])-> name("alojamiento2");
