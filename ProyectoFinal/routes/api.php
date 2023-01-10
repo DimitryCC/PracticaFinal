@@ -29,6 +29,8 @@ Route::group(['prefix'=>'alojamiento'],function() {
     Route::delete('/borra/{id}', [AlojamientosController::class, 'borra']);
     // * /api/alojamiento/crea
     Route::post('/crea', [AlojamientosController::class, 'crea']);
+    // * /api/alojamiento/modifica/1
+    Route::put('/modifica/{id}', [AlojamientosController::class, 'modifica']);
 });
 Route::group(['prefix'=>'usuarios'],function (){
     // * /api/usuarios/
