@@ -24,6 +24,10 @@ Route::group(['prefix'=>'alojamiento'],function() {
     Route::get('', [AlojamientosController::class, 'tots']);
     // * /api/alojamiento/1
     Route::get('/{id}', [AlojamientosController::class, 'show']);
+    // * /api/alojamiento/borra/1
+    Route::delete('/borra/{id}', [AlojamientosController::class, 'borra']);
+    // * /api/alojamiento/crea
+    Route::post('/crea', [AlojamientosController::class, 'crea']);
 });
 Route::get('/alojamiento', [\App\Http\Controllers\AlojamientosController::class, 'tots'])-> name("alojamiento1");
 
