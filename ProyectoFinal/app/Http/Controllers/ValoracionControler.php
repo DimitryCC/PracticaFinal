@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Valoracion;
 use Illuminate\Http\Request;
 
 class ValoracionControler extends Controller

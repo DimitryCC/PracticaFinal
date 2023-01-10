@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CategoriaControler extends Controller
@@ -17,7 +18,7 @@ class CategoriaControler extends Controller
     }
 
     public function tots(){
-        $tuples= Categoria::paginate(10);
+        $tuples=Categoria::paginate(10);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 

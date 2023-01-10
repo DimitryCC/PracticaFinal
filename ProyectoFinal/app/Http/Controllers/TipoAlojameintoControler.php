@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TiposAlojameinto;
 use Illuminate\Http\Request;
 
 class TipoAlojameintoControler extends Controller
@@ -9,7 +10,7 @@ class TipoAlojameintoControler extends Controller
     //
     public function show($id){
         try {
-            $tupla = TipoAlojameinto::findOrFail($id);
+            $tupla = TiposAlojameinto::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -18,13 +19,13 @@ class TipoAlojameintoControler extends Controller
 
 
     public function tots(){
-        $tuples= TipoAlojameinto::paginate(10);
+        $tuples= TiposAlojameinto::paginate(10);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 
     public function borra($id){
         try {
-            $tupla = TipoAlojameinto::findOrFail($id)->delete();
+            $tupla = TiposAlojameinto::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -42,7 +43,7 @@ class TipoAlojameintoControler extends Controller
         ];
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
-            $tupla= TipoAlojameinto::create($request->all());
+            $tupla= TiposAlojameinto::create($request->all());
             return response()->json(['status'=>'success','result'=>$tupla],200);
         }else {
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
@@ -50,7 +51,7 @@ class TipoAlojameintoControler extends Controller
     }
 
     public function modifica(Request $request, $id){
-        $tupla = TipoAlojameinto::findOrFail($id);
+        $tupla = TiposAlojameinto::findOrFail($id);
         $reglesvalidacio=[
             'nombre_tipo'=>['required','max:30','unique:tiposAlojameintos,nombre_tipo'],
             'idioma_id'=>['required']
