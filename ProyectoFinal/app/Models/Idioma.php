@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Idioma extends Model
 {
     use HasFactory;
+    protected $table='idiomas';
+    protected $primaryKey='ID';
+    public $incrementing=false;
+    public $timestamps=false;
 }

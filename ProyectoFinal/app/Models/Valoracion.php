@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Valoracion extends Model
 {
     use HasFactory;
+    protected $table='valoraciones';
+    protected $primaryKey='ID';
+    public $incrementing=false;
+    public $timestamps=false;
 }
