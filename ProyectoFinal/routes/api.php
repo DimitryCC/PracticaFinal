@@ -17,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Funciones de Alojamientos
+Route::get('/alojamiento/tots', [\App\Http\Controllers\AlojamientosController::class, 'tots'])-> name("alojamiento1");
 
+Route::get('/alojamiento/{id}', [\App\Http\Controllers\AlojamientosController::class, 'show'])-> name("alojamiento2");
+//Funciones de Usuarios
+//Funciones de Servicios
+//Funciones de
