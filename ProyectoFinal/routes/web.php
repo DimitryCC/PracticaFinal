@@ -20,7 +20,10 @@ Route::get('/hola/{nom}', function ($nom='Tu') {
     //return view('welcome');
     return "<h1>Hola $nom</h1>";
 })->name("salutacio");
-
-Route::get('/alojamiento/tots', [\App\Http\Controllers\AlojamientosController::class, 'tots'])-> name("alojamiento1");
+/*
+Route::get('/alojamiento', [\App\Http\Controllers\AlojamientosController::class, 'tots'])-> name("alojamiento1");
 
 Route::get('/alojamiento/{id}', [\App\Http\Controllers\AlojamientosController::class, 'show'])-> name("alojamiento2");
+*/
+
+
