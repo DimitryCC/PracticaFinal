@@ -54,8 +54,8 @@ class TipoAlojameintoControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = TiposAlojameinto::findOrFail($id);
         $reglesvalidacio=[
-            'nombre_tipo'=>['required','max:30','unique:tiposAlojameintos,nombre_tipo'],
-            'idioma_id'=>['required']
+            'nombre_tipo'=>['filled','max:30','unique:tiposAlojameintos,nombre_tipo'],
+            'idioma_id'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

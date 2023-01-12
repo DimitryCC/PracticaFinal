@@ -12,4 +12,5 @@ class TiposAlojameinto extends Model
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
+    protected $fillable=['ID','nombre_tipo','idioma_id'];
 }
