@@ -54,8 +54,8 @@ class TipovacacionalControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Tipovacacional::findOrFail($id);
         $reglesvalidacio=[
-            'nombre_tipo'=>['required','max:30','unique:tiposVacacional,nombre_tipo'],
-            'idioma_id'=>['required']
+            'nombre_tipo'=>['filled','max:30','unique:tiposVacacional,nombre_tipo'],
+            'idioma_id'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',
