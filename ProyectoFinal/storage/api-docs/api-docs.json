@@ -748,6 +748,1571 @@
                     }
                 ]
             }
+        },
+        "/api/fotografia/{id}": {
+            "get": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Mostrar una Fotografia por ID",
+                "description": "Descripcion de una Fotografia.",
+                "operationId": "aea9bc9cb129cdf23fd98c27f85c2339",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la Fotografia",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la Fotografia",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Fotografia.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Fotografia no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/fotografia": {
+            "get": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Mostrar todas las Fotografias",
+                "description": "Lista todas las Fotografias.",
+                "operationId": "11c50e4c1aa9448ab593a825298f3290",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las Fotografias."
+                    }
+                }
+            }
+        },
+        "/api/fotografia/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Borra una Fotografia",
+                "description": "Borra una Fotografia. Solo por Administradores",
+                "operationId": "6e12be3407ed0c3f6b10298089714241",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/fotografia/crea": {
+            "post": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Crea una Fotografia",
+                "description": "Crea una Fotografia. Solo por Administradores.",
+                "operationId": "5960c0b46cebc2fcccd27aaf79e25925",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ruta": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Ruta de la Fotografia"
+                                    },
+                                    "islas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Id del Alojamiento"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/fotografia/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Modifica una Fotografia",
+                "description": "Modifica una Fotografia. Solo por Administradores.",
+                "operationId": "9d945a0c0c8ae13b9e78b2750ab98e64",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Fotografia",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ruta": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Ruta de la Fotografia"
+                                    },
+                                    "islas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Id del Alojamiento"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/idioma/{id}": {
+            "get": {
+                "tags": [
+                    "Idiomas"
+                ],
+                "summary": "Mostrar un Idioma por ID",
+                "description": "Descripcion de un Idioma.",
+                "operationId": "709f85a3b3076471b218f91fbe1ed831",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id del Idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Idioma",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Idioma.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Idioma no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/idioma": {
+            "get": {
+                "tags": [
+                    "Idiomas"
+                ],
+                "summary": "Mostrar todos los Idiomas",
+                "description": "Lista todos los Idiomas.",
+                "operationId": "16c87262bfa928e5d23ca6c3080f5559",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Idiomas."
+                    }
+                }
+            }
+        },
+        "/api/idioma/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Idiomas"
+                ],
+                "summary": "Borra un Idioma",
+                "description": "Borra un Idioma. Solo por Administradores",
+                "operationId": "52df9fcec717a89c43a5604ea62cb6a6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/idioma/crea": {
+            "post": {
+                "tags": [
+                    "Idiomas"
+                ],
+                "summary": "Crea un Idioma",
+                "description": "Crea un Idioma. Solo por Administradores.",
+                "operationId": "329cc4285399793eebaebfbad6bfc5f1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "idioma": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Idioma"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/idioma/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Idiomas"
+                ],
+                "summary": "Modifica un Idioma",
+                "description": "Modifica un Idioma. Solo por Administradores.",
+                "operationId": "4c145f4b3bb369d58faa84696925cd57",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "idioma": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Idioma"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/municipio/{id}": {
+            "get": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Mostrar un Municipio por ID",
+                "description": "Descripcion de un Idioma.",
+                "operationId": "6f10de88309d4abcbf330e1a491dcee5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Municipio",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Municipio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Municipio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/municipio": {
+            "get": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Mostrar todos los Municipios",
+                "description": "Lista todos los Municipios.",
+                "operationId": "2fe38afd064eef5c4f709dbc353c9c24",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Municipios."
+                    }
+                }
+            }
+        },
+        "/api/municipio/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Borra un Municipio",
+                "description": "Borra un Municipio. Solo por Administradores",
+                "operationId": "a02d2c6e68eae5746763403bc1f53d3b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/municipio/crea": {
+            "post": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Crea un Municipio",
+                "description": "Crea un Municipio. Solo por Administradores.",
+                "operationId": "0eec2fdc898a9600c60248e3d3f01cbc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Municipio"
+                                    },
+                                    "islas": {
+                                        "type": "enum",
+                                        "format": "enum",
+                                        "example": "Esto es la isla del Municipio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/municipio/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Modifica un Municipio",
+                "description": "Modifica un Municipio. Solo por Administradores.",
+                "operationId": "a0ecf94f99f964b5b0841cf5096b1603",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Municipio"
+                                    },
+                                    "islas": {
+                                        "type": "enum",
+                                        "format": "enum",
+                                        "example": "Esto es la isla del Municipio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/servicio/{id}": {
+            "get": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Mostrar un Servicio por ID",
+                "description": "Descripcion de un Servicio.",
+                "operationId": "e3f94a76e9556cf2d99c5dd8433bac7f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Servicio",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Servicio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Servicio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/servicio": {
+            "get": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Mostrar todos los Servicios",
+                "description": "Lista todos los Servicios.",
+                "operationId": "b7e49bff131243d6d703793f154de189",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Servicios."
+                    }
+                }
+            }
+        },
+        "/api/servicio/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Borra un Servicio",
+                "description": "Borra un Servicio. Solo por Administradores",
+                "operationId": "d0939703f003a834f9d6783db417c560",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/servicio/crea": {
+            "post": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Crea un Servicio",
+                "description": "Crea un Servicio. Solo por Administradores.",
+                "operationId": "3df706cf1eb301633f63d437ec9ca9bb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "NombreServicio": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Servicio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/servicio/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Modifica un Servicio",
+                "description": "Modifica un Servicio. Solo por Administradores.",
+                "operationId": "fff8daa6792b100e228034a47bd13ef7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "NombreServicio": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Servicio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tipovacacional/{id}": {
+            "get": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Mostrar un Tipo vacacional por ID",
+                "description": "Descripcion de un Tipo Vacacional.",
+                "operationId": "561987dc5573dc8e96e7e61687712e49",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Tipo vacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Tipo Vacacional",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Tipo Vacacional.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Tipo Vacacional no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tipovacacional": {
+            "get": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Mostrar todos los Tipos Vacacionales",
+                "description": "Lista todos los Tipos Vacacionales.",
+                "operationId": "ecb44053671edcc0d657a7ae46795928",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Tipos Vacacionales."
+                    }
+                }
+            }
+        },
+        "/api/tipovacacional/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Borra un Tipo Vacacional",
+                "description": "Borra un Tipo Vacacional. Solo por Administradores",
+                "operationId": "56ca61ec111e76502885786132e1de9f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tipovacacional/crea": {
+            "post": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Crea un Tipo Vacacional",
+                "description": "Crea un Tipo Vacacional. Solo por Administradores.",
+                "operationId": "0c3f1fee723f4bb1d6905d0879b278de",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_tipo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Tipo Vacacional"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma del Tipo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tipovacacional/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Modifica un Tipo Vacacional",
+                "description": "Modifica un Tipo Vacacional. Solo por Administradores.",
+                "operationId": "a66421e7be69cd912ebdfa89645c917f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Tipo Vacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_tipo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Tipo Vacacional"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma del Tipo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     }
 }

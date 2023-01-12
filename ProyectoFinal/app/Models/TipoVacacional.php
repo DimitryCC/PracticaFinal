@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class TipoVacacional extends Model
 {
     use HasFactory;
-    protected $table='tiposvacacional';
+    protected $table='tiposVacacional';
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
+    protected $fillable=['ID','nombre_tipo','idioma_id'];
+
 }
