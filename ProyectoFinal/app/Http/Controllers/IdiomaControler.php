@@ -171,19 +171,9 @@ class IdiomaControler extends Controller
     }
 //
     /**
-     * Modificar un Alojamiento.
+     * Modificar un Idioma.
      * @urlParam id integer required ID del Alojamiento.
-     * @bodyParam nombre string Nombre del Alojamiento.
-     * @bodyParam adresa string Direccion del Alojamiento.
-     * @bodyParam numpero_personas number Numero de las max. personas del Alojamiento.
-     * @bodyParam numero_habitaciones number Numero de las habitaciones.
-     * @bodyParam numero_camas number Numero de las camas.
-     * @bodyParam numero_banos number Numero de los baños.
-     * @bodyParam tipo_alojamiento number Nivel de lujo del Alojamiento.
-     * @bodyParam tipo_vacacional number Tipo de Alojamiento vacacional.
-     * @bodyParam categoria number Categoria del Alojamiento.
-     * @bodyParam municipio number Municipio del Alojamiento.
-     * @bodyParam usuari number Usuario.
+     * @bodyParam idioma string Nombre del Idioma.
      * @response scenario=success {
      *  "status": "success",
      * }
@@ -196,12 +186,12 @@ class IdiomaControler extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      * @OA\Put(
-     *    path="/api/alojamiento/idioma/{id}",
+     *    path="/api/idioma/modifica/{id}",
      *    tags={"Idiomas"},
      *    summary="Modifica un Idioma",
      *    description="Modifica un Idioma. Solo por Administradores.",
      *    security={{"bearerAuth":{}}},
-     *    @OA\Parameter(name="id", in="path", description="Id Categoria", required=true,
+     *    @OA\Parameter(name="id", in="path", description="Id Idioma", required=true,
      *        @OA\Schema(type="string")
      *    ),
      *     @OA\RequestBody(

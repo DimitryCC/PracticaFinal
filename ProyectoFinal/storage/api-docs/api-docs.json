@@ -972,19 +972,19 @@
                 ]
             }
         },
-        "/api/alojamiento/idioma/{id}": {
+        "/api/idioma/modifica/{id}": {
             "put": {
                 "tags": [
                     "Idiomas"
                 ],
                 "summary": "Modifica un Idioma",
                 "description": "Modifica un Idioma. Solo por Administradores.",
-                "operationId": "ce4b3d160179bb7a5f76b34230642465",
+                "operationId": "4c145f4b3bb369d58faa84696925cd57",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id Categoria",
+                        "description": "Id Idioma",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1001,6 +1001,323 @@
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es un nuevo Idioma"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/municipio/{id}": {
+            "get": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Mostrar un Municipio por ID",
+                "description": "Descripcion de un Idioma.",
+                "operationId": "6f10de88309d4abcbf330e1a491dcee5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Municipio",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Municipio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Municipio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/municipio": {
+            "get": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Mostrar todos los Municipios",
+                "description": "Lista todos los Municipios.",
+                "operationId": "2fe38afd064eef5c4f709dbc353c9c24",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Municipios."
+                    }
+                }
+            }
+        },
+        "/api/municipio/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Borra un Municipio",
+                "description": "Borra un Municipio. Solo por Administradores",
+                "operationId": "a02d2c6e68eae5746763403bc1f53d3b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/municipio/crea": {
+            "post": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Crea un Municipio",
+                "description": "Crea un Municipio. Solo por Administradores.",
+                "operationId": "0eec2fdc898a9600c60248e3d3f01cbc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Municipio"
+                                    },
+                                    "islas": {
+                                        "type": "enum",
+                                        "format": "enum",
+                                        "example": "Esto es la isla del Municipio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/municipio/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Municipios"
+                ],
+                "summary": "Modifica un Municipio",
+                "description": "Modifica un Municipio. Solo por Administradores.",
+                "operationId": "a0ecf94f99f964b5b0841cf5096b1603",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Municipio"
+                                    },
+                                    "islas": {
+                                        "type": "enum",
+                                        "format": "enum",
+                                        "example": "Esto es la isla del Municipio"
                                     }
                                 },
                                 "type": "object"
