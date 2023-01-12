@@ -1996,6 +1996,323 @@
                     }
                 ]
             }
+        },
+        "/api/tipovacacional/{id}": {
+            "get": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Mostrar un Tipo vacacional por ID",
+                "description": "Descripcion de un Tipo Vacacional.",
+                "operationId": "561987dc5573dc8e96e7e61687712e49",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Tipo vacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Tipo Vacacional",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Tipo Vacacional.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Tipo Vacacional no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tipovacacional": {
+            "get": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Mostrar todos los Tipos Vacacionales",
+                "description": "Lista todos los Tipos Vacacionales.",
+                "operationId": "ecb44053671edcc0d657a7ae46795928",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Tipos Vacacionales."
+                    }
+                }
+            }
+        },
+        "/api/tipovacacional/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Borra un Tipo Vacacional",
+                "description": "Borra un Tipo Vacacional. Solo por Administradores",
+                "operationId": "56ca61ec111e76502885786132e1de9f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tipovacacional/crea": {
+            "post": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Crea un Tipo Vacacional",
+                "description": "Crea un Tipo Vacacional. Solo por Administradores.",
+                "operationId": "0c3f1fee723f4bb1d6905d0879b278de",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_tipo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Tipo Vacacional"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma del Tipo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tipovacacional/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Tipo Vacacional"
+                ],
+                "summary": "Modifica un Tipo Vacacional",
+                "description": "Modifica un Tipo Vacacional. Solo por Administradores.",
+                "operationId": "a66421e7be69cd912ebdfa89645c917f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Tipo Vacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_tipo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Tipo Vacacional"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma del Tipo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     }
 }
