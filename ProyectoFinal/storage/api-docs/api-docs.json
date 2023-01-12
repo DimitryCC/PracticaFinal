@@ -1372,6 +1372,313 @@
                     }
                 ]
             }
+        },
+        "/api/servicio/{id}": {
+            "get": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Mostrar un Servicio por ID",
+                "description": "Descripcion de un Servicio.",
+                "operationId": "e3f94a76e9556cf2d99c5dd8433bac7f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Servicio",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Servicio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Servicio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/servicio": {
+            "get": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Mostrar todos los Servicios",
+                "description": "Lista todos los Servicios.",
+                "operationId": "b7e49bff131243d6d703793f154de189",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Servicios."
+                    }
+                }
+            }
+        },
+        "/api/servicio/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Borra un Servicio",
+                "description": "Borra un Servicio. Solo por Administradores",
+                "operationId": "d0939703f003a834f9d6783db417c560",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/servicio/crea": {
+            "post": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Crea un Servicio",
+                "description": "Crea un Servicio. Solo por Administradores.",
+                "operationId": "3df706cf1eb301633f63d437ec9ca9bb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "NombreServicio": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Servicio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/servicio/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Servicios"
+                ],
+                "summary": "Modifica un Servicio",
+                "description": "Modifica un Servicio. Solo por Administradores.",
+                "operationId": "fff8daa6792b100e228034a47bd13ef7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "NombreServicio": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo Servicio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     }
 }
