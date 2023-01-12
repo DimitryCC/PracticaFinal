@@ -54,14 +54,14 @@ class DescripcionControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Descripcion::findOrFail($id);
         $reglesvalidacio=[
-            'descripcion'=>['required','max:600'],
-            'idioma_id'=>['required']
+            'descripcion'=>['filled','max:600'],
+            'idioma_id'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
-        $validacio=Descripcion::make($request->all(),$reglesvalidacio,$missatges);
+        $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());
             return response()->json(['status'=>'success','result'=>$tupla],200);
