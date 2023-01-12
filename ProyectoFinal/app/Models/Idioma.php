@@ -12,4 +12,7 @@ class Idioma extends Model
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
+    protected $fillable=['ID','idioma'];
+
+
 }
