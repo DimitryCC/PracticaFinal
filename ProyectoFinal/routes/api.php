@@ -154,11 +154,11 @@ Route::group(['prefix'=>'valoracion'],function() {
     // * /api/valoracion/
     Route::get('', [\App\Http\Controllers\ValoracionControler::class, 'tots']);
     // * /api/valoracion/1
-    Route::get('/{id}', [\App\Http\Controllers\ValoracionControler::class, 'show']);
+    Route::get('/usuari/{idusuari}/allotgament/{idallotgament}', [\App\Http\Controllers\ValoracionControler::class, 'show']);
     // * /api/valoracion/borra/1
-    Route::delete('/borra/{id}', [\App\Http\Controllers\ValoracionControler::class, 'borra']);
+    Route::delete('/borra/usuari/{idusuari}/allotgament/{idallotgament}', [\App\Http\Controllers\ValoracionControler::class, 'borra']);
     // * /api/valoracion/crea
     Route::post('/crea', [\App\Http\Controllers\ValoracionControler::class, 'crea']);
     // * /api/valoracion/modifica/1
-    Route::put('/modifica/{id}', [\App\Http\Controllers\ValoracionControler::class, 'modifica']);
+    Route::put('/modifica/usuari/{idusuari}/allotgament/{idallotgament}', [\App\Http\Controllers\ValoracionControler::class, 'modifica']);
 });

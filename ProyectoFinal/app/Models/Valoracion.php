@@ -9,7 +9,8 @@ class Valoracion extends Model
 {
     use HasFactory;
     protected $table='valoraciones';
-    protected $primaryKey='ID';
+    protected $primaryKey=['usuari_id','Alojamiento_id'];
     public $incrementing=false;
     public $timestamps=false;
+    protected $fillable=['usuari_id','Alojamiento_id','texto','puntuacion'];
 }

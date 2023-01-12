@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Valoracion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ValoracionControler extends Controller
 {
     //
-    public function show($id){
+    public function show($idusuari,$idallotgament){
         try {
-            $tupla = Valoracion::findOrFail($id);
+            $tupla = Valoracion::where('usuari_id','=',$idusuari)
+                                ->where('Alojamiento_id','=',$idallotgament)
+                                ->first();
+            if ($tupla) {
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
+            }else{
+                return response()->json(['status'=>'error','result'=>'trupla no trobada'],401);
+            }
             }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
         }
@@ -23,9 +30,16 @@ class ValoracionControler extends Controller
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 
-    public function borra($id){
+    public function borra($idusuari,$idallotgament){
         try {
-            $tupla = Valoracion::findOrFail($id)->delete();
+            $tupla = Valoracion::where('usuari_id','=',$idusuari)
+                ->where('Alojamiento_id','=',$idallotgament)
+                ->delete();
+            if ($tupla) {
+                return response()->json(['status' => 'success', 'result' => $tupla], 200);
+            }else{
+                return response()->json(['status'=>'error','result'=>'trupla no trobada'],401);
+            }
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -52,13 +66,18 @@ class ValoracionControler extends Controller
         }
     }
 
-    public function modifica(Request $request, $id){
-        $tupla = Valoracion::findOrFail($id);
+    public function modifica(Request $request, $idusuari,$idallotgament){
+        $tupla = Valoracion::where('usuari_id','=',$idusuari)
+            ->where('Alojamiento_id','=',$idallotgament)
+            ->first();
+        if ($tupla) {
+            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+        }else{
+            return response()->json(['status'=>'error','result'=>'trupla no trobada'],401);
+        }
         $reglesvalidacio=[
-            'usuari_id'=>['required'],
-            'Alojamiento_id'=>['required'],
-            'texto'=>['required','max:255'],
-            'puntuacion'=>['required']
+            'texto'=>['filled','max:255'],
+            'puntuacion'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',
