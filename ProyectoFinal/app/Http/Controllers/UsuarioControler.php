@@ -35,8 +35,8 @@ class UsuarioControler extends Controller
         $reglesvalidacio=[
             'DNI'=>['required'],
             'nom_complet'=>['required','max:300'],
-            'direccio'=>['required'],
-            'correu'=>['required'],
+            'direccio'=>[],
+            'correu'=>[],
             'telefon'=>['required'],
             'contrasenya'=>['required'],
             'administrador'=>[]
