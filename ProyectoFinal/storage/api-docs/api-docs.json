@@ -749,6 +749,323 @@
                 ]
             }
         },
+        "/api/fotografia/{id}": {
+            "get": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Mostrar una Fotografia por ID",
+                "description": "Descripcion de una Fotografia.",
+                "operationId": "aea9bc9cb129cdf23fd98c27f85c2339",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la Fotografia",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la Fotografia",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Fotografia.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Fotografia no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/fotografia": {
+            "get": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Mostrar todas las Fotografias",
+                "description": "Lista todas las Fotografias.",
+                "operationId": "11c50e4c1aa9448ab593a825298f3290",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las Fotografias."
+                    }
+                }
+            }
+        },
+        "/api/fotografia/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Borra una Fotografia",
+                "description": "Borra una Fotografia. Solo por Administradores",
+                "operationId": "6e12be3407ed0c3f6b10298089714241",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Municipio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/fotografia/crea": {
+            "post": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Crea una Fotografia",
+                "description": "Crea una Fotografia. Solo por Administradores.",
+                "operationId": "5960c0b46cebc2fcccd27aaf79e25925",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ruta": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Ruta de la Fotografia"
+                                    },
+                                    "islas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Id del Alojamiento"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/fotografia/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Modifica una Fotografia",
+                "description": "Modifica una Fotografia. Solo por Administradores.",
+                "operationId": "9d945a0c0c8ae13b9e78b2750ab98e64",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Fotografia",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ruta": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Ruta de la Fotografia"
+                                    },
+                                    "islas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Id del Alojamiento"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/idioma/{id}": {
             "get": {
                 "tags": [
