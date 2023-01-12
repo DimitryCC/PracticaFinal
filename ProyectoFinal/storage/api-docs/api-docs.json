@@ -1997,6 +1997,323 @@
                 ]
             }
         },
+        "/api/tipoalojamiento/{id}": {
+            "get": {
+                "tags": [
+                    "Tipo Alojamiento"
+                ],
+                "summary": "Mostrar un Tipo Alojamiento por ID",
+                "description": "Descripcion de un Tipo Alojamiento.",
+                "operationId": "e4b72eca73bc20e1468a5acf2c0a7844",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Tipo Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del Tipo Alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Tipo Vacacional.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Tipo Alojamiento no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tipoalojamiento": {
+            "get": {
+                "tags": [
+                    "Tipo Alojamiento"
+                ],
+                "summary": "Mostrar todos los Tipos de Alojamiento",
+                "description": "Lista todos los Tipos Alojamiento.",
+                "operationId": "04dd7ac6dd212dc36575cc32f56ed418",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Tipos de Alojamiento."
+                    }
+                }
+            }
+        },
+        "/api/tipoalojamiento/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Tipo Alojamiento"
+                ],
+                "summary": "Borra un Tipo Alojamiento",
+                "description": "Borra un Tipo Alojamiento. Solo por Administradores",
+                "operationId": "85c0ef05108f158580ad7970fe1aa9ef",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del Tipo de Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tipoalojamiento/crea": {
+            "post": {
+                "tags": [
+                    "Tipo Alojamiento"
+                ],
+                "summary": "Crea un Tipo Alojamiento",
+                "description": "Crea un Tipo Alojamiento. Solo por Administradores.",
+                "operationId": "8d98c2ba666466c11bbed1ea3a5c6a6f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_tipo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Tipo Alojamiento"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma del Tipo Alojamiento"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tipovaalojamiento/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Tipo Alojamiento"
+                ],
+                "summary": "Modifica un Tipo Alojamiento",
+                "description": "Modifica un Tipo Alojamiento. Solo por Administradores.",
+                "operationId": "5200f3f21ec5746a1aca0f371ce4ec1c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Tipo Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_tipo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Tipo Alojamiento"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma del Tipo Alojamiento"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/tipovacacional/{id}": {
             "get": {
                 "tags": [

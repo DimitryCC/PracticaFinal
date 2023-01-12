@@ -9,6 +9,43 @@ use Illuminate\Support\Facades\Validator;
 class TipoAlojameintoControler extends Controller
 {
     //
+    /**
+     * Descripcion de un Tipo Alojamiento.
+     * @urlParam id integer required ID del Tipo Alojamiento a mostrar.
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/tipoalojamiento/{id}",
+     *     tags={"Tipo Alojamiento"},
+     *     summary="Mostrar un Tipo Alojamiento por ID",
+     *     @OA\Parameter(
+     *         description="Id del Tipo Alojamiento",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID del Tipo Alojamiento")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Informacion del Tipo Vacacional.",
+     *          @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="success"),
+     *          @OA\Property(property="data",type="object")
+     *           ),
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Hay un error.",
+     *         @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="error"),
+     *          @OA\Property(property="data",type="string", example="Tipo Alojamiento no encontrado")
+     *           ),
+     *     )
+     * )
+     */
     public function show($id){
         try {
             $tupla = TiposAlojameinto::findOrFail($id);
@@ -18,12 +55,60 @@ class TipoAlojameintoControler extends Controller
         }
     }
 
-
+    /**
+     * Lista todos los Tipos Alojamiento.
+     *
+     *
+     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/tipoalojamiento",
+     *     tags={"Tipo Alojamiento"},
+     *     summary="Mostrar todos los Tipos de Alojamiento",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Mostrar todos los Tipos de Alojamiento."
+     *     ),
+     * )
+     */
     public function tots(){
         $tuples= TiposAlojameinto::paginate(10);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 
+    /**
+     * Borra un Tipo Alojamiento.
+     * @urlParam id integer required ID del Tipo de Alojamiento a borrar.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *    path="/api/tipoalojamiento/borra/{id}",
+     *    tags={"Tipo Alojamiento"},
+     *    summary="Borra un Tipo Alojamiento",
+     *    description="Borra un Tipo Alojamiento. Solo por Administradores",
+     *    security={{"bearerAuth":{}}},
+     *    @OA\Parameter(name="id", in="path", description="Id del Tipo de Alojamiento", required=true,
+     *        @OA\Schema(type="string")
+     *    ),
+     *    @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="success"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       ),
+     *    @OA\Response(
+     *         response=400,
+     *         description="Error",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="error"),
+     *         @OA\Property(property="data",type="string", example="ID no encotrada")
+     *          ),
+     *       )
+     *      )
+     *  )
+     */
     public function borra($id){
         try {
             $tupla = TiposAlojameinto::findOrFail($id)->delete();
@@ -33,6 +118,42 @@ class TipoAlojameintoControler extends Controller
         }
     }
 
+    /**
+     * Crea un nuevo Tipo Alojamiento.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *    path="/api/tipoalojamiento/crea",
+     *    tags={"Tipo Alojamiento"},
+     *    summary="Crea un Tipo Alojamiento",
+     *    description="Crea un Tipo Alojamiento. Solo por Administradores.",
+     *    security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *        required=true,
+     *        @OA\JsonContent(
+     *           @OA\Property(property="nombre_tipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Alojamiento"),
+     *           @OA\Property(property="idioma_id", type="number", format="number", example="Esto es la ID del Idioma del Tipo Alojamiento")
+     *        ),
+     *     ),
+     *    @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="success"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       ),
+     *    @OA\Response(
+     *         response=400,
+     *         description="Error",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="error"),
+     *         @OA\Property(property="data",type="string", example="Atributo obligatorio requerido")
+     *          ),
+     *       )
+     *  )
+     */
     public function crea(Request $request){
         $reglesvalidacio=[
             'nombre_tipo'=>['required','max:30','unique:tiposAlojameintos,nombre_tipo'],
@@ -51,6 +172,56 @@ class TipoAlojameintoControler extends Controller
         }
     }
 
+    /**
+     * Modificar un Tipo Alojamiento.
+     * @urlParam ID integer required ID del Tipo Alojamiento.
+     * @bodyParam nombre_tipo string Nombre del Tipo Alojamiento.
+     * @bodyParam idioma_id string Esto es la ID del Idioma del Tipo.
+     * @response scenario=success {
+     *  "status": "success",
+     * }
+     * @response status=400 scenario="validation error" {"status": "Validation error"}
+     */
+
+    /**
+     * Modificar un Tipo Alojamiento.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *    path="/api/tipovaalojamiento/modifica/{id}",
+     *    tags={"Tipo Alojamiento"},
+     *    summary="Modifica un Tipo Alojamiento",
+     *    description="Modifica un Tipo Alojamiento. Solo por Administradores.",
+     *    security={{"bearerAuth":{}}},
+     *    @OA\Parameter(name="id", in="path", description="Id Tipo Alojamiento", required=true,
+     *        @OA\Schema(type="string")
+     *    ),
+     *     @OA\RequestBody(
+     *        required=true,
+     *        @OA\JsonContent(
+     *           @OA\Property(property="nombre_tipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Alojamiento"),
+     *           @OA\Property(property="idioma_id", type="number", format="number", example="Esto es la ID del Idioma del Tipo Alojamiento")
+     *        ),
+     *     ),
+     *    @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="success"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       ),
+     *    @OA\Response(
+     *         response=400,
+     *         description="Error",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="error"),
+     *         @OA\Property(property="data",type="string", example="Atributo obligatorio requerido")
+     *          ),
+     *       )
+     *  )
+     */
     public function modifica(Request $request, $id){
         $tupla = TiposAlojameinto::findOrFail($id);
         $reglesvalidacio=[
