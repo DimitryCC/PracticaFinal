@@ -53,7 +53,7 @@ class ServicioControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Servicio::findOrFail($id);
         $reglesvalidacio=[
-            'NombreServicio'=>['required','max:100','unique:servicios,NombreServicio']
+            'NombreServicio'=>['filled','max:100','unique:servicios,NombreServicio']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',
