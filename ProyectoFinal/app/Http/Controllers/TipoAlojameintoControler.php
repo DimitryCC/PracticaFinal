@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TiposAlojameinto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TipoAlojameintoControler extends Controller
 {

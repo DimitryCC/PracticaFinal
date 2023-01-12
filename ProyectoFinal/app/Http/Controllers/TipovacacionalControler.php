@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TipoVacacional;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TipovacacionalControler extends Controller
 {

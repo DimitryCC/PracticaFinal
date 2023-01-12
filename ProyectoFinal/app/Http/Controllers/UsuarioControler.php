@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UsuarioControler extends Controller
 {
@@ -34,7 +35,7 @@ class UsuarioControler extends Controller
     public function crea(Request $request){
         $reglesvalidacio=[
             'DNI'=>['required'],
-            'nom_complet'=>['required','max:300'],
+            'nom_complet'=>['required','max:150'],
             'direccio'=>[],
             'correu'=>[],
             'telefon'=>['required'],

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Municipio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MunicipioControler extends Controller
 {
