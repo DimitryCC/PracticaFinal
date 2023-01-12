@@ -1,0 +1,753 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Projecte Final ",
+        "description": "REST API. Projecte Final. DAW Client i servidor Joan R, Dimitry C, Javier P.",
+        "contact": {
+            "name": "Joan Ramis.",
+            "email": "joanramis1@paucasesnovescifp.cat"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/"
+        }
+    ],
+    "paths": {
+        "/api/alojamiento/{id}": {
+            "get": {
+                "tags": [
+                    "Alojamientos"
+                ],
+                "summary": "Mostrar un Alojamiento por ID",
+                "description": "Descripcion de un Alojamiento.",
+                "operationId": "de88b08a26d3b781d8f348571cfdc735",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id del Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del alojamiento.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "alojamiento no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/alojamiento": {
+            "get": {
+                "tags": [
+                    "Alojamientos"
+                ],
+                "summary": "Mostrar todos los Alojamientos",
+                "description": "Lista todos los Alojamientos.",
+                "operationId": "8815afbbf45accf74f99cd57dbe05e26",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Alojamientos."
+                    }
+                }
+            }
+        },
+        "/api/alojamiento/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Alojamientos"
+                ],
+                "summary": "Borra un Alojamiento",
+                "description": "Borra un Alojamiento. Solo por Administradores",
+                "operationId": "f855b11ea7293ced129250446767bc80",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/alojamiento/crea": {
+            "post": {
+                "tags": [
+                    "Alojamientos"
+                ],
+                "summary": "Crea un Alojamiento",
+                "description": "Crea un Alojamiento. Solo por Administradores.",
+                "operationId": "7cd0bb4abbae31270021b21b417b7c3f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Alojamiento"
+                                    },
+                                    "adresa": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una nueva direccion"
+                                    },
+                                    "numpero_personas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "numero_habitaciones": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2"
+                                    },
+                                    "numero_camas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "5"
+                                    },
+                                    "numero_banos": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "tipo_alojamiento": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "tipo_vacacional": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "categoria": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "municipio": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "usuari": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/alojamiento/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Alojamientos"
+                ],
+                "summary": "Modifica un Alojamiento",
+                "description": "Modifica un Alojamiento. Solo por Administradores.",
+                "operationId": "d65eaf6e7dedac96b8dcd6ba6f217d4c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Alojamiento"
+                                    },
+                                    "adresa": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una nueva direccion"
+                                    },
+                                    "numpero_personas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "numero_habitaciones": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2"
+                                    },
+                                    "numero_camas": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "5"
+                                    },
+                                    "numero_banos": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "tipo_alojamiento": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "tipo_vacacional": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "categoria": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "municipio": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "usuari": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/categoria/{id}": {
+            "get": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Mostrar una Categoria por ID",
+                "description": "Descripcion de una Categoria.",
+                "operationId": "aa80dd70b2dcf596701963c03af9d85b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de la Categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Categoria.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Categoria no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/categoria": {
+            "get": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Mostrar todas las Categorias",
+                "description": "Lista todas las Categorias.",
+                "operationId": "0a5a5e299b3da1546921c965f98a9710",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las Categorias."
+                    }
+                }
+            }
+        },
+        "/api/categoria/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Borra una Categoria",
+                "description": "Borra una Categoria. Solo por Administradores",
+                "operationId": "0463427d406a28ea0390c69032b53f09",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/categoria/crea": {
+            "post": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Crea una Categoria",
+                "description": "Crea una Categoria. Solo por Administradores.",
+                "operationId": "5f7bafdf75b67ff0482514be1a87a47f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_categoria": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Categoria"
+                                    },
+                                    "tarifa_baixa": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "10"
+                                    },
+                                    "tarifa_alta": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "20"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/categoria/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Modifica una Categoria",
+                "description": "Modifica una Categoria. Solo por Administradores.",
+                "operationId": "93c8e6b91db7a269e8206581895405ad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Categoria",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nombre_categoria": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo nombre de Categoria"
+                                    },
+                                    "tarifa_baixa": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "10"
+                                    },
+                                    "tarifa_alta": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "20"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    }
+}
