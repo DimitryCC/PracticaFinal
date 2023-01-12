@@ -13,6 +13,6 @@ class Idioma extends Model
     public $incrementing=false;
     public $timestamps=false;
     protected $fillable=['ID','idioma'];
-
+//
 
 }

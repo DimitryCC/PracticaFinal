@@ -49,7 +49,7 @@ class IdiomaControler extends Controller
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
         }
     }
-
+//
     public function modifica(Request $request, $id){
         $tupla = Idioma::findOrFail($id);
         $reglesvalidacio=[
