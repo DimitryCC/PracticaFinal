@@ -33,17 +33,13 @@ class UsuarioControler extends Controller
 
     public function crea(Request $request){
         $reglesvalidacio=[
-            'nombre'=>['required','max:100','unique:alojamientos,nombre'],
-            'adresa'=>['required','max:300'],
-            'numpero_personas'=>['required'],
-            'numero_habitaciones'=>['required'],
-            'numero_camas'=>['required'],
-            'numero_banos'=>['required'],
-            'tipo_alojamiento'=>['required'],
-            'tipo_vacacional'=>['required'],
-            'categoria'=>['required'],
-            'municipio'=>['required'],
-            'usuari'=>['required'],
+            'DNI'=>['required'],
+            'nom_complet'=>['required','max:300'],
+            'direccio'=>['required'],
+            'correu'=>['required'],
+            'telefon'=>['required'],
+            'contrasenya'=>['required'],
+            'administrador'=>[]
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
