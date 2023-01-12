@@ -54,9 +54,10 @@ class CategoriaControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Categoria::findOrFail($id);
         $reglesvalidacio=[
-            'ID'=>['filled','unique:alojamientos,ID,' . $id],
-            'nombre'=>['filled','max:100','unique:alojamientos,nombre'],
-            'adresa'=>['filled','max:300']
+            'ID'=>['filled','unique:categorias,ID,' . $id],
+            'nombre_categoria'=>['filled','max:300','unique:categorias,nombre_categoria'],
+            'tarifa_baixa'=>['filled'],
+            'tarifa_alta'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

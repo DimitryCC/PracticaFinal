@@ -12,4 +12,5 @@ class Categoria extends Model
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
+    protected $fillable=['ID','nombre_categoria','tarifa_baixa','tarifa_alta'];
 }
