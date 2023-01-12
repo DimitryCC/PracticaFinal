@@ -36,7 +36,7 @@ class MunicipioControler extends Controller
     public function crea(Request $request){
         $reglesvalidacio=[
             'nombre'=>['required','max:60','unique:municipios,nombre'],
-            'adresa'=>['required']
+            'islas'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -54,8 +54,8 @@ class MunicipioControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Municipio::findOrFail($id);
         $reglesvalidacio=[
-            'nombre'=>['required','max:60','unique:municipios,nombre'],
-            'adresa'=>['required']
+            'nombre'=>['filled','max:60','unique:municipios,nombre'],
+            'islas'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',
