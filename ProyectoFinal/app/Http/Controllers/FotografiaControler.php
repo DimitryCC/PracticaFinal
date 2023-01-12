@@ -54,8 +54,8 @@ class FotografiaControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Fotografia::findOrFail($id);
         $reglesvalidacio=[
-            'ruta'=>['required','max:500'],
-            'alojamiento_id'=>['required']
+            'ruta'=>['filled','max:500'],
+            'alojamiento_id'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

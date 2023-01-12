@@ -131,7 +131,7 @@ create table valoraciones(
 );
 
 create table fotografias(
-	ID integer primary key,
+	ID integer primary key auto_increment,
     ruta varchar(500),
     alojamiento_id integer,
     foreign key (alojamiento_id) references alojamientos(ID)
