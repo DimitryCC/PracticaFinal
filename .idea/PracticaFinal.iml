@@ -120,6 +120,12 @@
       <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/zircote/swagger-php" />
       <excludeFolder url="file://$MODULE_DIR$/PoryectoFinal/vendor/darkaonline/l5-swagger" />
+      <excludeFolder url="file://$MODULE_DIR$/ProyectoFinal/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/ProyectoFinal/vendor/zircote/swagger-php" />
+      <excludeFolder url="file://$MODULE_DIR$/ProyectoFinal/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/ProyectoFinal/vendor/darkaonline/l5-swagger" />
+      <excludeFolder url="file://$MODULE_DIR$/ProyectoFinal/vendor/swagger-api/swagger-ui" />
+      <excludeFolder url="file://$MODULE_DIR$/ProyectoFinal/vendor/psr/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

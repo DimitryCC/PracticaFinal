@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alojamiento;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +53,29 @@ class UsuarioControler extends Controller
             return response()->json(['status'=>'success','result'=>$tupla],200);
         }else {
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
+        }
+    }
+    public function modifica(Request $request, $id){
+        $tupla = Usuario::findOrFail($id);
+        $reglesvalidacio=[
+            'DNI'=>['filled'],
+            'nom_complet'=>['filled','max:150'],
+            'direccio'=>[],
+            'correu'=>[],
+            'telefon'=>['filled'],
+            'contrasenya'=>['filled'],
+            'administrador'=>[]
+        ];
+        $missatges=[
+            'filled'=>':attribute no pot estar buit',
+            'unique'=>'Camp :attribute amb valor :input ja hi es'
+        ];
+        $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
+        if(!$validacio->fails()){
+            $tupla->update($request->all());
+            return response()->json(['status'=>'success','result'=>$tupla],200);
+        }else {
+            return response()->json(['status'=>'validation error','result'=>$validacio->errors()],400);
         }
     }
 }

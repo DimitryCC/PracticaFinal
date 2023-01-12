@@ -12,4 +12,6 @@ class Usuario extends Model
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
+    protected $fillable=['ID','DNI','nom_complet','telefon','contrasenya',
+    'direccio','correu','administrador'];
 }
