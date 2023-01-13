@@ -755,7 +755,7 @@
                     "Descripcion"
                 ],
                 "summary": "Mostrar una Descripcion por ID",
-                "description": "Descripcion de un Tipo Alojamiento.",
+                "description": "Mostrar una Descripcion.",
                 "operationId": "b98f9720b47eb38bfa6ff3085063efa0",
                 "parameters": [
                     {
@@ -823,7 +823,7 @@
                     "Descripcion"
                 ],
                 "summary": "Mostrar todas las Descripcion",
-                "description": "Lista todos los Tipos Alojamiento.",
+                "description": "Lista todas las Descripciones.",
                 "operationId": "04707685f4596c2fc74ab8b9abd4e8e3",
                 "responses": {
                     "200": {
@@ -2893,6 +2893,323 @@
                                         "type": "number",
                                         "format": "number",
                                         "example": "Esto es la ID del Idioma del Tipo"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/valoracion/usuari/{idusuari}/allotjament/{idallotjament}": {
+            "get": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Mostrar una Valoracion por ID",
+                "description": "Descripcion de una Valoracion.",
+                "operationId": "75da65df53d9e11a940b5fdf4db5d148",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la Valoracion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la Valoracion",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Valoracion.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Valoracion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/valoracion": {
+            "get": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Mostrar todas las Valoraciones",
+                "description": "Lista todas las Valoraciones.",
+                "operationId": "c0fec5d072d7cb966af48a924f2adabb",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las Valoraciones."
+                    }
+                }
+            }
+        },
+        "/api/valoracion/borra/usuari/{idusuari}/allotjament/{idallotjament}": {
+            "delete": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Borra una Valoracion",
+                "description": "Borra una Valoracion. Solo por Administradores",
+                "operationId": "e0e1a2a6464082f40e74bc1e13f9ef30",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la Valoracion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/valoracion/crea": {
+            "post": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Crea una Valoracion",
+                "description": "Crea una Valoracion. Solo por Administradores.",
+                "operationId": "4fce15e78b5e54e439f3f2699ebb8997",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "texto": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el contenido de la Valoracion"
+                                    },
+                                    "puntuacion": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la puntuacion de la Valoracion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/valoracion/modifica/usuari/{idusuari}/allotjament/{idallotjament}": {
+            "put": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Modifica una Valoracion",
+                "description": "Modifica una Valoracion. Solo por Administradores.",
+                "operationId": "72b9ca68f0f27294bd16fdb4674562c3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Tipo Valoracion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "texto": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el contenido de la Valoracion"
+                                    },
+                                    "puntuacion": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la puntuacion de la Valoracion"
                                     }
                                 },
                                 "type": "object"

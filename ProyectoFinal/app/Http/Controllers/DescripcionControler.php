@@ -10,8 +10,8 @@ class DescripcionControler extends Controller
 {
     //
     /**
-     * Descripcion de un Tipo Alojamiento.
-     * @urlParam id integer required ID del Tipo Alojamiento a mostrar.
+     * Mostrar una Descripcion.
+     * @urlParam id integer required ID de la Descripcion a mostrar.
      * Display the specified resource.
      *
      * @param  int  $id
@@ -56,7 +56,7 @@ class DescripcionControler extends Controller
     }
 
     /**
-     * Lista todos los Tipos Alojamiento.
+     * Lista todas las Descripciones.
      *
      *
      * @return \Illuminate\Http\Response
@@ -176,7 +176,7 @@ class DescripcionControler extends Controller
      * Modificar una Descripcion.
      * @urlParam ID integer required ID de la Descripcion.
      * @bodyParam descripcion string Nombre del Tipo Alojamiento.
-     * @bodyParam idioma_id string Esto es la ID de la Descripcion.
+     * @bodyParam idioma_id integer Esto es la ID de la Descripcion.
      * @response scenario=success {
      *  "status": "success",
      * }
