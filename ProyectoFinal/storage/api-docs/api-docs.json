@@ -749,6 +749,323 @@
                 ]
             }
         },
+        "/api/descripcion/{id}": {
+            "get": {
+                "tags": [
+                    "Descripcion"
+                ],
+                "summary": "Mostrar una Descripcion por ID",
+                "description": "Descripcion de un Tipo Alojamiento.",
+                "operationId": "b98f9720b47eb38bfa6ff3085063efa0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la Descripcion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la Descripcion",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Descripcion.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Descripcion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/descripcion": {
+            "get": {
+                "tags": [
+                    "Descripcion"
+                ],
+                "summary": "Mostrar todas las Descripcion",
+                "description": "Lista todos los Tipos Alojamiento.",
+                "operationId": "04707685f4596c2fc74ab8b9abd4e8e3",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las Descripcion."
+                    }
+                }
+            }
+        },
+        "/api/descripcion/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Descripcion"
+                ],
+                "summary": "Borra una Descripcion",
+                "description": "Borra una Descripcion. Solo por Administradores",
+                "operationId": "14ab136d53f2cc047893233ca0a07718",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la Descripcion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/descripcion/crea": {
+            "post": {
+                "tags": [
+                    "Descripcion"
+                ],
+                "summary": "Crea una Descripcion",
+                "description": "Crea una Descripcion. Solo por Administradores.",
+                "operationId": "3dcb2164f213d2845cfd6a38313f389d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "descripcion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el contenido de la Descripcion"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma de la Descripcion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/descripcion/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Descripcion"
+                ],
+                "summary": "Modifica una Descripcion",
+                "description": "Modifica una Descripcion. Solo por Administradores.",
+                "operationId": "7fd3541e0afa226155b2a9a25bb9c131",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Tipo Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "descripcion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el contenido de la Descripcion"
+                                    },
+                                    "idioma_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esto es la ID del Idioma de la Descripcion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/fotografia/{id}": {
             "get": {
                 "tags": [
