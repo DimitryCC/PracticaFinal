@@ -147,86 +147,86 @@ create table calcValoracion(
 /*Inserts automaticos*/
 INSERT INTO idiomas (idioma)
 VALUES
-  ("Español"),
-  ("Catalan"),
-  ("Ingles");
+  ('Español'),
+  ('Catalan'),
+  ('Ingles');
 INSERT INTO descripciones (descripcion,idioma_id)
 VALUES
-  ("eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit",3),
-  ("aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui",3),
-  ("Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit",2),
-  ("risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus",3),
-  ("Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus.",1);
+  ('eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit',3),
+  ('aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui',3),
+  ('Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit',2),
+  ('risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus',3),
+  ('Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus.',1);
 INSERT INTO traduccionDescripsciones (descripcione_ID,idioma_id,traduccion)
 VALUES
-  (1,2,"ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus"),
-  (3,3,"euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis"),
-  (4,2,"Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas,"),
-  (1,3,"est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut"),
-  (1,1,"dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit");
+  (1,2,'ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus'),
+  (3,3,'euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis'),
+  (4,2,'Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas,'),
+  (1,3,'est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut'),
+  (1,1,'dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit');
 INSERT INTO tiposAlojameintos (nombre_tipo,idioma_id)
 VALUES
-  ("Mooney",2),
-  ("Laceyn",1),
-  ("Marsden",3),
-  ("Neil",1),
-  ("Mckay",1);
+  ('Mooney',2),
+  ('Laceyn',1),
+  ('Marsden',3),
+  ('Neil',1),
+  ('Mckay',1);
 
 INSERT INTO traduccionTiposalojamientos (tiposAlojameintos_ID,traduccion,idioma_id)
 VALUES
-  (1,"Darius",2),
-  (2,"Dora",1),
-  (3,"Cote",1),
-  (4,"Beard",2),
-  (5,"Spencer",1),
-  (1,"Cantrell",3);
+  (1,'Darius',2),
+  (2,'Dora',1),
+  (3,'Cote',1),
+  (4,'Beard',2),
+  (5,'Spencer',1),
+  (1,'Cantrell',3);
 
 INSERT INTO tiposVacacional (nombre_tipo,idioma_id)
 VALUES
-  ("Zeph Eder",1),
-  ("Talon Lechner",2),
-  ("Illiana Fischer",3),
-  ("Pamela Schwarz",1),
-  ("Todd Winkler",1);
+  ('Zeph Eder',1),
+  ('Talon Lechner',2),
+  ('Illiana Fischer',3),
+  ('Pamela Schwarz',1),
+  ('Todd Winkler',1);
 
 INSERT INTO traduccionVacacional (tiposVacacional_ID,idioma_id,traduccion)
 VALUES
-  (1,3,"Phelan Mullins"),
-  (4,1,"Mariko Newman"),
-  (4,3,"Judith Vaughn"),
-  (2,3,"Amy Burch");
+  (1,3,'Phelan Mullins'),
+  (4,1,'Mariko Newman'),
+  (4,3,'Judith Vaughn'),
+  (2,3,'Amy Burch');
 /**/
 INSERT INTO servicios (NombreServicio)
 VALUES
-  ("Charissa"),
-  ("Jeanette"),
-  ("Moser"),
-  ("Lehner"),
-  ("Müller");
+  ('Charissa'),
+  ('Jeanette'),
+  ('Moser'),
+  ('Lehner'),
+  ('Müller');
 
   
 INSERT INTO traduccionservicios (servicios_ID,idioma_id,traduccion)
 VALUES
-  (1,1,"Emerson Maier"),
-  (2,3,"Tatyana Pfarrer"),
-  (3,3,"Raphael Pohl"),
-  (4,2,"Reece Bruckmann"),
-  (5,1,"Kim Weber");
+  (1,1,'Emerson Maier'),
+  (2,3,'Tatyana Pfarrer'),
+  (3,3,'Raphael Pohl'),
+  (4,2,'Reece Bruckmann'),
+  (5,1,'Kim Weber');
   
 INSERT INTO categorias (nombre_categoria,tarifa_baixa,tarifa_alta)
 VALUES
-  ("Emerson Maier",234,915),
-  ("Tatyana Pfarrer",323,944),
-  ("Raphael Pohl",232,817),
-  ("Reece Bruckmann",472,965),
-  ("Kim Weber",496,616);
+  ('Emerson Maier',234,915),
+  ('Tatyana Pfarrer',323,944),
+  ('Raphael Pohl',232,817),
+  ('Reece Bruckmann',472,965),
+  ('Kim Weber',496,616);
 INSERT INTO municipios (nombre,islas)
 VALUES
-  ("Vernon","FORMENTERA"),
-  ("Brody","MALLORCA"),
-  ("Chiquita","MALLORCA"),
-  ("Valentine","MENORCA"),
-  ("Vivien","EIVISSA");
+  ('Vernon','FORMENTERA'),
+  ('Brody','MALLORCA'),
+  ('Chiquita','MALLORCA'),
+  ('Valentine','MENORCA'),
+  ('Vivien','EIVISSA');
   
   insert into usuarios (DNI, nom_complet, direccio, correu, telefon, contrasenya, administrador) 
   VALUES

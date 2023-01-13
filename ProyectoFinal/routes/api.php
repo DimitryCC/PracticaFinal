@@ -153,12 +153,12 @@ Route::group(['prefix'=>'tipovacacional'],function() {
 Route::group(['prefix'=>'valoracion'],function() {
     // * /api/valoracion/
     Route::get('', [\App\Http\Controllers\ValoracionControler::class, 'tots']);
-    // * /api/valoracion/1
-    Route::get('/usuari/{idusuari}/allotgament/{idallotgament}', [\App\Http\Controllers\ValoracionControler::class, 'show']);
-    // * /api/valoracion/borra/1
-    Route::delete('/borra/usuari/{idusuari}/allotgament/{idallotgament}', [\App\Http\Controllers\ValoracionControler::class, 'borra']);
+    // * /api/valoracion/usuari/{idusuari}/allotjament/{idallotjament}
+    Route::get('/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'show']);
+    // * /api/valoracion/borra/usuari/{idusuari}/allotjament/{idallotjament}
+    Route::delete('/borra/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'borra']);
     // * /api/valoracion/crea
     Route::post('/crea', [\App\Http\Controllers\ValoracionControler::class, 'crea']);
-    // * /api/valoracion/modifica/1
-    Route::put('/modifica/usuari/{idusuari}/allotgament/{idallotgament}', [\App\Http\Controllers\ValoracionControler::class, 'modifica']);
+    // * /api/valoracion/modifica/usuari/{idusuari}/allotjament/{idallotjament}
+    Route::put('/modifica/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'modifica']);
 });

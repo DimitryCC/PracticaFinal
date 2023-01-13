@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Validator;
 class ValoracionControler extends Controller
 {
     //
-    public function show($idusuari,$idallotgament){
+    public function show($idusuari,$idallotjament){
         try {
             $tupla = Valoracion::where('usuari_id','=',$idusuari)
-                                ->where('Alojamiento_id','=',$idallotgament)
+                                ->where('Alojamiento_id','=',$idallotjament)
                                 ->first();
             if ($tupla) {
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
@@ -30,10 +30,10 @@ class ValoracionControler extends Controller
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 
-    public function borra($idusuari,$idallotgament){
+    public function borra($idusuari,$idallotjament){
         try {
             $tupla = Valoracion::where('usuari_id','=',$idusuari)
-                ->where('Alojamiento_id','=',$idallotgament)
+                ->where('Alojamiento_id','=',$idallotjament)
                 ->delete();
             if ($tupla) {
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
@@ -66,9 +66,9 @@ class ValoracionControler extends Controller
         }
     }
 
-    public function modifica(Request $request, $idusuari,$idallotgament){
+    public function modifica(Request $request, $idusuari,$idallotjament){
         $tupla = Valoracion::where('usuari_id','=',$idusuari)
-            ->where('Alojamiento_id','=',$idallotgament)
+            ->where('Alojamiento_id','=',$idallotjament)
             ->first();
         if ($tupla) {
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
