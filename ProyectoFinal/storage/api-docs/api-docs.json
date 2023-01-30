@@ -12,6 +12,9 @@
     "servers": [
         {
             "url": "http://127.0.0.1:8000/"
+        },
+        {
+            "url": "http://www.rampacom.com/ProyectoFinal/public/"
         }
     ],
     "paths": {
