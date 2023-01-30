@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UsuarioControler extends Controller
 {
+
     public function show($id){
         try {
             $tupla = Usuario::findOrFail($id);
@@ -32,7 +33,48 @@ class UsuarioControler extends Controller
             return response()->json(['status'=>'error','result'=>$e],400);
         }
     }
+    /**
+     * Crea un nuevo Usuario.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *    path="/api/usuario/crea",
+     *    tags={"Usuarios"},
+     *    summary="Crea un Usuario",
+     *    description="Crea un Usuario. Solo por Administradores.",
+     *    security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *        required=true,
+     *        @OA\JsonContent(
+     *           @OA\Property(property="DNI", type="string", format="string", example="Esto es un nuevo DNI del usuario"),
+     *           @OA\Property(property="nom_complet", type="string", format="string", example="Esto es el nombre del Usuario"),
+     *           @OA\Property(property="direccio", type="string", format="string", example="Calle 1"),
+     *           @OA\Property(property="correu", type="string", format="string", example="example@mail.com"),
+     *           @OA\Property(property="telefon", type="number", format="number", example="971940971"),
+     *           @OA\Property(property="contrasenya", type="string", format="string", example="3"),
+     *           @OA\Property(property="administrador", type="boolen", format="boolean", example="Si o No"),
 
+     *        ),
+     *     ),
+     *    @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="success"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       ),
+     *    @OA\Response(
+     *         response=400,
+     *         description="Error",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="error"),
+     *         @OA\Property(property="data",type="string", example="Atributo obligatorio requerido")
+     *          ),
+     *       )
+     *  )
+     */
     public function crea(Request $request){
         $reglesvalidacio=[
             'DNI'=>['required'],

@@ -119,7 +119,7 @@ class FotografiaControler extends Controller
     }
 
     /**
-     * Crea un nuevo Municipio.
+     * Crea una nueva Fotografia.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

@@ -162,3 +162,9 @@ Route::group(['prefix'=>'valoracion'],function() {
     // * /api/valoracion/modifica/usuari/{idusuari}/allotjament/{idallotjament}
     Route::put('/modifica/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'modifica']);
 });
+//Ordenes Usuario
+Route::group(['prefix'=>'usuario'],function() {
+    // * /api/usuario/
+    Route::post('/crea', [\App\Http\Controllers\UsuarioControler::class, 'crea']);
+});
+

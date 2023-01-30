@@ -2951,6 +2951,109 @@
                 ]
             }
         },
+        "/api/usuario/crea": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Crea un Usuario",
+                "description": "Crea un Usuario. Solo por Administradores.",
+                "operationId": "630570e94365ebe10af35eff4ca628ff",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "DNI": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo DNI del usuario"
+                                    },
+                                    "nom_complet": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el nombre del Usuario"
+                                    },
+                                    "direccio": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Calle 1"
+                                    },
+                                    "correu": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "example@mail.com"
+                                    },
+                                    "telefon": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "971940971"
+                                    },
+                                    "contrasenya": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "3"
+                                    },
+                                    "administrador": {
+                                        "type": "boolen",
+                                        "format": "boolean",
+                                        "example": "Si o No"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/valoracion/usuari/{idusuari}/allotjament/{idallotjament}": {
             "get": {
                 "tags": [
