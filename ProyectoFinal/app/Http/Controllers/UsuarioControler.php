@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alojamiento;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UsuarioControler extends Controller
@@ -89,6 +90,7 @@ class UsuarioControler extends Controller
             'required'=>'El camp :attribute es obligat',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $reglesvalidacio['contrasenya'] = Hash::make($reglesvalidacio['contrasenya']);
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla=Usuario::create($request->all());
