@@ -90,8 +90,9 @@ class UsuarioControler extends Controller
             'required'=>'El camp :attribute es obligat',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
-        $reglesvalidacio['contrasenya'] = Hash::make($reglesvalidacio['contrasenya']);
+        //$validacio['contrasenya'] = Hash::make($validacio['contrasenya']);
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
+        $validacio['contrasenya'] = Hash::make($validacio['contrasenya']);
         if(!$validacio->fails()){
             $tupla=Usuario::create($request->all());
             return response()->json(['status'=>'success','result'=>$tupla],200);
