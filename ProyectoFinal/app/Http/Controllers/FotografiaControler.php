@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alojamiento;
 use App\Models\Fotografia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -87,7 +88,7 @@ class FotografiaControler extends Controller
      *    summary="Borra una Fotografia",
      *    description="Borra una Fotografia. Solo por Administradores",
      *    security={{"bearerAuth":{}}},
-     *    @OA\Parameter(name="id", in="path", description="Id Municipio", required=true,
+     *    @OA\Parameter(name="id", in="path", description="Id Fotografia", required=true,
      *        @OA\Schema(type="string")
      *    ),
      *    @OA\Response(
@@ -119,7 +120,7 @@ class FotografiaControler extends Controller
     }
 
     /**
-     * Crea una nueva Fotografia.
+     * Crea un nuevo Municipio.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -127,13 +128,13 @@ class FotografiaControler extends Controller
      *    path="/api/fotografia/crea",
      *    tags={"Fotografias"},
      *    summary="Crea una Fotografia",
-     *    description="Crea una Fotografia. Solo por Administradores.",
+     *    description="Crea una Fotografia. Solo por Administradores. Si no le pasamos una id de alojamiento correcta no permite publicarla",
      *    security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="ruta", type="string", format="string", example="Ruta de la Fotografia"),
-     *           @OA\Property(property="islas", type="number", format="number", example="Id del Alojamiento")
+     *           @OA\Property(property="alojamiento_id", type="number", format="number", example="Id del Alojamiento")
      *        ),
      *     ),
      *    @OA\Response(
@@ -155,20 +156,30 @@ class FotografiaControler extends Controller
      *  )
      */
     public function crea(Request $request){
+
         $reglesvalidacio=[
             'ruta'=>['required','max:500'],
             'alojamiento_id'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
-            'unique'=>'Camp :attribute amb valor :input ja hi es'
-        ];
-        $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
-        if(!$validacio->fails()){
-            $tupla= Fotografia::create($request->all());
-            return response()->json(['status'=>'success','result'=>$tupla],200);
-        }else {
-            return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
+            'unique'=>'Camp :attribute amb valor :input ja hi es'];
+
+        $post= new Fotografia();
+        $post->alojamiento_id= $request->alojamiento_id;
+        $checkAloja=Alojamiento::findOrFail($request->alojamiento_id);
+        $validacio=Validator::make($request->all(), $reglesvalidacio, $missatges);
+
+        if (!$validacio->fails() || !$checkAloja->fails()) {
+            $imatge= $request->file("ruta");
+            $filename = "Alojamiento_".($request->alojamiento_id)."_".time().".".$imatge->guessExtension();
+            $request->file('ruta')->move(public_path('imatges'), $filename);
+            $urifoto=url('imatges').'/'.$filename;
+            $post->ruta=$filename;
+            $post->save();
+            return response()->json(['status' => 'imatge pujada correctament','uri'=>$urifoto],200);
+        } else {
+            return response()->json(['status' => 'error: tipus o tamany de la imatge'],404);
         }
     }
 
@@ -221,22 +232,52 @@ class FotografiaControler extends Controller
      *       )
      *  )
      */
-    public function modifica(Request $request, $id){
-        $tupla = Fotografia::findOrFail($id);
-        $reglesvalidacio=[
-            'ruta'=>['filled','max:500'],
-            'alojamiento_id'=>['filled']
-        ];
-        $missatges=[
-            'filled'=>':attribute no pot estar buit',
-            'unique'=>'Camp :attribute amb valor :input ja hi es'
-        ];
-        $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
-        if(!$validacio->fails()){
-            $tupla->update($request->all());
-            return response()->json(['status'=>'success','result'=>$tupla],200);
-        }else {
-            return response()->json(['status'=>'validation error','result'=>$validacio->errors()],400);
-        }
-   }
+    public function modifica(Request $request, $id)
+    {
+
+        $imatge= $request->file("ruta");
+        $filename = "Alojamiento_".($request->alojamiento_id)."_".time().".".$imatge->guessExtension();
+        $request->file('ruta')->move(public_path('imatges'), $filename);
+        $foto=  Fotografia::find($id);
+        $foto->alojamiento_id= ($request->alojamiento_id);
+        $foto->ruta= $filename;
+        return redirect('/');
+
+    }
+
+
+//        $checkFoto = Fotografia::findOrFail($id);
+//        $checkAloja = Alojamiento::findOrFail($request->alojamiento_id);
+//        $reglesvalidacio=[
+//            'ruta'=>['filled','max:500'],
+//            'alojamiento_id'=>['filled']
+//        ];
+//        $missatges=[
+//            'filled'=>':attribute no pot estar buit',
+//            'unique'=>'Camp :attribute amb valor :input ja hi es'
+//        ];
+//
+//        $validacio=Validator::make($reglesvalidacio,$missatges);
+//        if(!$checkFoto->fails() || !$checkAloja->fails()){
+//            $imatge= $request->file("ruta");
+//            $filename = "Alojamiento_".($request->alojamiento_id)."_".time().".".$imatge->guessExtension();
+//            $request->file('ruta')->move(public_path('imatges'), $filename);
+//
+////            Fotografia::where('ID',$id)->update([
+////                    'ruta'=>$request->input('ruta'),
+////                    'alojamiento_id'=>$request->input('alojamiento_id')]
+////            );
+//
+//            $postFind = Fotografia::where('ID', '=', $id)->first();
+////            $postFind = Fotografia::find($id);
+//            $postFind->alojamiento_id =  $request->alojamiento_id;
+//            $postFind->ruta = $filename;
+//            $postFind->update($request->all());
+//
+//
+//            return response()->json(['status'=>'success','result'=> $postFind],200);
+//        }else {
+//            return response()->json(['status'=>'validation error','result'=>$validacio->errors()],400);
+//        }
+//   }
 }
