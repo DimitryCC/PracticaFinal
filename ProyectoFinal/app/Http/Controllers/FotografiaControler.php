@@ -173,7 +173,8 @@ class FotografiaControler extends Controller
         $checkAloja = Alojamiento::findOrFail($request->alojamiento_id);
         $validacio = Validator::make($request->all(), $reglesvalidacio, $missatges);
 
-        if (!$validacio->fails() || !$checkAloja->fails()) {
+
+        if (!$validacio->fails()) {
             $imatge = $request->file("ruta");
             $filename = "Alojamiento_" . ($request->alojamiento_id) . "_" . time() . "." . $imatge->guessExtension();
             $request->file('ruta')->move(public_path('imatges'), $filename);
@@ -241,8 +242,6 @@ class FotografiaControler extends Controller
     public function modifica(Request $request, $id)
     {
 
-        $checkFoto = Fotografia::findOrFail($id);
-        $checkAloja = Alojamiento::findOrFail($request->alojamiento_id);
         $reglesvalidacio = [
             'ruta' => ['filled', 'max:500'],
             'alojamiento_id' => ['filled']
@@ -252,8 +251,19 @@ class FotografiaControler extends Controller
             'unique' => 'Camp :attribute amb valor :input ja hi es'
         ];
 
-        $validacio = Validator::make($request->all(),$reglesvalidacio, $missatges);
-        if (!$validacio->fails() || !$checkAloja->fails() || !$checkFoto->fails()) {
+        $validacio = Validator::make($reglesvalidacio, $missatges);
+
+        if(!$validacio->fails()){
+
+        if ($request->file("ruta")==null) {
+
+            Fotografia::where('ID', $id)->update([
+                    'alojamiento_id' => $request->input('alojamiento_id')]
+            );
+            $modResult= Fotografia::findOrFail($id);
+            return response()->json(['status' => 'success', 'result' => $modResult], 200);
+        } else {
+
             $imatge = $request->file("ruta");
             $filename = "Alojamiento_" . ($request->alojamiento_id) . "_" . time() . "." . $imatge->guessExtension();
             $request->file('ruta')->move(public_path('imatges'), $filename);
@@ -263,9 +273,11 @@ class FotografiaControler extends Controller
                     'alojamiento_id' => $request->input('alojamiento_id')]
             );
             $modResult= Fotografia::findOrFail($id);
+
             return response()->json(['status' => 'success', 'result' => $modResult], 200);
-        } else {
-            return response()->json(['status' => 'validation error', 'result' => $validacio->errors()], 400);
+
+        }
+            return response()->json(['status' => 'validation error', 'result' => $validacio->errors()], 404);
 
         }
     }

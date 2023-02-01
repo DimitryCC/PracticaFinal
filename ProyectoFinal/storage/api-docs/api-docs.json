@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Projecte Final ",
-        "description": "REST API. Projecte Final. DAW Client i servidor Joan R, Dimitry C, Javier P.",
+        "description": "REST API. Projecte Final. DAW Client i servidor Joan Ramis, Dimitry Company, Javier Parrado.",
         "contact": {
             "name": "Joan Ramis.",
             "email": "joanramis1@paucasesnovescifp.cat"
