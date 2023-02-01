@@ -15,7 +15,7 @@ class FotografiaControler extends Controller
      * @urlParam id integer required ID del alojamiento a mostrar.
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      * @OA\Get(
      *     path="/api/fotografia/{id}",
@@ -47,12 +47,13 @@ class FotografiaControler extends Controller
      *     )
      * )
      */
-    public function show($id){
+    public function show($id)
+    {
         try {
             $tupla = Fotografia::findOrFail($id);
-                return response()->json(['status' => 'success', 'result' => $tupla], 200);
-            }catch (\Exception $e){
-            return response()->json(['status'=>'error','result'=>$e],400);
+            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'result' => $e], 400);
         }
     }
 
@@ -71,16 +72,17 @@ class FotografiaControler extends Controller
      *     ),
      * )
      */
-    public function tots(){
-        $tuples= Fotografia::paginate(10);
-        return response()->json(['status'=>'success','result'=>$tuples],200);
+    public function tots()
+    {
+        $tuples = Fotografia::paginate(10);
+        return response()->json(['status' => 'success', 'result' => $tuples], 200);
     }
 
     /**
      * Borra una Fotografia.
      * @urlParam id integer required ID de la Fotografia a borrar.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      * @OA\Delete(
      *    path="/api/fotografia/borra/{id}",
@@ -110,19 +112,20 @@ class FotografiaControler extends Controller
      *      )
      *  )
      */
-    public function borra($id){
+    public function borra($id)
+    {
         try {
             $tupla = Fotografia::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
-        }catch (\Exception $e){
-            return response()->json(['status'=>'error','result'=>$e],400);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'result' => $e], 400);
         }
     }
 
     /**
      * Crea un nuevo Municipio.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      * @OA\Post(
      *    path="/api/fotografia/crea",
@@ -155,38 +158,39 @@ class FotografiaControler extends Controller
      *       )
      *  )
      */
-    public function crea(Request $request){
+    public function crea(Request $request)
+    {
 
-        $reglesvalidacio=[
-            'ruta'=>['required','max:500'],
-            'alojamiento_id'=>['required']
+        $reglesvalidacio = [
+            'ruta' => ['required', 'max:500'],
+            'alojamiento_id' => ['required']
         ];
-        $missatges=[
-            'required'=>'El camp :attribute es obligat',
-            'unique'=>'Camp :attribute amb valor :input ja hi es'];
+        $missatges = [
+            'required' => 'El camp :attribute es obligat',
+            'unique' => 'Camp :attribute amb valor :input ja hi es'];
 
-        $post= new Fotografia();
-        $post->alojamiento_id= $request->alojamiento_id;
-        $checkAloja=Alojamiento::findOrFail($request->alojamiento_id);
-        $validacio=Validator::make($request->all(), $reglesvalidacio, $missatges);
+        $post = new Fotografia();
+        $checkAloja = Alojamiento::findOrFail($request->alojamiento_id);
+        $validacio = Validator::make($request->all(), $reglesvalidacio, $missatges);
 
         if (!$validacio->fails() || !$checkAloja->fails()) {
-            $imatge= $request->file("ruta");
-            $filename = "Alojamiento_".($request->alojamiento_id)."_".time().".".$imatge->guessExtension();
+            $imatge = $request->file("ruta");
+            $filename = "Alojamiento_" . ($request->alojamiento_id) . "_" . time() . "." . $imatge->guessExtension();
             $request->file('ruta')->move(public_path('imatges'), $filename);
-            $urifoto=url('imatges').'/'.$filename;
-            $post->ruta=$filename;
+            $urifoto = url('imatges') . '/' . $filename;
+            $post->alojamiento_id = $request->alojamiento_id;
+            $post->ruta = $filename;
             $post->save();
-            return response()->json(['status' => 'imatge pujada correctament','uri'=>$urifoto],200);
+            return response()->json(['status' => 'imatge pujada correctament', 'uri' => $urifoto], 200);
         } else {
-            return response()->json(['status' => 'error: tipus o tamany de la imatge'],404);
+            return response()->json(['status' => 'error: tipus o tamany de la imatge'], 404);
         }
     }
 
     /**
      * Modificar una Fotografia.
      * @bodyParam ruta string Ruta de la Fotografia.
-     * @bodyParam alojamiento_id number ID del alojamiento de la Fotografia.
+     * @bodyParam alojamiento_id number ID del alojamiento.
      * @response scenario=success {
      *  "status": "success",
      * }
@@ -196,24 +200,26 @@ class FotografiaControler extends Controller
     /**
      * Modificar una Fotografia.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      * @OA\Put(
      *    path="/api/fotografia/modifica/{id}",
      *    tags={"Fotografias"},
      *    summary="Modifica una Fotografia",
-     *    description="Modifica una Fotografia. Solo por Administradores.",
+     *    description="Modifica una Fotografia. Solo por Administradores. Para modificar una foto debemos usar el método POST y añadir un atributo (_method= PUT) en el body.",
      *    security={{"bearerAuth":{}}},
      *    @OA\Parameter(name="id", in="path", description="Id Fotografia", required=true,
      *        @OA\Schema(type="string")
      *    ),
+     *
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="ruta", type="string", format="string", example="Ruta de la Fotografia"),
-     *           @OA\Property(property="islas", type="number", format="number", example="Id del Alojamiento")
+     *           @OA\Property(property="alojamiento_id", type="number", format="number", example="Id del Alojamiento")
      *        ),
      *     ),
+     *
      *    @OA\Response(
      *         response=200,
      *         description="Success",
@@ -235,49 +241,32 @@ class FotografiaControler extends Controller
     public function modifica(Request $request, $id)
     {
 
-        $imatge= $request->file("ruta");
-        $filename = "Alojamiento_".($request->alojamiento_id)."_".time().".".$imatge->guessExtension();
-        $request->file('ruta')->move(public_path('imatges'), $filename);
-        $foto=  Fotografia::find($id);
-        $foto->alojamiento_id= ($request->alojamiento_id);
-        $foto->ruta= $filename;
-        return redirect('/');
+        $checkFoto = Fotografia::findOrFail($id);
+        $checkAloja = Alojamiento::findOrFail($request->alojamiento_id);
+        $reglesvalidacio = [
+            'ruta' => ['filled', 'max:500'],
+            'alojamiento_id' => ['filled']
+        ];
+        $missatges = [
+            'filled' => ':attribute no pot estar buit',
+            'unique' => 'Camp :attribute amb valor :input ja hi es'
+        ];
 
+        $validacio = Validator::make($request->all(),$reglesvalidacio, $missatges);
+        if (!$validacio->fails() || !$checkAloja->fails() || !$checkFoto->fails()) {
+            $imatge = $request->file("ruta");
+            $filename = "Alojamiento_" . ($request->alojamiento_id) . "_" . time() . "." . $imatge->guessExtension();
+            $request->file('ruta')->move(public_path('imatges'), $filename);
+
+            Fotografia::where('ID', $id)->update([
+                    'ruta' => $filename,
+                    'alojamiento_id' => $request->input('alojamiento_id')]
+            );
+            $modResult= Fotografia::findOrFail($id);
+            return response()->json(['status' => 'success', 'result' => $modResult], 200);
+        } else {
+            return response()->json(['status' => 'validation error', 'result' => $validacio->errors()], 400);
+
+        }
     }
-
-
-//        $checkFoto = Fotografia::findOrFail($id);
-//        $checkAloja = Alojamiento::findOrFail($request->alojamiento_id);
-//        $reglesvalidacio=[
-//            'ruta'=>['filled','max:500'],
-//            'alojamiento_id'=>['filled']
-//        ];
-//        $missatges=[
-//            'filled'=>':attribute no pot estar buit',
-//            'unique'=>'Camp :attribute amb valor :input ja hi es'
-//        ];
-//
-//        $validacio=Validator::make($reglesvalidacio,$missatges);
-//        if(!$checkFoto->fails() || !$checkAloja->fails()){
-//            $imatge= $request->file("ruta");
-//            $filename = "Alojamiento_".($request->alojamiento_id)."_".time().".".$imatge->guessExtension();
-//            $request->file('ruta')->move(public_path('imatges'), $filename);
-//
-////            Fotografia::where('ID',$id)->update([
-////                    'ruta'=>$request->input('ruta'),
-////                    'alojamiento_id'=>$request->input('alojamiento_id')]
-////            );
-//
-//            $postFind = Fotografia::where('ID', '=', $id)->first();
-////            $postFind = Fotografia::find($id);
-//            $postFind->alojamiento_id =  $request->alojamiento_id;
-//            $postFind->ruta = $filename;
-//            $postFind->update($request->all());
-//
-//
-//            return response()->json(['status'=>'success','result'=> $postFind],200);
-//        }else {
-//            return response()->json(['status'=>'validation error','result'=>$validacio->errors()],400);
-//        }
-//   }
 }

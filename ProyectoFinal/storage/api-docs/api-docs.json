@@ -1164,7 +1164,7 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "Id Municipio",
+                        "description": "Id Fotografia",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -1225,7 +1225,7 @@
                     "Fotografias"
                 ],
                 "summary": "Crea una Fotografia",
-                "description": "Crea una Fotografia. Solo por Administradores.",
+                "description": "Crea una Fotografia. Solo por Administradores. Si no le pasamos una id de alojamiento correcta no permite publicarla",
                 "operationId": "5960c0b46cebc2fcccd27aaf79e25925",
                 "requestBody": {
                     "required": true,
@@ -1238,7 +1238,7 @@
                                         "format": "string",
                                         "example": "Ruta de la Fotografia"
                                     },
-                                    "islas": {
+                                    "alojamiento_id": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "Id del Alojamiento"
@@ -1303,7 +1303,7 @@
                     "Fotografias"
                 ],
                 "summary": "Modifica una Fotografia",
-                "description": "Modifica una Fotografia. Solo por Administradores.",
+                "description": "Modifica una Fotografia. Solo por Administradores. Para modificar una foto debemos usar el método POST y añadir un atributo (_method= PUT) en el body.",
                 "operationId": "9d945a0c0c8ae13b9e78b2750ab98e64",
                 "parameters": [
                     {
@@ -1327,7 +1327,7 @@
                                         "format": "string",
                                         "example": "Ruta de la Fotografia"
                                     },
-                                    "islas": {
+                                    "alojamiento_id": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "Id del Alojamiento"
