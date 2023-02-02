@@ -90,6 +90,7 @@ create table usuarios(
     correu  varchar(50),
     telefon integer,
     contrasenya varchar(100),
+    api_tocken varchar(250),
     administrador boolean
     );
     

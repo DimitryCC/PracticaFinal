@@ -167,4 +167,8 @@ Route::group(['prefix'=>'usuario'],function() {
     // * /api/usuario/
     Route::post('/crea', [\App\Http\Controllers\UsuarioControler::class, 'crea']);
 });
+//Ordenes LoguIn
+Route::group(['prefix'=>'LoguIn'],function(){
+    Route::post("/loguIn/",[\App\Http\Controllers\LogInController::class, 'login']);
+});
 
