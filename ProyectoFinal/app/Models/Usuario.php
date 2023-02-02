@@ -36,6 +36,8 @@ class Usuario extends Model
     /**
      * @var mixed
      */
+
+
     public $administrador;
     protected $table='usuarios';
     protected $primaryKey='ID';
