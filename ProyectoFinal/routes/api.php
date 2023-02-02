@@ -165,15 +165,15 @@ Route::group(['prefix'=>'valoracion'],function() {
 //Ordenes Reserva
 Route::group(['prefix'=>'reserva'],function() {
     // * /api/reserva/
-    Route::get('', [\App\Http\Controllers\ReservaController::class, 'tots']);
+    Route::get('', [\App\Http\Controllers\ReservaController::class, 'tots'])->middleware('checktoken');
     // * /api/reserva/1
-    Route::get('/{id}', [\App\Http\Controllers\ReservaController::class, 'show']);
+    Route::get('/{id}', [\App\Http\Controllers\ReservaController::class, 'show'])->middleware('checktoken');
     // * /api/reserva/borra/1
-    Route::delete('/borra/{id}', [\App\Http\Controllers\ReservaController::class, 'borra']);
+    Route::delete('/borra/{id}', [\App\Http\Controllers\ReservaController::class, 'borra'])->middleware('checktoken');
     // * /api/reserva/crea
-    Route::post('/crea', [\App\Http\Controllers\ReservaController::class, 'crea']);
+    Route::post('/crea', [\App\Http\Controllers\ReservaController::class, 'crea'])->middleware('checktoken');
     // * /api/reserva/modifica/1
-    Route::put('/modifica/{id}', [\App\Http\Controllers\ReservaController::class, 'modifica']);
+    Route::put('/modifica/{id}', [\App\Http\Controllers\ReservaController::class, 'modifica'])->middleware('checktoken');
 });
 //Ordenes Usuario
 Route::group(['prefix'=>'usuario'],function() {
