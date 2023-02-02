@@ -92,10 +92,17 @@ class UsuarioControler extends Controller
         ];
         //$validacio['contrasenya'] = Hash::make($validacio['contrasenya']);
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
-        $validacio['contrasenya'] = Hash::make($validacio['contrasenya']);
         if(!$validacio->fails()){
-            $tupla=Usuario::create($request->all());
-            return response()->json(['status'=>'success','result'=>$tupla],200);
+            $usuaris= new Usuario;
+            $usuaris->DNI=$request->input('DNI');
+            $usuaris->nom_complet=$request->input('nom_complet');
+            $usuaris->direccio=$request->input('direccio');
+            $usuaris->correu=$request->input('correu');
+            $usuaris->contrasenya=Hash::make($request->input('contrasenya'));
+            $usuaris->telefon=$request->input('telefon');
+            $usuaris->administrador=$request->input('administrador');
+            $usuaris->save();
+            return response()->json(['status'=>'success','result'=>$usuaris],200);
         }else {
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
         }
