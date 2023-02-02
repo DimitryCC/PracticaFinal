@@ -9,6 +9,42 @@ use Illuminate\Support\Str;
 
 class LogInController extends Controller
 {
+    /**
+     * Accedeix amb LogIn.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *    path="/api/log/in",
+     *    tags={"Login"},
+     *    summary="Accede",
+     *    description="Accede",
+     *    security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *        required=true,
+     *        @OA\JsonContent(
+     *           @OA\Property(property="correu", type="number", format="number", example="1"),
+     *           @OA\Property(property="contrasenya", type="number", format="number", example="2"),
+     *        ),
+     *     ),
+     *    @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="success"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       ),
+     *    @OA\Response(
+     *         response=400,
+     *         description="Error",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status", type="integer", example="error"),
+     *         @OA\Property(property="data",type="string", example="Atributo obligatorio requerido")
+     *          ),
+     *       )
+     *  )
+     */
     public function login(Request $request)
     {
         $user = Usuario::where('correu',$request->input('correu'))->first();
