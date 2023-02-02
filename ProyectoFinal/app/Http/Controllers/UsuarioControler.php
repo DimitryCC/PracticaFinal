@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alojamiento;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -78,31 +79,37 @@ class UsuarioControler extends Controller
      */
     public function crea(Request $request){
         $reglesvalidacio=[
-            'DNI'=>['required'],
-            'nom_complet'=>['required','max:150'],
+            'DNI'=>'required|string|max:9',
+            'nom_complet'=>'required|string|max:150',
             'direccio'=>[],
             'correu'=>[],
-            'telefon'=>['required'],
-            'contrasenya'=>['required'],
+            'telefon'=>'required|string|max:9',
+            'contrasenya'=>'required|string|max:50',
             'administrador'=>[]
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
-        //$validacio['contrasenya'] = Hash::make($validacio['contrasenya']);
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
-            $usuaris= new Usuario;
-            $usuaris->DNI=$request->input('DNI');
-            $usuaris->nom_complet=$request->input('nom_complet');
-            $usuaris->direccio=$request->input('direccio');
-            $usuaris->correu=$request->input('correu');
-            $usuaris->contrasenya=Hash::make($request->input('contrasenya'));
-            $usuaris->telefon=$request->input('telefon');
-            $usuaris->administrador=$request->input('administrador');
-            $usuaris->save();
-            return response()->json(['status'=>'success','result'=>$usuaris],200);
+            DB::beginTransaction();
+            try {
+                $usuaris= new Usuario;
+                $usuaris->DNI=$request->input('DNI');
+                $usuaris->nom_complet=$request->input('nom_complet');
+                $usuaris->direccio=$request->input('direccio');
+                $usuaris->correu=$request->input('correu');
+                $usuaris->contrasenya=Hash::make($request->input('contrasenya'));
+                $usuaris->telefon=$request->input('telefon');
+                $usuaris->administrador=$request->input('administrador');
+                $usuaris->save();
+                DB::commit();
+                return response()->json(['status'=>'success','result'=>$usuaris],200);
+            } catch(\Exception $e) {
+                DB::rollBack();
+                return response()->json(['status'=>'error','result'=>$e->getMessage()],400);
+            }
         }else {
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
         }
