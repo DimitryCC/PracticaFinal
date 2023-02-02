@@ -81,7 +81,7 @@ class UsuarioControler extends Controller
             'DNI'=>['required'],
             'nom_complet'=>['required','max:150'],
             'direccio'=>[],
-            'correu'=>[],
+            'correu'=>['required'],
             'telefon'=>['required'],
             'contrasenya'=>['required'],
             'administrador'=>[]

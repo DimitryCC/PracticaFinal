@@ -181,7 +181,7 @@ Route::group(['prefix'=>'usuario'],function() {
     Route::post('/crea', [\App\Http\Controllers\UsuarioControler::class, 'crea']);
 });
 //Ordenes LoguIn
-Route::group(['prefix'=>'LoguIn'],function(){
-    Route::post("/loguIn/",[\App\Http\Controllers\LogInController::class, 'login']);
+Route::group(['prefix'=>'Log'],function(){
+    Route::post("/in",[\App\Http\Controllers\LogInController::class, 'login']);
 });
 

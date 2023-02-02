@@ -18,7 +18,7 @@ class TokenApi
     public function handle(Request $request, Closure $next)
     {
         $key = explode(' ',$request->header('Autorization'));
-        $token="xxx";
+        $token="x";
         if (count($key)==2)
         {
             $token=$key[1];
