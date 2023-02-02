@@ -120,6 +120,17 @@ create table alojamientos(
 
 );
 
+create table reserves(
+    ID integer auto_increment,
+    usuari_id integer,
+    Alojamiento_id integer,
+    FechaInicio DATE,
+    FechaFin DATE,
+    primary key (ID),
+    foreign key (Alojamiento_id) references alojamientos(ID),
+    foreign key (usuari_id) references usuarios(ID)
+);
+
 create table valoraciones(
 	usuari_id integer,
     Alojamiento_id integer,

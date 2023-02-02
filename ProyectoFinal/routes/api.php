@@ -162,6 +162,19 @@ Route::group(['prefix'=>'valoracion'],function() {
     // * /api/valoracion/modifica/usuari/{idusuari}/allotjament/{idallotjament}
     Route::put('/modifica/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'modifica'])->middleware('checktoken');
 });
+//Ordenes Reserva
+Route::group(['prefix'=>'reserva'],function() {
+    // * /api/reserva/
+    Route::get('', [\App\Http\Controllers\ReservaController::class, 'tots']);
+    // * /api/reserva/1
+    Route::get('/{id}', [\App\Http\Controllers\ReservaController::class, 'show']);
+    // * /api/reserva/borra/1
+    Route::delete('/borra/{id}', [\App\Http\Controllers\ReservaController::class, 'borra']);
+    // * /api/reserva/crea
+    Route::post('/crea', [\App\Http\Controllers\ReservaController::class, 'crea']);
+    // * /api/reserva/modifica/1
+    Route::put('/modifica/{id}', [\App\Http\Controllers\ReservaController::class, 'modifica']);
+});
 //Ordenes Usuario
 Route::group(['prefix'=>'usuario'],function() {
     // * /api/usuario/

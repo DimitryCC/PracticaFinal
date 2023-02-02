@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Projecte Final ",
-        "description": "REST API. Projecte Final. DAW Client i servidor Joan Ramis, Dimitry Company, Javier Parrado.",
+        "description": "REST API. Projecte Final. DAW Client i servidor Joan R, Dimitry C, Javier P.",
         "contact": {
             "name": "Joan Ramis.",
             "email": "joanramis1@paucasesnovescifp.cat"
@@ -1955,6 +1955,343 @@
                                         "type": "enum",
                                         "format": "enum",
                                         "example": "Esto es la isla del Municipio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reserva/{id}": {
+            "get": {
+                "tags": [
+                    "Reservas"
+                ],
+                "summary": "Mostrar una Reserva por ID",
+                "description": "Descripcion de una Reserva.",
+                "operationId": "7035e5296cf4458d93fcee0d722983fe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de la Reserva",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la Reserva",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la reserva.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "reserva no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reserva": {
+            "get": {
+                "tags": [
+                    "Reservas"
+                ],
+                "summary": "Mostrar todas las Reservas",
+                "description": "Lista todas las Reservas.",
+                "operationId": "1b4aac48aef14de7b96d4fae025ab5b3",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las Reservas."
+                    }
+                }
+            }
+        },
+        "/api/reserva/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Reservas"
+                ],
+                "summary": "Borra una Reserva",
+                "description": "Borra una Reserva. Solo por Administradores",
+                "operationId": "479705297811e2ee8d8d75381f2a2edd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Reserva",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reserva/crea": {
+            "post": {
+                "tags": [
+                    "Reservas"
+                ],
+                "summary": "Crea una Reserva",
+                "description": "Crea una Reserva. Solo por Administradores.",
+                "operationId": "a01240853bba89c1b70c8b3b7059bb64",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "usuari_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "Alojamiento_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2"
+                                    },
+                                    "FechaInicio": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2023/1/1"
+                                    },
+                                    "FechaFin": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2023/12/12"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reserva/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Reservas"
+                ],
+                "summary": "Modifica una Reserva",
+                "description": "Modifica una Reserva. Solo por Administradores.",
+                "operationId": "5a2595c7f51c05f17369259d180aea48",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id Reserva",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "usuari_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "Alojamiento_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2"
+                                    },
+                                    "FechaInicio": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2023/1/1"
+                                    },
+                                    "FechaFin": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2023/12/12"
                                     }
                                 },
                                 "type": "object"
