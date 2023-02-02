@@ -44,5 +44,6 @@ class Usuario extends Model
     public $incrementing=false;
     public $timestamps=false;
     protected $fillable=['ID','DNI','nom_complet','telefon','contrasenya',
-    'direccio','correu','administrador'];
+    'direccio','correu','api_tocken','administrador'];
+    protected $hidden= ['api_tocken', 'contrasenya'];
 }
