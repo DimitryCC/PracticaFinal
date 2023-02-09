@@ -48,8 +48,8 @@ class ValoracionControler extends Controller
      */
     public function show($idusuari,$idallotjament){
         try {
-            $tupla = Valoracion::where('usuari_id','=',$idusuari)
-                                ->where('Alojamiento_id','=',$idallotjament)
+            $tupla = Valoracion::where('usuarioId','=',$idusuari)
+                                ->where('AlojamientoId','=',$idallotjament)
                                 ->first();
             if ($tupla) {
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
@@ -117,8 +117,8 @@ class ValoracionControler extends Controller
      */
     public function borra($idusuari,$idallotjament){
         try {
-            $tupla = Valoracion::where('usuari_id','=',$idusuari)
-                ->where('Alojamiento_id','=',$idallotjament)
+            $tupla = Valoracion::where('usuarioId','=',$idusuari)
+                ->where('AlojamientoId','=',$idallotjament)
                 ->delete();
             if ($tupla) {
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
@@ -169,8 +169,8 @@ class ValoracionControler extends Controller
      */
     public function crea(Request $request){
         $reglesvalidacio=[
-            'usuari_id'=>['required'],
-            'Alojamiento_id'=>['required'],
+            'usuarioId'=>['required'],
+            'AlojamientoId'=>['required'],
             'texto'=>['required','max:255'],
             'puntuacion'=>['required']
         ];
@@ -239,8 +239,8 @@ class ValoracionControler extends Controller
      *  )
      */
     public function modifica(Request $request, $idusuari,$idallotjament){
-        $tupla = Valoracion::where('usuari_id','=',$idusuari)
-            ->where('Alojamiento_id','=',$idallotjament)
+        $tupla = Valoracion::where('usuarioId','=',$idusuari)
+            ->where('AlojamientoId','=',$idallotjament)
             ->first();
         if ($tupla) {
             return response()->json(['status' => 'success', 'result' => $tupla], 200);

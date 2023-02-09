@@ -157,7 +157,7 @@ class MunicipioControler extends Controller
     public function crea(Request $request){
         $reglesvalidacio=[
             'nombre'=>['required','max:60','unique:municipios,nombre'],
-            'islas'=>['required']
+            'isla'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -226,7 +226,7 @@ class MunicipioControler extends Controller
         $tupla = Municipio::findOrFail($id);
         $reglesvalidacio=[
             'nombre'=>['filled','max:60','unique:municipios,nombre'],
-            'islas'=>['filled']
+            'isla'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

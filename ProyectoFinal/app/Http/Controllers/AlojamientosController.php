@@ -165,16 +165,16 @@ class AlojamientosController extends Controller
     public function crea(Request $request){
         $reglesvalidacio=[
             'nombre'=>['required','max:100','unique:alojamientos,nombre'],
-            'adresa'=>['required','max:300'],
-            'numpero_personas'=>['required'],
-            'numero_habitaciones'=>['required'],
-            'numero_camas'=>['required'],
-            'numero_banos'=>['required'],
-            'tipo_alojamiento'=>['required'],
-            'tipo_vacacional'=>['required'],
+            'direccion'=>['required','max:300'],
+            'numeroPersonas'=>['required'],
+            'numeroHabitaciones'=>['required'],
+            'numeroCamas'=>['required'],
+            'numeroBanos'=>['required'],
+            'tipoAlojamiento'=>['required'],
+            'tipoVacacional'=>['required'],
             'categoria'=>['required'],
             'municipio'=>['required'],
-            'usuari'=>['required']
+            'usuario'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -261,16 +261,16 @@ class AlojamientosController extends Controller
         $reglesvalidacio=[
             'ID'=>['filled','unique:alojamientos,ID,' . $id],
             'nombre'=>['filled','max:100','unique:alojamientos,nombre'],
-            'adresa'=>['filled','max:300'],
-            'numpero_personas'=>['filled'],
-            'numero_habitaciones'=>['filled'],
-            'numero_camas'=>['filled'],
-            'numero_banos'=>['filled'],
-            'tipo_alojamiento'=>['filled'],
-            'tipo_vacacional'=>['filled'],
+            'direccion'=>['filled','max:300'],
+            'numeroPersonas'=>['filled'],
+            'numeroHabitaciones'=>['filled'],
+            'numeroCamas'=>['filled'],
+            'numeroBanos'=>['filled'],
+            'tipoAlojamiento'=>['filled'],
+            'tipoVacacional'=>['filled'],
             'categoria'=>['filled'],
             'municipio'=>['filled'],
-            'usuari'=>['filled']
+            'usuario'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

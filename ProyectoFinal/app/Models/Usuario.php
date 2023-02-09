@@ -12,11 +12,11 @@ class Usuario extends Model
     /**
      * @var mixed
      */
-    public $nom_complet;
+    public $nombreCompleto;
     /**
      * @var mixed
      */
-    public $direccio;
+    public $direccion;
     /**
      * @var mixed
      */
@@ -24,15 +24,15 @@ class Usuario extends Model
     /**
      * @var mixed
      */
-    public $correu;
+    public $correo;
     /**
      * @var mixed
      */
-    public $telefon;
+    public $telefono;
     /**
      * @var mixed|string
      */
-    public $contrasenya;
+    public $contrasena;
     /**
      * @var mixed
      */
@@ -43,7 +43,12 @@ class Usuario extends Model
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
-    protected $fillable=['ID','DNI','nom_complet','telefon','contrasenya',
-    'direccio','correu','api_tocken','administrador'];
-    protected $hidden= ['api_tocken','contrasenya', 'administrador'];
+    /*
+    protected $fillable=['ID','DNI','nombreCompleto','telefono','contrasena',
+    'direccion','correo','apiTocken'];
+    protected $hidden= ['apiTocken'];
+    */
+    protected $fillable=['ID','DNI','nombreCompleto','telefono','contrasena',
+    'direccion','correo','apiTocken','administrador'];
+    protected $hidden= ['apiTocken','contrasena', 'administrador'];
 }

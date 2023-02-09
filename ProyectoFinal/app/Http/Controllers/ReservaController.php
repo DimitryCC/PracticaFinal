@@ -156,8 +156,8 @@ class ReservaController extends Controller
      */
     public function crea(Request $request){
         $reglesvalidacio=[
-            'usuari_id'=>['required'],
-            'Alojamiento_id'=>['required'],
+            'usuarioId'=>['required'],
+            'AlojamientoId'=>['required'],
             'FechaInicio'=>['required'],
             'FechaFin'=>['required']
         ];
@@ -238,8 +238,8 @@ class ReservaController extends Controller
         $tupla = Reserva::findOrFail($id);
         $reglesvalidacio=[
             'ID'=>['filled','unique:reserves,ID,' . $id],
-            'usuari_id'=>['required'],
-            'Alojamiento_id'=>['required'],
+            'usuarioId'=>['required'],
+            'AlojamientoId'=>['required'],
             'FechaInicio'=>['required'],
             'FechaFin'=>['required']
         ];

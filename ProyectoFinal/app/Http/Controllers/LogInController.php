@@ -47,10 +47,10 @@ class LogInController extends Controller
      */
     public function login(Request $request)
     {
-        $user = Usuario::where('correu',$request->input('correu'))->first();
-        if ($user && Hash::check($request->input('contrasenya'), $user['contrasenya'])){
+        $user = Usuario::where('correo',$request->input('correo'))->first();
+        if ($user && Hash::check($request->input('contrasena'), $user['contrasena'])){
             $apikey = base64_encode(Str::random(40));
-            $user["api_tocken"]=$apikey;
+            $user["apiTocken"]=$apikey;
             $user->save();
             return response()->json(['status' => 'Login OK','result' => $apikey]);
         }else{

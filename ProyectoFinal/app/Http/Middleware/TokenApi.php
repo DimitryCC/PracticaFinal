@@ -21,7 +21,7 @@ class TokenApi
         if (count($key)==2)
         {
             $token=$key[1];
-            $user=Usuario::where('api_tocken',$token)->first();
+            $user=Usuario::where('apiTocken',$token)->first();
             if (!empty($user)){
                 return $next($request);
             }else{

@@ -157,7 +157,7 @@ class DescripcionControler extends Controller
     public function crea(Request $request){//pendiente de modificar
         $reglesvalidacio=[
             'descripcion'=>['required','max:600'],
-            'idioma_id'=>['required']
+            'idiomaId'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -226,7 +226,7 @@ class DescripcionControler extends Controller
         $tupla = Descripcion::findOrFail($id);
         $reglesvalidacio=[
             'descripcion'=>['filled','max:600'],
-            'idioma_id'=>['filled']
+            'idiomaId'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

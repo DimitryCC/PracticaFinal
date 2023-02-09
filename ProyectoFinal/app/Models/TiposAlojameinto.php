@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TiposAlojameinto extends Model
 {
     use HasFactory;
-    protected $table='tiposalojameintos';
+    protected $table='tiposAlojameintos';
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
-    protected $fillable=['ID','nombre_tipo','idioma_id'];
+    protected $fillable=['ID','nombreTipo','idiomaId'];
 }

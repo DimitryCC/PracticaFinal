@@ -78,12 +78,11 @@ class UsuarioControler extends Controller
     public function crea(Request $request){
         $reglesvalidacio=[
             'DNI'=>['required'],
-            'nom_complet'=>['required','max:150'],
-            'direccio'=>[],
-            'correu'=>['required'],
-            'telefon'=>['required'],
-            'contrasenya'=>['required'],
-            'administrador'=>[]
+            'nombreCompleto'=>['required','max:150'],
+            'direccion'=>[],
+            'correo'=>['required'],
+            'telefono'=>['required'],
+            'contrasena'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -94,12 +93,11 @@ class UsuarioControler extends Controller
             //$tupla=Usuario::create($request->all());
             $usuari = Usuario::create([
             'DNI'=>$request->input('DNI'),
-            'nom_complet'=>$request->input('nom_complet'),
-            'direccio'=>$request->input('direccio'),
-            'correu'=>$request->input('correu'),
-            'telefon'=>$request->input('telefon'),
-            'contrasenya'=> Hash::make($request->input('contrasenya')),
-            'administrador'=> $request->input('administrador')
+            'nombreCompleto'=>$request->input('nombreCompleto'),
+            'direccion'=>$request->input('direccion'),
+            'correo'=>$request->input('correo'),
+            'telefono'=>$request->input('telefono'),
+            'contrasena'=> Hash::make($request->input('contrasena'))
             ]);
             return response()->json(['status'=>'success','result'=>$usuari],200);
         }else {
@@ -111,12 +109,11 @@ class UsuarioControler extends Controller
         $tupla = Usuario::findOrFail($id);
         $reglesvalidacio=[
             'DNI'=>['filled'],
-            'nom_complet'=>['filled','max:150'],
-            'direccio'=>[],
-            'correu'=>[],
-            'telefon'=>['filled'],
-            'contrasenya'=>['filled'],
-            'administrador'=>[]
+            'nombreCompleto'=>['filled','max:150'],
+            'direccion'=>[],
+            'correo'=>[],
+            'telefono'=>['filled'],
+            'contrasena'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

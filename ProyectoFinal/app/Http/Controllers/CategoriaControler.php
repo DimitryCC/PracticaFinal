@@ -155,9 +155,9 @@ class CategoriaControler extends Controller
      */
     public function crea(Request $request){
         $reglesvalidacio=[
-            'nombre_categoria'=>['required','max:30'],
-            'tarifa_baixa'=>['required'],
-            'tarifa_alta'=>['required']
+            'nombreCategoria'=>['required','max:30'],
+            'tarifaBaija'=>['required'],
+            'tarifaAlta'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -228,9 +228,9 @@ class CategoriaControler extends Controller
         $tupla = Categoria::findOrFail($id);
         $reglesvalidacio=[
             'ID'=>['filled','unique:categorias,ID,' . $id],
-            'nombre_categoria'=>['filled','max:300','unique:categorias,nombre_categoria'],
-            'tarifa_baixa'=>['filled'],
-            'tarifa_alta'=>['filled']
+            'nombreCategoria'=>['filled','max:300','unique:categorias,nombre_categoria'],
+            'tarifaBaija'=>['filled'],
+            'tarifaAlta'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

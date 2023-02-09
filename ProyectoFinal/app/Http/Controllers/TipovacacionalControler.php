@@ -156,8 +156,8 @@ class TipovacacionalControler extends Controller
      */
     public function crea(Request $request){
         $reglesvalidacio=[
-            'nombre_tipo'=>['required','max:30','unique:tiposVacacional,nombre_tipo'],
-            'idioma_id'=>['required']
+            'nombreTipo'=>['required','max:30','unique:tiposVacacional,nombre_tipo'],
+            'idiomaId'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -225,8 +225,8 @@ class TipovacacionalControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Tipovacacional::findOrFail($id);
         $reglesvalidacio=[
-            'nombre_tipo'=>['filled','max:30','unique:tiposVacacional,nombre_tipo'],
-            'idioma_id'=>['filled']
+            'nombreTipo'=>['filled','max:30','unique:tiposVacacional,nombre_tipo'],
+            'idiomaId'=>['filled']
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

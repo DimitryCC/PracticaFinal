@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Reserva extends Model
 {
     use HasFactory;
-    protected $table='reserves';
+    protected $table='reservas';
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
-    protected $fillable=['usuari_id','Alojamiento_id','FechaInicio','FechaFin'];
+    protected $fillable=['usuarioId','AlojamientoId','FechaInicio','FechaFin'];
 }
