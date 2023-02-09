@@ -145,6 +145,9 @@ class ValoracionControler extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
+     *
+     *           @OA\Property(property="usuarioId", type="number", format="number", example="Esta es la id el usuario"),
+     *           @OA\Property(property="AlojamientoId", type="number", format="number", example="Esta es la id del alojamiento"),
      *           @OA\Property(property="texto", type="string", format="string", example="Esto es el contenido de la Valoracion"),
      *           @OA\Property(property="puntuacion", type="number", format="number", example="Esto es la puntuacion de la Valoracion")
      *        ),

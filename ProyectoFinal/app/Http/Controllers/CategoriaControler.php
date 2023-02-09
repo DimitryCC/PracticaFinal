@@ -130,9 +130,9 @@ class CategoriaControler extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
-     *           @OA\Property(property="nombre_categoria", type="string", format="string", example="Esto es un nuevo nombre de Categoria"),
-     *           @OA\Property(property="tarifa_baixa", type="number", format="number", example="10"),
-     *           @OA\Property(property="tarifa_alta", type="number", format="number", example="20"),
+     *           @OA\Property(property="nombreCategoria", type="string", format="string", example="Esto es un nuevo nombre de Categoria"),
+     *           @OA\Property(property="tarifaBaja", type="number", format="number", example="10"),
+     *           @OA\Property(property="tarifaAlta", type="number", format="number", example="20"),
      *        ),
      *     ),
      *    @OA\Response(

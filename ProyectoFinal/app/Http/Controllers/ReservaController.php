@@ -130,8 +130,8 @@ class ReservaController extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
-     *           @OA\Property(property="usuari_id", type="number", format="number", example="1"),
-     *           @OA\Property(property="Alojamiento_id", type="number", format="number", example="2"),
+     *           @OA\Property(property="usuarioId", type="number", format="number", example="1"),
+     *           @OA\Property(property="AlojamientoId", type="number", format="number", example="2"),
      *           @OA\Property(property="FechaInicio", type="number", format="number", example="2023/1/1"),
      *           @OA\Property(property="FechaFin", type="number", format="number", example="2023/12/12"),
      *        ),

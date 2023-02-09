@@ -49,11 +49,11 @@ class UsuarioControler extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="DNI", type="string", format="string", example="Esto es un nuevo DNI del usuario"),
-     *           @OA\Property(property="nom_complet", type="string", format="string", example="Esto es el nombre del Usuario"),
-     *           @OA\Property(property="direccio", type="string", format="string", example="Calle 1"),
-     *           @OA\Property(property="correu", type="string", format="string", example="example@mail.com"),
+     *           @OA\Property(property="nombreCompleto", type="string", format="string", example="Esto es el nombre del Usuario"),
+     *           @OA\Property(property="direccion", type="string", format="string", example="Calle 1"),
+     *           @OA\Property(property="correo", type="string", format="string", example="example@mail.com"),
      *           @OA\Property(property="telefon", type="number", format="number", example="971940971"),
-     *           @OA\Property(property="contrasenya", type="string", format="string", example="3")
+     *           @OA\Property(property="contrasena", type="string", format="string", example="3")
 
      *        ),
      *     ),

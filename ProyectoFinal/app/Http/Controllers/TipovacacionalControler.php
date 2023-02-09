@@ -132,8 +132,8 @@ class TipovacacionalControler extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
-     *           @OA\Property(property="nombre_tipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Vacacional"),
-     *           @OA\Property(property="idioma_id", type="number", format="number", example="Esto es la ID del Idioma del Tipo")
+     *           @OA\Property(property="nombreTipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Vacacional"),
+     *           @OA\Property(property="idiomaId", type="number", format="number", example="Esto es la ID del Idioma del Tipo")
      *        ),
      *     ),
      *    @OA\Response(

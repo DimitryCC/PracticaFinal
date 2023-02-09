@@ -72,7 +72,7 @@ create table traduccionServicios(
 create table categorias(
 	ID integer auto_increment primary key,
     nombreCategoria varchar(30),
-    tarifaBaija integer,
+    tarifaBaja integer,
     tarifaAlta integer
 );
 

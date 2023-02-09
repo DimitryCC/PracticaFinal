@@ -132,8 +132,8 @@ class TipoAlojameintoControler extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
-     *           @OA\Property(property="nombre_tipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Alojamiento"),
-     *           @OA\Property(property="idioma_id", type="number", format="number", example="Esto es la ID del Idioma del Tipo Alojamiento")
+     *           @OA\Property(property="nombreTipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Alojamiento"),
+     *           @OA\Property(property="idiomaId", type="number", format="number", example="Esto es la ID del Idioma del Tipo Alojamiento")
      *        ),
      *     ),
      *    @OA\Response(

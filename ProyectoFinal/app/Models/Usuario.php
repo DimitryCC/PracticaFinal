@@ -48,7 +48,7 @@ class Usuario extends Model
     'direccion','correo','apiTocken'];
     protected $hidden= ['apiTocken'];
     */
-    protected $fillable=['ID','DNI','nombreCompleto','telefono','contrasena',
-    'direccion','correo','apiTocken','administrador'];
+    protected $fillable=['DNI','nombreCompleto','telefono',
+    'direccion','correo','contrasena'];
     protected $hidden= ['apiTocken','contrasena', 'administrador'];
 }

@@ -133,7 +133,7 @@ class DescripcionControler extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="descripcion", type="string", format="string", example="Esto es el contenido de la Descripcion"),
-     *           @OA\Property(property="idioma_id", type="number", format="number", example="Esto es la ID del Idioma de la Descripcion")
+     *           @OA\Property(property="idiomaId", type="number", format="number", example="Esto es la ID del Idioma de la Descripcion")
      *        ),
      *     ),
      *    @OA\Response(

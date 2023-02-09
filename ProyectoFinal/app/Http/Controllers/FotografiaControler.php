@@ -137,7 +137,7 @@ class FotografiaControler extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="ruta", type="string", format="string", example="Ruta de la Fotografia"),
-     *           @OA\Property(property="alojamiento_id", type="number", format="number", example="Id del Alojamiento")
+     *           @OA\Property(property="alojamientoId", type="number", format="number", example="Id del Alojamiento")
      *        ),
      *     ),
      *    @OA\Response(

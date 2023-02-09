@@ -12,7 +12,7 @@ class Alojamiento extends Model
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
-    protected $fillable=['ID','nombre','adresa','numeroPersonas','numeroHabitaciones',
+    protected $fillable=['ID','nombre','numeroPersonas','numeroHabitaciones',
         'numeroCamas','numeroBanos','direccion','tipoAlojamiento','tipoVacacional',
-        'categoria','municipio','usuario'];
+        'categoria','municipio','usuario', 'descripcion'];
 }

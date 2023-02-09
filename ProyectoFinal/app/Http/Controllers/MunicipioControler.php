@@ -133,7 +133,7 @@ class MunicipioControler extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="nombre", type="string", format="string", example="Esto es un nuevo Municipio"),
-     *           @OA\Property(property="islas", type="enum", format="enum", example="Esto es la isla del Municipio")
+     *           @OA\Property(property="isla", type="enum", format="enum", example="Esto es la isla del Municipio")
      *        ),
      *     ),
      *    @OA\Response(
