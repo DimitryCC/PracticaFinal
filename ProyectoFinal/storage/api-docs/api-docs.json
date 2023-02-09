@@ -3409,11 +3409,6 @@
                                         "type": "string",
                                         "format": "string",
                                         "example": "3"
-                                    },
-                                    "administrador": {
-                                        "type": "boolen",
-                                        "format": "boolean",
-                                        "example": "Si o No"
                                     }
                                 },
                                 "type": "object"

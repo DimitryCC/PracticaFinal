@@ -53,8 +53,7 @@ class UsuarioControler extends Controller
      *           @OA\Property(property="direccio", type="string", format="string", example="Calle 1"),
      *           @OA\Property(property="correu", type="string", format="string", example="example@mail.com"),
      *           @OA\Property(property="telefon", type="number", format="number", example="971940971"),
-     *           @OA\Property(property="contrasenya", type="string", format="string", example="3"),
-     *           @OA\Property(property="administrador", type="boolen", format="boolean", example="Si o No"),
+     *           @OA\Property(property="contrasenya", type="string", format="string", example="3")
 
      *        ),
      *     ),
