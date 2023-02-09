@@ -1698,26 +1698,26 @@
                 ]
             }
         },
-        "/api/log/in": {
+        "/api/Log/in": {
             "post": {
                 "tags": [
                     "Login"
                 ],
                 "summary": "Accede",
                 "description": "Accede",
-                "operationId": "4fb5c5c66166ed81a39f2dd4c673cff9",
+                "operationId": "c93d9a8a35497b3a6a346aa024511ba5",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "correu": {
+                                    "correo": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
                                     },
-                                    "contrasenya": {
+                                    "contrasena": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "2"

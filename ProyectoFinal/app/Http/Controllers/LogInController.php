@@ -15,7 +15,7 @@ class LogInController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      * @OA\Post(
-     *    path="/api/log/in",
+     *    path="/api/Log/in",
      *    tags={"Login"},
      *    summary="Accede",
      *    description="Accede",
@@ -23,8 +23,8 @@ class LogInController extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
-     *           @OA\Property(property="correu", type="number", format="number", example="1"),
-     *           @OA\Property(property="contrasenya", type="number", format="number", example="2"),
+     *           @OA\Property(property="correo", type="number", format="number", example="1"),
+     *           @OA\Property(property="contrasena", type="number", format="number", example="2"),
      *        ),
      *     ),
      *    @OA\Response(
