@@ -187,37 +187,37 @@
                                         "format": "string",
                                         "example": "Esto es un nuevo nombre de Alojamiento"
                                     },
-                                    "adresa": {
+                                    "direccion": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es una nueva direccion"
                                     },
-                                    "numpero_personas": {
+                                    "numeroPersonas": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
                                     },
-                                    "numero_habitaciones": {
+                                    "numeroHabitaciones": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "2"
                                     },
-                                    "numero_camas": {
+                                    "numeroCamas": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "5"
                                     },
-                                    "numero_banos": {
+                                    "numeroBanos": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "3"
                                     },
-                                    "tipo_alojamiento": {
+                                    "tipoAlojamiento": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "3"
                                     },
-                                    "tipo_vacacional": {
+                                    "tipoVacacional": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "3"
@@ -232,7 +232,12 @@
                                         "format": "number",
                                         "example": "1"
                                     },
-                                    "usuari": {
+                                    "descripcion": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "usuario": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
@@ -589,17 +594,17 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "nombre_categoria": {
+                                    "nombreCategoria": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es un nuevo nombre de Categoria"
                                     },
-                                    "tarifa_baixa": {
+                                    "tarifaBaja": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "10"
                                     },
-                                    "tarifa_alta": {
+                                    "tarifaAlta": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "20"
@@ -921,7 +926,7 @@
                                         "format": "string",
                                         "example": "Esto es el contenido de la Descripcion"
                                     },
-                                    "idioma_id": {
+                                    "idiomaId": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "Esto es la ID del Idioma de la Descripcion"
@@ -1238,7 +1243,7 @@
                                         "format": "string",
                                         "example": "Ruta de la Fotografia"
                                     },
-                                    "alojamiento_id": {
+                                    "alojamientoId": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "Id del Alojamiento"
@@ -1940,7 +1945,7 @@
                                         "format": "string",
                                         "example": "Esto es un nuevo Municipio"
                                     },
-                                    "islas": {
+                                    "isla": {
                                         "type": "enum",
                                         "format": "enum",
                                         "example": "Esto es la isla del Municipio"
@@ -2252,12 +2257,12 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "usuari_id": {
+                                    "usuarioId": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
                                     },
-                                    "Alojamiento_id": {
+                                    "AlojamientoId": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "2"
@@ -2896,12 +2901,12 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "nombre_tipo": {
+                                    "nombreTipo": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es un nuevo nombre de Tipo Alojamiento"
                                     },
-                                    "idioma_id": {
+                                    "idiomaId": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "Esto es la ID del Idioma del Tipo Alojamiento"
@@ -3213,12 +3218,12 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "nombre_tipo": {
+                                    "nombreTipo": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es un nuevo nombre de Tipo Vacacional"
                                     },
-                                    "idioma_id": {
+                                    "idiomaId": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "Esto es la ID del Idioma del Tipo"
@@ -3385,17 +3390,17 @@
                                         "format": "string",
                                         "example": "Esto es un nuevo DNI del usuario"
                                     },
-                                    "nom_complet": {
+                                    "nombreCompleto": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es el nombre del Usuario"
                                     },
-                                    "direccio": {
+                                    "direccion": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Calle 1"
                                     },
-                                    "correu": {
+                                    "correo": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "example@mail.com"
@@ -3405,7 +3410,7 @@
                                         "format": "number",
                                         "example": "971940971"
                                     },
-                                    "contrasenya": {
+                                    "contrasena": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "3"
@@ -3628,6 +3633,16 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "usuarioId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esta es la id el usuario"
+                                    },
+                                    "AlojamientoId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Esta es la id del alojamiento"
+                                    },
                                     "texto": {
                                         "type": "string",
                                         "format": "string",

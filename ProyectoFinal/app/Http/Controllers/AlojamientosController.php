@@ -142,7 +142,7 @@ class AlojamientosController extends Controller
      *           @OA\Property(property="categoria", type="number", format="number", example="1"),
      *           @OA\Property(property="municipio", type="number", format="number", example="1"),
      *           @OA\Property(property="descripcion", type="number", format="number", example="1"),
-     *           @OA\Property(property="usuari", type="number", format="number", example="1"),
+     *           @OA\Property(property="usuario", type="number", format="number", example="1"),
      *        ),
      *     ),
      *    @OA\Response(
