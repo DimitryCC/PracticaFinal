@@ -3,30 +3,6 @@ create table idiomas(
 	idioma varchar(10)
 );
 
-create table descripciones(
-	ID integer primary key auto_increment,
-	alojamientoId integer,
-    descripcion varchar(600),
-    idiomaId integer,
-    foreign key (idiomaId) references idiomas(ID),
-    foreign key (alojamientoId) references alojamientos(ID)
-);
-/*
-  He modificado la descripcion poruqe si enlazamos una descripcion
-  al alojamiento una descripcion solo tiene una descripcion aunque
-  creemos multiples descripciones, de forma que la unica forma que
-  tenemos de traducir las descripciones es duplicar el alojamiento
-*/
-
-create table traduccionDescripsciones(
-    descripcioneId integer,
-    idiomaId integer,
-    traduccion varchar(600),
-    primary key (descripcioneId, idiomaId),
-    foreign key (idiomaId) references idiomas(ID),
-    foreign key (descripcioneId) references descripciones(ID)
-);
-
 create table tiposAlojameintos(
 	ID integer auto_increment primary key,
     nombreTipo varchar(30),
@@ -118,12 +94,24 @@ create table alojamientos(
     foreign key (municipio) references municipios(ID),
     foreign key (usuario) references usuarios(ID)
 );
-/*
-  He modificado la descripcion poruqe si enlazamos una descripcion
-  al alojamiento una descripcion solo tiene una descripcion aunque
-  creemos multiples descripciones, de forma que la unica forma que
-  tenemos de traducir las descripciones es duplicar el alojamiento
-*/
+
+create table descripciones(
+                              ID integer primary key auto_increment,
+                              alojamientoId integer,
+                              descripcion varchar(600),
+                              idiomaId integer,
+                              foreign key (idiomaId) references idiomas(ID),
+                              foreign key (alojamientoId) references alojamientos(ID)
+);
+
+create table traduccionDescripsciones(
+                                         descripcioneId integer,
+                                         idiomaId integer,
+                                         traduccion varchar(600),
+                                         primary key (descripcioneId, idiomaId),
+                                         foreign key (idiomaId) references idiomas(ID),
+                                         foreign key (descripcioneId) references descripciones(ID)
+);
 
 create table reservas(
     ID integer auto_increment,

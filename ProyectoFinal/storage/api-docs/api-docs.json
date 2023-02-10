@@ -232,11 +232,6 @@
                                         "format": "number",
                                         "example": "1"
                                     },
-                                    "descripcion": {
-                                        "type": "number",
-                                        "format": "number",
-                                        "example": "1"
-                                    },
                                     "usuario": {
                                         "type": "number",
                                         "format": "number",
@@ -930,6 +925,11 @@
                                         "type": "number",
                                         "format": "number",
                                         "example": "Esto es la ID del Idioma de la Descripcion"
+                                    },
+                                    "alojamientoId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "Id del Alojamiento"
                                     }
                                 },
                                 "type": "object"
