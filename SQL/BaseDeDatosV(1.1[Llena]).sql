@@ -3,150 +3,146 @@ CREATE DATABASE projecte;
 use projecte;
 
 create table idiomas(
-	ID integer primary key auto_increment,
-	idioma varchar(10)
-);/*No se genera automaticamente*/
-
-create table descripciones(
-	ID integer primary key auto_increment,
-    descripcion varchar(600),
-    idiomaId integer,
-    foreign key (idiomaId) references idiomas(ID)
-);
-
-create table traduccionDescripsciones(
-    descripcioneId integer,
-    idiomaId integer,
-    traduccion varchar(600),
-    primary key (descripcioneId, idiomaId),
-    foreign key (idiomaId) references idiomas(ID),
-    foreign key (descripcioneId) references descripciones(ID)
+                        ID integer primary key auto_increment,
+                        idioma varchar(10)
 );
 
 create table tiposAlojameintos(
-	ID integer auto_increment primary key,
-    nombreTipo varchar(30),
-    idiomaId integer,
-    foreign key (idiomaId) references idiomas(ID)
+                                  ID integer auto_increment primary key,
+                                  nombreTipo varchar(30),
+                                  idiomaId integer,
+                                  foreign key (idiomaId) references idiomas(ID)
 );
 
 create table traduccionTiposalojamientos(
-    tiposAlojameintosId integer,
-    idiomaId integer,
-    traduccion varchar(30),
-    primary key (tiposAlojameintosId, idiomaId),
-    foreign key (idiomaId) references idiomas(ID),
-    foreign key (tiposAlojameintosId) references tiposAlojameintos(ID)
+                                            tiposAlojameintosId integer,
+                                            idiomaId integer,
+                                            traduccion varchar(30),
+                                            primary key (tiposAlojameintosId, idiomaId),
+                                            foreign key (idiomaId) references idiomas(ID),
+                                            foreign key (tiposAlojameintosId) references tiposAlojameintos(ID)
 );
 
 create table tiposVacacional(
-	ID integer auto_increment primary key,
-    nombreTipo varchar(30),
-    idiomaId integer,
-    foreign key (idiomaId) references idiomas(ID)
+                                ID integer auto_increment primary key,
+                                nombreTipo varchar(30),
+                                idiomaId integer,
+                                foreign key (idiomaId) references idiomas(ID)
 );
 
 create table traduccionVacacional(
-    tiposVacacionalId integer,
-    idiomaId integer,
-    Traduccion varchar(30),
-    primary key (tiposVacacionalId, idiomaId),
-    foreign key (idiomaId) references idiomas(ID),
-    foreign key (tiposVacacionalId) references tiposVacacional(ID)
+                                     tiposVacacionalId integer,
+                                     idiomaId integer,
+                                     Traduccion varchar(30),
+                                     primary key (tiposVacacionalId, idiomaId),
+                                     foreign key (idiomaId) references idiomas(ID),
+                                     foreign key (tiposVacacionalId) references tiposVacacional(ID)
 );
 
 create table servicios(
-	ID integer primary key auto_increment,
-    NombreServicio varchar(20)
+                          ID integer primary key auto_increment,
+                          NombreServicio varchar(20)
 );
 
 create table traduccionServicios(
-    servicioId integer,
-    idiomaId integer,
-    traduccion varchar(20),
-    primary key (servicioId, idiomaId),
-    foreign key (idiomaId) references idiomas(ID),
-    foreign key (servicioId) references servicios(ID)
+                                    servicioId integer,
+                                    idiomaId integer,
+                                    traduccion varchar(20),
+                                    primary key (servicioId, idiomaId),
+                                    foreign key (idiomaId) references idiomas(ID),
+                                    foreign key (servicioId) references servicios(ID)
 );
 
 create table categorias(
-	ID integer auto_increment primary key,
-    nombreCategoria varchar(30),
-    tarifaBaja integer,
-    tarifaAlta integer
+                           ID integer auto_increment primary key,
+                           nombreCategoria varchar(30),
+                           tarifaBaja integer,
+                           tarifaAlta integer
 );
 
 create table municipios(
-	ID integer primary key auto_increment,
-    nombre varchar(60),
-    isla enum('MALLORCA','MENORCA','EIVISSA','FORMENTERA')
+                           ID integer primary key auto_increment,
+                           nombre varchar(60),
+                           isla enum('MALLORCA','MENORCA','EIVISSA','FORMENTERA')
 );
 
 create table usuarios(
-	ID integer primary key auto_increment,
-    DNI varchar(20),
-    nombreCompleto varchar(150),
-    direccion varchar(100),
-    correo  varchar(50),
-    telefono integer,
-    contrasena varchar(100),
-    apiTocken varchar(250),/*Recoger mas tarde para el logue in*/
-    administrador boolean
-    );
-    
-
+                         ID integer primary key auto_increment,
+                         DNI varchar(20),
+                         nombreCompleto varchar(150),
+                         direccion varchar(100),
+                         correo  varchar(50),
+                         telefono integer,
+                         contrasena varchar(100),
+                         apiTocken varchar(250),/*Recoger mas tarde para el logue in*/
+                         administrador boolean
+);
 
 create table alojamientos(
-	ID integer auto_increment,
-    nombre varchar(100),
-    direccion varchar(300),
-    numeroPersonas integer,
-    numeroHabitaciones integer,
-    numeroCamas integer,
-    numeroBanos integer,
-    descripcion integer,
-    tipoAlojamiento integer,
-    tipoVacacional integer,
-    categoria integer,
-    municipio integer,
-    usuario integer,
-    primary key (ID),
-    foreign key (tipoAlojamiento) references tiposAlojameintos(ID),
-    foreign key (tipoVacacional) references tiposVacacional(ID),
-    foreign key (categoria) references categorias(ID),
-    foreign key (municipio) references municipios(ID),
-    foreign key (usuario) references usuarios(ID),
-    foreign key (descripcion) references descripciones(ID)
+                             ID integer auto_increment,
+                             nombre varchar(100),
+                             direccion varchar(300),
+                             numeroPersonas integer,
+                             numeroHabitaciones integer,
+                             numeroCamas integer,
+                             numeroBanos integer,
+                             tipoAlojamiento integer,
+                             tipoVacacional integer,
+                             categoria integer,
+                             municipio integer,
+                             usuario integer,
+                             primary key (ID),
+                             foreign key (tipoAlojamiento) references tiposAlojameintos(ID),
+                             foreign key (tipoVacacional) references tiposVacacional(ID),
+                             foreign key (categoria) references categorias(ID),
+                             foreign key (municipio) references municipios(ID),
+                             foreign key (usuario) references usuarios(ID)
+);
 
+create table descripciones(
+                              ID integer primary key auto_increment,
+                              alojamientoId integer,
+                              descripcion varchar(600),
+                              idiomaId integer,
+                              foreign key (idiomaId) references idiomas(ID),
+                              foreign key (alojamientoId) references alojamientos(ID)
+);
+
+create table traduccionDescripsciones(
+                                         descripcioneId integer,
+                                         idiomaId integer,
+                                         traduccion varchar(600),
+                                         primary key (descripcioneId, idiomaId),
+                                         foreign key (idiomaId) references idiomas(ID),
+                                         foreign key (descripcioneId) references descripciones(ID)
 );
 
 create table reservas(
-    ID integer auto_increment,
-    usuarioId integer,
-    AlojamientoId integer,
-    FechaInicio DATE,
-    FechaFin DATE,
-    primary key (ID),
-    foreign key (AlojamientoId) references alojamientos(ID),
-    foreign key (usuarioId) references usuarios(ID)
+                         ID integer auto_increment,
+                         usuarioId integer,
+                         AlojamientoId integer,
+                         FechaInicio DATE,
+                         FechaFin DATE,
+                         primary key (ID),
+                         foreign key (AlojamientoId) references alojamientos(ID),
+                         foreign key (usuarioId) references usuarios(ID)
 );
 
 create table valoraciones(
-	usuarioId integer,
-    AlojamientoId integer,
-    texto varchar(255),
-    puntuacion integer,
-    primary key (usuarioId, AlojamientoId),
-    foreign key (AlojamientoId) references alojamientos(ID),
-    foreign key (usuarioId) references usuarios(ID)
-    
+                             usuarioId integer,
+                             AlojamientoId integer,
+                             texto varchar(255),
+                             puntuacion integer,
+                             primary key (usuarioId, AlojamientoId),
+                             foreign key (AlojamientoId) references alojamientos(ID),
+                             foreign key (usuarioId) references usuarios(ID)
 );
 
 create table fotografias(
-	ID integer primary key auto_increment,
-    ruta varchar(500),
-    alojamientoId integer,
-    foreign key (alojamientoId) references alojamientos(ID)
+                            ID integer primary key auto_increment,
+                            ruta varchar(500),
+                            alojamientoId integer,
+                            foreign key (alojamientoId) references alojamientos(ID)
 );
 
 
@@ -162,20 +158,7 @@ VALUES
   ('Español'),
   ('Catalan'),
   ('Ingles');
-INSERT INTO descripciones (descripcion, idiomaId)
-VALUES
-  ('eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit',3),
-  ('aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui',3),
-  ('Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit',2),
-  ('risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus',3),
-  ('Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus.',1);
-INSERT INTO traduccionDescripsciones (descripcioneId, idiomaId,traduccion)
-VALUES
-  (1,2,'ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus'),
-  (3,3,'euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis'),
-  (4,2,'Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas,'),
-  (1,3,'est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut'),
-  (1,1,'dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit');
+
 INSERT INTO tiposAlojameintos (nombreTipo, idiomaId)
 VALUES
   ('Mooney',2),
@@ -225,7 +208,7 @@ VALUES
   (4,2,'Reece Bruckmann'),
   (5,1,'Kim Weber');
   
-INSERT INTO categorias (nombreCategoria, tarifaBaija, tarifaAlta)
+INSERT INTO categorias (nombreCategoria, tarifaBaja, tarifaAlta)
 VALUES
   ('Emerson Maier',234,915),
   ('Tatyana Pfarrer',323,944),
@@ -249,12 +232,29 @@ VALUES
   ('719845069[A-Z]', 'Harley', 'Bonifant', 'hbonifant4@patch.com', '284-434-9198', '2bt3tr', false),
   ('268882389[A-Z]', 'Maxine', 'Markl', 'mmarkl5@gov.uk', '533-146-2112', 'JDCLcF', true);
 
-  insert into alojamientos (nombre, direccion, numeroPersonas, numeroHabitaciones, numeroCamas, numeroBanos, descripcion, tipoAlojamiento, tipoVacacional, categoria, municipio, usuario) values ('Sloan', '447 Del Mar Parkway', '59-212-9725', '15-586-4039', '69-313-8608', '12-056-5449', 1, 1, 1, 1, 1, 1),
-('Edi', '51 Veith Place', '75-510-8155', '07-561-6112', '69-580-1262', '23-518-7537', 1, 1, 1, 1, 1, 1),
-('Ode', '4891 Annamark Pass', '41-690-0108', '84-643-4268', '62-823-2663', '04-768-2142', 1, 2, 3, 3, 2, 1),
-('Federico', '7 Mallory Plaza', '82-132-2986', '34-977-6242', '09-617-6815', '35-749-7397', 1, 2, 4, 2, 4, 2),
-('Cherri', '6 Grayhawk Road', '28-375-0691', '08-811-2789', '89-979-8864', '13-377-3345', 5, 1, 3, 1, 2, 5),
-('Caryl', '465 Bartillon Road', '51-921-4969', '83-000-6751', '98-870-8293', '38-502-2576', 5, 5, 5, 5, 5, 5);
+insert into alojamientos(nombre, direccion, numeroPersonas, numeroHabitaciones, numeroCamas, numeroBanos, tipoAlojamiento, tipoVacacional, categoria, municipio, usuario)
+values
+    ('Casa rural el Bosque', 'Calle del Bosque, 123', 6, 3, 6, 2, 1, 1, 2, 1, 1),
+    ('Hotel Mar de la Playa', 'Avenida de la Playa, 456', 10, 5, 10, 5, 2, 2, 3, 2, 2),
+    ('Apartamentos Sol y Mar', 'Calle del Sol, 789', 4, 2, 4, 2, 3, 3, 1, 3, 3),
+    ('Chalet Montañas del Norte',' "Calle de las Montañas, 101112"', 8, 4, 8, 4, 1, 4, 2, 4, 4),
+    ('Villa Luz del Mar"', 'Calle de la Luz, 131415', 10, 5, 10, 5, 2, 5, 3, 5, 5);
+
+INSERT INTO descripciones (descripcion, idiomaId, alojamientoId)
+VALUES
+    ('eu, ultrices sit amet, risus. Donec nibh enim, gravida sit amet, dapibus id, blandit',3, 1),
+    ('aliquet molestie tellus. Aenean egestas hendrerit neque. In ornare sagittis felis. Donec tempor, est ac mattis semper, dui',3, 2),
+    ('Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas hendrerit',2, 4),
+    ('risus. Donec nibh enim, gravida sit amet, dapibus id, blandit at, nisi. Cum sociis natoque penatibus',3, 3),
+    ('Donec nibh. Quisque nonummy ipsum non arcu. Vivamus sit amet risus.',1, 2);
+INSERT INTO traduccionDescripsciones (descripcioneId, idiomaId,traduccion)
+VALUES
+    (1,2,'ligula elit, pretium et, rutrum non, hendrerit id, ante. Nunc mauris sapien, cursus'),
+    (3,3,'euismod est arcu ac orci. Ut semper pretium neque. Morbi quis urna. Nunc quis'),
+    (4,2,'Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas,'),
+    (1,3,'est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut'),
+    (1,1,'dictum. Phasellus in felis. Nulla tempor augue ac ipsum. Phasellus vitae mauris sit');
+
 insert into valoraciones (usuarioId, AlojamientoId, texto, puntuacion) values
 (2, 4, 'Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.  Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.', 5),
 (3, 5, 'Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.', '02-378-4633'),
