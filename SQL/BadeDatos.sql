@@ -106,7 +106,6 @@ create table alojamientos(
     numeroHabitaciones integer,
     numeroCamas integer,
     numeroBanos integer,
-    descripcion integer,
     tipoAlojamiento integer,
     tipoVacacional integer,
     categoria integer,
@@ -117,9 +116,14 @@ create table alojamientos(
     foreign key (tipoVacacional) references tiposVacacional(ID),
     foreign key (categoria) references categorias(ID),
     foreign key (municipio) references municipios(ID),
-    foreign key (usuario) references usuarios(ID),
-    foreign key (descripcion) references descripciones(ID)
+    foreign key (usuario) references usuarios(ID)
 );
+/*
+  He modificado la descripcion poruqe si enlazamos una descripcion
+  al alojamiento una descripcion solo tiene una descripcion aunque
+  creemos multiples descripciones, de forma que la unica forma que
+  tenemos de traducir las descripciones es duplicar el alojamiento
+*/
 
 create table reservas(
     ID integer auto_increment,
