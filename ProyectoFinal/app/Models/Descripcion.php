@@ -12,5 +12,5 @@ class Descripcion extends Model
     protected $primaryKey='ID';
     public $incrementing=false;
     public $timestamps=false;
-    protected $fillable=['ID','descripcion','idiomaId'];
+    protected $fillable=['ID','alojamientoId','descripcion','idiomaId'];
 }

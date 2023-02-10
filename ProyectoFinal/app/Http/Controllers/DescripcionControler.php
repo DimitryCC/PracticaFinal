@@ -46,9 +46,9 @@ class DescripcionControler extends Controller
      *     )
      * )
      */
-    public function show($id){
+    public function show($alojamientoId){
         try {
-            $tupla = Descripcion::findOrFail($id);
+            $tupla = Descripcion::findOrFail($alojamientoId);
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -156,6 +156,7 @@ class DescripcionControler extends Controller
      */
     public function crea(Request $request){//pendiente de modificar
         $reglesvalidacio=[
+            'alojamientoId'=>['required'],
             'descripcion'=>['required','max:600'],
             'idiomaId'=>['required']
         ];
@@ -225,6 +226,7 @@ class DescripcionControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Descripcion::findOrFail($id);
         $reglesvalidacio=[
+            'alojamientoId'=>['required'],
             'descripcion'=>['filled','max:600'],
             'idiomaId'=>['filled']
         ];
