@@ -11,12 +11,17 @@ use Illuminate\Support\Facades\Validator;
 class UsuarioControler extends Controller
 {
 
-    public function show($id){
-        try {
-            $tupla = Usuario::findOrFail($id);
-            return response()->json(['status' => 'success', 'result' => $tupla], 200);
-        }catch (\Exception $e){
-            return response()->json(['status'=>'error','result'=>$e],400);
+    public function show(Request $request,$id){
+        if($request->validat_id == $id || $request->validat_administrador) {
+
+            try {
+                $tupla = Usuario::findOrFail($id);
+                return response()->json(['status' => 'success', 'result' => $tupla], 200);
+            } catch (\Exception $e) {
+                return response()->json(['status' => 'error', 'result' => $e], 400);
+            }
+        }else{
+            return response()->json(['status' => 'error', 'data' => "Usuari no administrador"], 400);
         }
     }
 

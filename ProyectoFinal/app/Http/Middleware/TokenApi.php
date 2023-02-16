@@ -17,18 +17,27 @@ class TokenApi
      */
     public function handle(Request $request, Closure $next)
     {
-        $key = explode(' ',$request->header('Authorization'));
-        if (count($key)==2)
-        {
-            $token=$key[1];
+
+        if($request->header('Authorization')){
+            $key = explode(' ',$request->header('Authorization'));
+            $token="xxx";
+
+
+
+        if (count($key)==2) {
+            $token= $key[1];
+
+        }
+
             $user=Usuario::where('apiTocken',$token)->first();
             if (!empty($user)){
+                $request->merge(['validat_id' => $user->id, 'validat_administrador'=>$user->administrador]);
                 return $next($request);
-            }else{
-                return response()->json(['error' => 'Accés no autoritzat'], 401);
+            }else {
+                return response()->json(['status' => 'error', 'data' => "Accés no autoritzat"], 401);
             }
         }else{
-            return response()->json(['error' => 'Token no rebut'], 401);
+                return response()->json(['status' => 'error', 'data' => "Token no rebut"], 401);
         }
     }
 }
