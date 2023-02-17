@@ -133,6 +133,7 @@ class AlojamientosController extends Controller
      *        @OA\JsonContent(
      *           @OA\Property(property="nombre", type="string", format="string", example="Esto es un nuevo nombre de Alojamiento"),
      *           @OA\Property(property="direccion", type="string", format="string", example="Esto es una nueva direccion"),
+     *           @OA\Property(property="descripcion", type="string", format="string", example="Esto es una descripción"),
      *           @OA\Property(property="numeroPersonas", type="number", format="number", example="1"),
      *           @OA\Property(property="numeroHabitaciones", type="number", format="number", example="2"),
      *           @OA\Property(property="numeroCamas", type="number", format="number", example="5"),
@@ -166,6 +167,7 @@ class AlojamientosController extends Controller
         $reglesvalidacio=[
             'nombre'=>['required','max:100','unique:alojamientos,nombre'],
             'direccion'=>['required','max:300'],
+            'descripcion'=>['required','max:600'],
             'numeroPersonas'=>['required'],
             'numeroHabitaciones'=>['required'],
             'numeroCamas'=>['required'],
@@ -192,6 +194,7 @@ class AlojamientosController extends Controller
      * Modificar un Alojamiento.
      * @urlParam id integer required ID del Alojamiento.
      * @bodyParam nombre string Nombre del Alojamiento.
+     * @bodyParam descripcion string Descripcion del Alojamiento.
      * @bodyParam adresa string Direccion del Alojamiento.
      * @bodyParam numpero_personas number Numero de las max. personas del Alojamiento.
      * @bodyParam numero_habitaciones number Numero de las habitaciones.
@@ -227,6 +230,7 @@ class AlojamientosController extends Controller
      *        @OA\JsonContent(
      *           @OA\Property(property="nombre", type="string", format="string", example="Esto es un nuevo nombre de Alojamiento"),
      *           @OA\Property(property="adresa", type="string", format="string", example="Esto es una nueva direccion"),
+     *           @OA\Property(property="descripcion", type="string", format="string", example="Esto es una descripción"),
      *           @OA\Property(property="numpero_personas", type="number", format="number", example="1"),
      *           @OA\Property(property="numero_habitaciones", type="number", format="number", example="2"),
      *           @OA\Property(property="numero_camas", type="number", format="number", example="5"),
@@ -262,6 +266,7 @@ class AlojamientosController extends Controller
             'ID'=>['filled','unique:alojamientos,ID,' . $id],
             'nombre'=>['filled','max:100','unique:alojamientos,nombre'],
             'direccion'=>['filled','max:300'],
+            'descripcion'=>['filled','max:600'],
             'numeroPersonas'=>['filled'],
             'numeroHabitaciones'=>['filled'],
             'numeroCamas'=>['filled'],

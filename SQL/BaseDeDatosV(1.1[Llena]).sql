@@ -81,6 +81,7 @@ create table usuarios(
 create table alojamientos(
                              ID integer auto_increment,
                              nombre varchar(100),
+                             descripcion varchar(600),
                              direccion varchar(300),
                              numeroPersonas integer,
                              numeroHabitaciones integer,
@@ -232,13 +233,13 @@ VALUES
   ('719845069[A-Z]', 'Harley', 'Bonifant', 'hbonifant4@patch.com', '284-434-9198', '2bt3tr', false),
   ('268882389[A-Z]', 'Maxine', 'Markl', 'mmarkl5@gov.uk', '533-146-2112', 'JDCLcF', true);
 
-insert into alojamientos(nombre, direccion, numeroPersonas, numeroHabitaciones, numeroCamas, numeroBanos, tipoAlojamiento, tipoVacacional, categoria, municipio, usuario)
+insert into alojamientos(nombre, direccion,descripcion, numeroPersonas, numeroHabitaciones, numeroCamas, numeroBanos, tipoAlojamiento, tipoVacacional, categoria, municipio, usuario)
 values
-    ('Casa rural el Bosque', 'Calle del Bosque, 123', 6, 3, 6, 2, 1, 1, 2, 1, 1),
-    ('Hotel Mar de la Playa', 'Avenida de la Playa, 456', 10, 5, 10, 5, 2, 2, 3, 2, 2),
-    ('Apartamentos Sol y Mar', 'Calle del Sol, 789', 4, 2, 4, 2, 3, 3, 1, 3, 3),
-    ('Chalet Montañas del Norte',' "Calle de las Montañas, 101112"', 8, 4, 8, 4, 1, 4, 2, 4, 4),
-    ('Villa Luz del Mar"', 'Calle de la Luz, 131415', 10, 5, 10, 5, 2, 5, 3, 5, 5);
+    ('Casa rural el Bosque', 'Calle del Bosque, 123','La Casa Rural El Bosque es un alojamiento ubicado en un entorno natural y tranquilo, rodeado de bosques y montañas, en la provincia de Cádiz, en el sur de España. La casa es una antigua construcción de piedra y madera, que ha sido cuidadosamente restaurada y equipada con todas las comodidades modernas.', 6, 3, 6, 2, 1, 1, 2, 1, 1),
+    ('Hotel Mar de la Playa', 'Avenida de la Playa, 456', 'El Hotel Mar de la Playa es un alojamiento situado en una ubicación privilegiada frente al mar, en la localidad de Sanlúcar de Barrameda, en la provincia de Cádiz, en el sur de España. El hotel se encuentra a pocos metros de la playa y cuenta con vistas panorámicas al Océano Atlántico.', 10, 5, 10, 5, 2, 2, 3, 2, 2),
+    ('Apartamentos Sol y Mar', 'Calle del Sol, 789','Los Apartamentos Sol y Mar son un complejo de alojamientos situados en primera línea de playa, en la localidad de Calpe, en la provincia de Alicante, en la costa este de España. Los apartamentos se encuentran en un edificio moderno y elegante, y cuentan con vistas panorámicas al mar Mediterráneo.', 4, 2, 4, 2, 3, 3, 1, 3, 3),
+    ('Chalet Montañas del Norte','Calle de las Montañas, 101','El "Chalet Montañas del Norte" es una casa de estilo chalet ubicada en las montañas del norte. Es probable que tenga una estructura de madera, grandes ventanales que permiten disfrutar de las vistas panorámicas del paisaje circundante, y una terraza o porche donde se puede disfrutar del aire fresco y la naturaleza.', 8, 4, 8, 4, 1, 4, 2, 4, 4),
+    ('Villa Luz del Mar', 'Calle de la Luz, 131','"Villa Luz del Mar" es un lugar idílico ubicado en la costa. Se espera que sea una villa amplia y lujosa, probablemente con vistas al mar. Es posible que tenga una piscina privada y un jardín exuberante, lo que lo convierte en un lugar perfecto para relajarse y disfrutar del sol.', 10, 5, 10, 5, 2, 5, 3, 5, 5);
 
 INSERT INTO descripciones (descripcion, idiomaId, alojamientoId)
 VALUES

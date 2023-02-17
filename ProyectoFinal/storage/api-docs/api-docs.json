@@ -192,6 +192,11 @@
                                         "format": "string",
                                         "example": "Esto es una nueva direccion"
                                     },
+                                    "descripcion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una descripción"
+                                    },
                                     "numeroPersonas": {
                                         "type": "number",
                                         "format": "number",
@@ -325,6 +330,11 @@
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es una nueva direccion"
+                                    },
+                                    "descripcion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una descripción"
                                     },
                                     "numpero_personas": {
                                         "type": "number",
