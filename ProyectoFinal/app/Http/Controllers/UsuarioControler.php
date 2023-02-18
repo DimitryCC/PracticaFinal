@@ -102,8 +102,9 @@ class UsuarioControler extends Controller
             'direccion'=>$request->input('direccion'),
             'correo'=>$request->input('correo'),
             'telefono'=>$request->input('telefono'),
-            'contrasena'=> Hash::make($request->input('contrasena'))
+            'contrasena'=> Hash::make($request->input('contrasena')),
             ]);
+
             return response()->json(['status'=>'success','result'=>$usuari],200);
         }else {
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
@@ -119,6 +120,7 @@ class UsuarioControler extends Controller
             'correo'=>[],
             'telefono'=>['filled'],
             'contrasena'=>['filled']
+
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

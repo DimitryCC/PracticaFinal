@@ -23,7 +23,7 @@ class LogInController extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
-     *           @OA\Property(property="correo", type="number", format="number", example="1"),
+     *           @OA\Property(property="correo", type="string", format="string", example="example@mail.com"),
      *           @OA\Property(property="contrasena", type="number", format="number", example="2"),
      *        ),
      *     ),
@@ -52,7 +52,7 @@ class LogInController extends Controller
             $apikey = base64_encode(Str::random(40));
             $user["apiTocken"]=$apikey;
             $user->save();
-            return response()->json(['status' => 'Login OK','result' => $apikey]);
+            return response()->json(['status' => 'Login OK','result' =>$apikey],200);
         }else{
             return response()->json(['status'=>'fallo'],401);
         }

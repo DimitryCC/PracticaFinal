@@ -32,19 +32,21 @@ Route::group(['prefix'=>'alojamiento'],function() {
     // * /api/alojamiento/modifica/1
     Route::put('/modifica/{id}', [AlojamientosController::class, 'modifica'])->middleware('checktoken');
 });
+
 //Ordenes Usuario
-Route::group(['prefix'=>'usuario'],function (){
-    // * /api/usuario/
-    Route::get('', [\App\Http\Controllers\UsuarioControler::class, 'tots'])->middleware('checktoken');
-    // * /api/usuario/1
-    Route::get('/{id}', [\App\Http\Controllers\UsuarioControler::class, 'show'])->middleware('checktoken');
-    // * /api/usuario/borra/1
-    Route::delete('/borra/{id}', [\App\Http\Controllers\UsuarioControler::class, 'borra'])->middleware('checktoken');
-    // * /api/usuario/crea
-    Route::post('/crea', [\App\Http\Controllers\UsuarioControler::class, 'crea'])->middleware('checktoken');
-    // * /api/usuario/modifica/1
-    Route::put('/modifica/{id}', [\App\Http\Controllers\UsuarioControler::class, 'modifica'])->middleware('checktoken');
-});
+//Route::group(['prefix'=>'usuario'],function (){
+//    // * /api/usuario/
+//    Route::get('', [\App\Http\Controllers\UsuarioControler::class, 'tots'])->middleware('checktoken');
+//    // * /api/usuario/1
+//    Route::get('/{id}', [\App\Http\Controllers\UsuarioControler::class, 'show'])->middleware('checktoken');
+//    // * /api/usuario/borra/1
+//    Route::delete('/borra/{id}', [\App\Http\Controllers\UsuarioControler::class, 'borra'])->middleware('checktoken');
+//    // * /api/usuario/crea
+//    Route::post('/crea', [\App\Http\Controllers\UsuarioControler::class, 'crea'])->middleware('checktoken');
+//    // * /api/usuario/modifica/1
+//    Route::put('/modifica/{id}', [\App\Http\Controllers\UsuarioControler::class, 'modifica'])->middleware('checktoken');
+//});
+
 //Ordenes Categorias
 Route::group(['prefix'=>'categoria'],function() {
     // * /api/categoria/
@@ -180,8 +182,9 @@ Route::group(['prefix'=>'usuario'],function() {
     // * /api/usuario/
     Route::post('/crea', [\App\Http\Controllers\UsuarioControler::class, 'crea']);
 });
-//Ordenes LoguIn
+//Ordenes LogIn/LogOut
 Route::group(['prefix'=>'Log'],function(){
     Route::post("/in",[\App\Http\Controllers\LogInController::class, 'login']);
+    Route::post("/out",[\App\Http\Controllers\LogOutController::class, 'logout'])->middleware('checktoken');
 });
 

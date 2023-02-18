@@ -1723,9 +1723,87 @@
                             "schema": {
                                 "properties": {
                                     "correo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "example@mail.com"
+                                    },
+                                    "contrasena": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "1"
+                                        "example": "2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/Log/out": {
+            "post": {
+                "tags": [
+                    "Logout"
+                ],
+                "summary": "Salir",
+                "description": "Cierre sesión",
+                "operationId": "9a8b677ad08a35acc23392c1e86e9893",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "correo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "example@mail.com"
                                     },
                                     "contrasena": {
                                         "type": "number",

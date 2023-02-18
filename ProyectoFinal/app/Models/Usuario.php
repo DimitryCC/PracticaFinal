@@ -33,6 +33,12 @@ class Usuario extends Model
      * @var mixed|string
      */
     public $contrasena;
+
+    /**
+     * @return string
+     */
+
+
     /**
      * @var mixed
      */

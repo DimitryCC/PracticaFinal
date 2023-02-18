@@ -22,16 +22,14 @@ class TokenApi
             $key = explode(' ',$request->header('Authorization'));
             $token="xxx";
 
-
-
         if (count($key)==2) {
-            $token= $key[1];
+            $token= $key[1]; //key[0]->Bearer key[1]->token
 
         }
 
             $user=Usuario::where('apiTocken',$token)->first();
             if (!empty($user)){
-                $request->merge(['validat_id' => $user->id, 'validat_administrador'=>$user->administrador]);
+                $request->merge(['validat_id' => $user->ID, 'validat_administrador'=>$user->administrador]);
                 return $next($request);
             }else {
                 return response()->json(['status' => 'error', 'data' => "Accés no autoritzat"], 401);
