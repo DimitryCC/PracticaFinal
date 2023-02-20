@@ -85,13 +85,13 @@ class UsuarioControler extends Controller
             'DNI'=>['required'],
             'nombreCompleto'=>['required','max:150'],
             'direccion'=>[],
-            'correo'=>['required'],
+            'correo'=>['required', 'unique:usuarios,correo'],
             'telefono'=>['required'],
             'contrasena'=>['required']
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
-            'unique'=>'Camp :attribute amb valor :input ja hi es'
+            'unique'=>'El correu ja està registrat'
         ];
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
@@ -117,14 +117,15 @@ class UsuarioControler extends Controller
             'DNI'=>['filled'],
             'nombreCompleto'=>['filled','max:150'],
             'direccion'=>[],
-            'correo'=>[],
+            'correo'=>[ 'unique:usuarios,correo',$id],
             'telefono'=>['filled'],
             'contrasena'=>['filled']
 
         ];
+
         $missatges=[
             'filled'=>':attribute no pot estar buit',
-            'unique'=>'Camp :attribute amb valor :input ja hi es'
+            'unique'=>'El correu ja està registrat'
         ];
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
