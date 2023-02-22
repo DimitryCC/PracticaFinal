@@ -135,10 +135,14 @@ class FotografiaControler extends Controller
      *    security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *        required=true,
-     *        @OA\JsonContent(
-     *           @OA\Property(property="ruta", type="string", format="string", example="Ruta de la Fotografia"),
-     *           @OA\Property(property="alojamientoId", type="number", format="number", example="Id del Alojamiento")
+     *      @OA\MediaType(
+     *     mediaType="multipart/form-data",
+     *
+     *          @OA\Schema(
+     *           @OA\Property(property="ruta", type="file", format="file", example="Pujar la foto i generar la ruta"),
+     *           @OA\Property(property="alojamientoId", type="number", format="number", example=2)
      *        ),
+     *     ),
      *     ),
      *    @OA\Response(
      *         response=200,
@@ -180,9 +184,9 @@ class FotografiaControler extends Controller
             $request->file('ruta')->move(public_path('imatges'), $filename);
             $urifoto = url('imatges') . '/' . $filename;
             $post->alojamientoId = $request->alojamientoId;
-            $post->ruta = $filename;
+            $post->ruta = "http://www.rampacom.com/ProyectoFinal/public/imatges/".$filename;
             $post->save();
-            return response()->json(['status' => 'imatge pujada correctament', 'uri' => $urifoto], 200);
+            return response()->json(['status' => 'imatge pujada correctament', 'ruta' => $urifoto], 200);
         } else {
             return response()->json(['status' => 'error: tipus o tamany de la imatge'], 404);
         }
@@ -215,10 +219,14 @@ class FotografiaControler extends Controller
      *
      *     @OA\RequestBody(
      *        required=true,
-     *        @OA\JsonContent(
-     *           @OA\Property(property="ruta", type="string", format="string", example="Ruta de la Fotografia"),
-     *           @OA\Property(property="alojamiento_id", type="number", format="number", example="Id del Alojamiento")
+     *      @OA\MediaType(
+     *     mediaType="multipart/form-data",
+     *
+     *          @OA\Schema(
+     *           @OA\Property(property="ruta", type="file", format="file", example="Pujar la foto i generar la ruta"),
+     *           @OA\Property(property="alojamientoId", type="number", format="number", example=2)
      *        ),
+     *     ),
      *     ),
      *
      *    @OA\Response(
@@ -269,7 +277,7 @@ class FotografiaControler extends Controller
             $request->file('ruta')->move(public_path('imatges'), $filename);
 
             Fotografia::where('ID', $id)->update([
-                    'ruta' => $filename,
+                    'ruta' => "http://www.rampacom.com/ProyectoFinal/public/imatges/".$filename,
                     'alojamientoId' => $request->input('alojamientoId')]
             );
             $modResult= Fotografia::findOrFail($id);

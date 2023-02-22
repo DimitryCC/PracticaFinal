@@ -80,7 +80,11 @@ class UsuarioControler extends Controller
      *       )
      *  )
      */
+
+
     public function crea(Request $request){
+
+
         $reglesvalidacio=[
             'DNI'=>['required'],
             'nombreCompleto'=>['required','max:150'],

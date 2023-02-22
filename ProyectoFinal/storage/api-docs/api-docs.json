@@ -11,9 +11,6 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000/"
-        },
-        {
             "url": "http://www.rampacom.com/ProyectoFinal/public/"
         }
     ],
@@ -918,7 +915,7 @@
                     "Descripcion"
                 ],
                 "summary": "Crea una Descripcion",
-                "description": "Crea una Descripcion. Solo por Administradores.",
+                "description": "Crea una Descripcion. Solo Usuarios",
                 "operationId": "3dcb2164f213d2845cfd6a38313f389d",
                 "requestBody": {
                     "required": true,
@@ -934,12 +931,12 @@
                                     "idiomaId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Esto es la ID del Idioma de la Descripcion"
+                                        "example": 1
                                     },
                                     "alojamientoId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Id del Alojamiento"
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -1245,18 +1242,18 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "properties": {
                                     "ruta": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Ruta de la Fotografia"
+                                        "type": "file",
+                                        "format": "file",
+                                        "example": "Pujar la foto i generar la ruta"
                                     },
                                     "alojamientoId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Id del Alojamiento"
+                                        "example": 2
                                     }
                                 },
                                 "type": "object"
@@ -1334,18 +1331,18 @@
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "properties": {
                                     "ruta": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Ruta de la Fotografia"
+                                        "type": "file",
+                                        "format": "file",
+                                        "example": "Pujar la foto i generar la ruta"
                                     },
-                                    "alojamiento_id": {
+                                    "alojamientoId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Id del Alojamiento"
+                                        "example": 2
                                     }
                                 },
                                 "type": "object"
@@ -1728,9 +1725,9 @@
                                         "example": "example@mail.com"
                                     },
                                     "contrasena": {
-                                        "type": "number",
-                                        "format": "number",
-                                        "example": "2"
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Contrasena_exemple"
                                     }
                                 },
                                 "type": "object"
@@ -1806,9 +1803,9 @@
                                         "example": "example@mail.com"
                                     },
                                     "contrasena": {
-                                        "type": "number",
-                                        "format": "number",
-                                        "example": "2"
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "contrasena_exemple"
                                     }
                                 },
                                 "type": "object"
@@ -3882,6 +3879,14 @@
                         "bearerAuth": []
                     }
                 ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
             }
         }
     }

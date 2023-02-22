@@ -24,7 +24,7 @@ class LogInController extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="correo", type="string", format="string", example="example@mail.com"),
-     *           @OA\Property(property="contrasena", type="number", format="number", example="2"),
+     *           @OA\Property(property="contrasena", type="string", format="string", example="Contrasena_exemple"),
      *        ),
      *     ),
      *    @OA\Response(
@@ -47,12 +47,17 @@ class LogInController extends Controller
      */
     public function login(Request $request)
     {
+
         $user = Usuario::where('correo',$request->input('correo'))->first();
+
+
         if ($user && Hash::check($request->input('contrasena'), $user['contrasena'])){
-            $apikey = base64_encode(Str::random(40));
-            $user["apiTocken"]=$apikey;
+
+                $apikey = base64_encode(Str::random(40));
+                $user["apiToken"]=$apikey;
+
             $user->save();
-            return response()->json(['status' => 'Login OK','result' =>$apikey],200);
+            return response()->json(['status' => 'Login OK','result' =>$user],200);
         }else{
             return response()->json(['status'=>'fallo'],401);
         }

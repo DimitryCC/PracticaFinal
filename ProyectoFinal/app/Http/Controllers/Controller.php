@@ -13,12 +13,12 @@ use Illuminate\Routing\Controller as BaseController;
  * @OA\Contact( name="Joan Ramis.",email="joanramis1@paucasesnovescifp.cat")
  * )
  *
- * @OA\Server(url="http://127.0.0.1:8000/")
+ *
  *
  * @OA\Server(url="http://www.rampacom.com/ProyectoFinal/public/")
  *
  *
- * @OAS\SecurityScheme(
+ * @OA\SecurityScheme(
  * securityScheme="bearerAuth",
  * type="http",
  * scheme="bearer"

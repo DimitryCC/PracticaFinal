@@ -6,7 +6,7 @@ use App\Models\Usuario;
 use Closure;
 use Illuminate\Http\Request;
 
-class TokenApi
+class TokenAdmin
 {
     /**
      * Handle an incoming request.
@@ -27,9 +27,13 @@ class TokenApi
 
         }
 
-            $user=Usuario::where('apiTocken',$token)->first();
+            $user = Usuario::where('apiToken', $token)
+                ->where('administrador', 1)
+                ->first();
+
+
             if (!empty($user)){
-                $request->merge(['validat_id' => $user->ID, 'validat_administrador'=>$user->administrador]);
+                $request->merge(['validat_id' => $user->ID, 'administrador'=>$user->administrador]);
                 return $next($request);
             }else {
                 return response()->json(['status' => 'error', 'data' => "Accés no autoritzat"], 401);

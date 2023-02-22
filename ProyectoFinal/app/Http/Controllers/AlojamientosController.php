@@ -263,7 +263,7 @@ class AlojamientosController extends Controller
     public function modifica(Request $request, $id){
         $tupla = Alojamiento::findOrFail($id);
         $reglesvalidacio=[
-            'ID'=>['filled','unique:alojamientos,ID,' . $id],
+            'ID'=>['filled','unique:alojamientos,ID,' , $id],
             'nombre'=>['filled','max:100','unique:alojamientos,nombre'],
             'direccion'=>['filled','max:300'],
             'descripcion'=>['filled','max:600'],

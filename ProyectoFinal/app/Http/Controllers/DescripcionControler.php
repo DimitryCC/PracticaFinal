@@ -127,14 +127,14 @@ class DescripcionControler extends Controller
      *    path="/api/descripcion/crea",
      *    tags={"Descripcion"},
      *    summary="Crea una Descripcion",
-     *    description="Crea una Descripcion. Solo por Administradores.",
+     *    description="Crea una Descripcion. Solo Usuarios",
      *    security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="descripcion", type="string", format="string", example="Esto es el contenido de la Descripcion"),
-     *           @OA\Property(property="idiomaId", type="number", format="number", example="Esto es la ID del Idioma de la Descripcion"),
-     *           @OA\Property(property="alojamientoId", type="number", format="number", example="Id del Alojamiento")
+     *           @OA\Property(property="idiomaId", type="number", format="number", example=1),
+     *           @OA\Property(property="alojamientoId", type="number", format="number", example=1)
      *        ),
      *     ),
      *    @OA\Response(

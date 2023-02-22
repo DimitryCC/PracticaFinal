@@ -12,27 +12,27 @@ class Usuario extends Model
     /**
      * @var mixed
      */
-    public $nombreCompleto;
+    private $nombreCompleto;
     /**
      * @var mixed
      */
-    public $direccion;
+    private $direccion;
     /**
      * @var mixed
      */
-    public $DNI;
+    private $DNI;
     /**
      * @var mixed
      */
-    public $correo;
+    private $correo;
     /**
      * @var mixed
      */
-    public $telefono;
+    private $telefono;
     /**
      * @var mixed|string
      */
-    public $contrasena;
+    private $contrasena;
 
     /**
      * @return string
@@ -44,7 +44,7 @@ class Usuario extends Model
      */
 
 
-    public $administrador;
+    private $administrador;
     protected $table='usuarios';
     protected $primaryKey='ID';
     public $incrementing=false;
@@ -56,5 +56,5 @@ class Usuario extends Model
     */
     protected $fillable=['DNI','nombreCompleto','telefono',
     'direccion','correo','contrasena'];
-    protected $hidden= ['apiTocken','contrasena', 'administrador'];
+    protected $hidden= ['contrasena'];
 }

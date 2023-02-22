@@ -100,6 +100,15 @@ create table alojamientos(
                              foreign key (usuario) references usuarios(ID)
 );
 
+CREATE TABLE alojamientoServicios(
+                                        alojamientoId int(11) NOT NULL,
+                                        servicioId int(11) NOT NULL,
+                                        primary key (alojamientoId, servicioId),
+                                        foreign key (alojamientoId) references alojamientos(ID),
+                                        foreign key (servicioId) references servicios(ID)
+) ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
 create table descripciones(
                               ID integer primary key auto_increment,
                               alojamientoId integer,
