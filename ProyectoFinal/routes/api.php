@@ -156,13 +156,13 @@ Route::group(['prefix'=>'valoracion'],function() {
     // * /api/valoracion/
     Route::get('', [\App\Http\Controllers\ValoracionControler::class, 'tots']);
     // * /api/valoracion/usuari/{idusuari}/allotjament/{idallotjament}
-    Route::get('/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'show']);
+    Route::get('/usuario/{usuarioId}/alojamiento/{AlojamientoId}', [\App\Http\Controllers\ValoracionControler::class, 'show']);
     // * /api/valoracion/borra/usuari/{idusuari}/allotjament/{idallotjament}
-    Route::delete('/borra/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'borra'])->middleware('checkTokenAdmin');
+    Route::delete('/borra/usuario/{usuarioId}/alojamiento/{AlojamientoId}', [\App\Http\Controllers\ValoracionControler::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/valoracion/crea
     Route::post('/crea', [\App\Http\Controllers\ValoracionControler::class, 'crea'])->middleware('checkTokenUser');
     // * /api/valoracion/modifica/usuari/{idusuari}/allotjament/{idallotjament}
-    Route::put('/modifica/usuari/{idusuari}/allotjament/{idallotjament}', [\App\Http\Controllers\ValoracionControler::class, 'modifica'])->middleware('checkTokenAdmin');
+    Route::put('/modifica/usuario/{usuarioId}/alojamiento/{AlojamientoId}', [\App\Http\Controllers\ValoracionControler::class, 'modifica'])->middleware('checkTokenAdmin');
 });
 //Ordenes Reserva
 Route::group(['prefix'=>'reserva'],function() {

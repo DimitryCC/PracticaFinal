@@ -5,14 +5,14 @@ use projecte;
 create table idiomas(
                         ID integer primary key auto_increment,
                         idioma varchar(10)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table tiposAlojameintos(
                                   ID integer auto_increment primary key,
                                   nombreTipo varchar(30),
                                   idiomaId integer,
                                   foreign key (idiomaId) references idiomas(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table traduccionTiposalojamientos(
                                             tiposAlojameintosId integer,
@@ -21,14 +21,14 @@ create table traduccionTiposalojamientos(
                                             primary key (tiposAlojameintosId, idiomaId),
                                             foreign key (idiomaId) references idiomas(ID),
                                             foreign key (tiposAlojameintosId) references tiposAlojameintos(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table tiposVacacional(
                                 ID integer auto_increment primary key,
                                 nombreTipo varchar(30),
                                 idiomaId integer,
                                 foreign key (idiomaId) references idiomas(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table traduccionVacacional(
                                      tiposVacacionalId integer,
@@ -37,12 +37,12 @@ create table traduccionVacacional(
                                      primary key (tiposVacacionalId, idiomaId),
                                      foreign key (idiomaId) references idiomas(ID),
                                      foreign key (tiposVacacionalId) references tiposVacacional(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table servicios(
                           ID integer primary key auto_increment,
                           NombreServicio varchar(20)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table traduccionServicios(
                                     servicioId integer,
@@ -51,20 +51,20 @@ create table traduccionServicios(
                                     primary key (servicioId, idiomaId),
                                     foreign key (idiomaId) references idiomas(ID),
                                     foreign key (servicioId) references servicios(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table categorias(
                            ID integer auto_increment primary key,
                            nombreCategoria varchar(30),
                            tarifaBaja integer,
                            tarifaAlta integer
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table municipios(
                            ID integer primary key auto_increment,
                            nombre varchar(60),
                            isla enum('MALLORCA','MENORCA','EIVISSA','FORMENTERA')
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table usuarios(
                          ID integer primary key auto_increment,
@@ -74,9 +74,9 @@ create table usuarios(
                          correo  varchar(50),
                          telefono integer,
                          contrasena varchar(100),
-                         apiTocken varchar(250),/*Recoger mas tarde para el logue in*/
+                         apiToken varchar(250),/*Recoger mas tarde para el logue in*/
                          administrador boolean
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table alojamientos(
                              ID integer auto_increment,
@@ -98,7 +98,7 @@ create table alojamientos(
                              foreign key (categoria) references categorias(ID),
                              foreign key (municipio) references municipios(ID),
                              foreign key (usuario) references usuarios(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 CREATE TABLE alojamientoServicios(
                                         alojamientoId int(11) NOT NULL,
@@ -116,7 +116,7 @@ create table descripciones(
                               idiomaId integer,
                               foreign key (idiomaId) references idiomas(ID),
                               foreign key (alojamientoId) references alojamientos(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table traduccionDescripsciones(
                                          descripcioneId integer,
@@ -125,7 +125,7 @@ create table traduccionDescripsciones(
                                          primary key (descripcioneId, idiomaId),
                                          foreign key (idiomaId) references idiomas(ID),
                                          foreign key (descripcioneId) references descripciones(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table reservas(
                          ID integer auto_increment,
@@ -136,7 +136,7 @@ create table reservas(
                          primary key (ID),
                          foreign key (AlojamientoId) references alojamientos(ID),
                          foreign key (usuarioId) references usuarios(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table valoraciones(
                              usuarioId integer,
@@ -146,14 +146,14 @@ create table valoraciones(
                              primary key (usuarioId, AlojamientoId),
                              foreign key (AlojamientoId) references alojamientos(ID),
                              foreign key (usuarioId) references usuarios(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 create table fotografias(
                             ID integer primary key auto_increment,
                             ruta varchar(500),
                             alojamientoId integer,
                             foreign key (alojamientoId) references alojamientos(ID)
-);
+)ENGINE=InnoDb DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 
 /*

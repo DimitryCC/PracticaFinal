@@ -31,7 +31,6 @@ class TokenAdmin
                 ->where('administrador', 1)
                 ->first();
 
-
             if (!empty($user)){
                 $request->merge(['validat_id' => $user->ID, 'administrador'=>$user->administrador]);
                 return $next($request);

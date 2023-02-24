@@ -435,89 +435,7 @@
                 ]
             }
         },
-        "/api/valoracion/usuari/{idusuari}/allotjament/{idallotjament}": {
-            "get": {
-                "tags": [
-                    "Valoracion"
-                ],
-                "summary": "Mostrar una Valoracion por ID usuario i la ID de alojamiento",
-                "description": "Descripcion de una Valoracion.",
-                "operationId": "0c31655311e4defa9bd47d29b1646f2f",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id del usuario",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "examples": {
-                            "id": {
-                                "summary": "Introduce el numero de ID de la Valoracion",
-                                "value": "1"
-                            }
-                        }
-                    },
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id de la Valoracion",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "examples": {
-                            "id": {
-                                "summary": "Introduce el numero de ID de la Valoracion",
-                                "value": "1"
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Informacion de la Valoracion.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "success"
-                                        },
-                                        "data": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Hay un error.",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "error"
-                                        },
-                                        "data": {
-                                            "type": "string",
-                                            "example": "Valoracion no encontrada"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
+
         "/api/valoracion": {
             "get": {
                 "tags": [
@@ -533,73 +451,7 @@
                 }
             }
         },
-        "/api/valoracion/borra/usuari/{idusuari}/allotjament/{idallotjament}": {
-            "delete": {
-                "tags": [
-                    "Valoracion"
-                ],
-                "summary": "Borra una Valoracion",
-                "description": "Borra una Valoracion. Solo por Administradores",
-                "operationId": "bbc6263c4ca1ea624837da9935fa51e8",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id de la Valoracion",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": "success"
-                                        },
-                                        "data": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": "error"
-                                        },
-                                        "data": {
-                                            "type": "string",
-                                            "example": "ID no encotrada"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
+
         "/api/valoracion/crea": {
             "post": {
                 "tags": [
@@ -688,95 +540,7 @@
                 ]
             }
         },
-        "/api/valoracion/modifica/usuari/{idusuari}/allotjament/{idallotjament}": {
-            "put": {
-                "tags": [
-                    "Valoracion"
-                ],
-                "summary": "Modifica una Valoracion",
-                "description": "Modifica una Valoracion. Solo por Administradores.",
-                "operationId": "774e66a7eebaddcf1a8f34331a991a50",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Id Tipo Valoracion",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "texto": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Esto es el contenido de la Valoracion"
-                                    },
-                                    "puntuacion": {
-                                        "type": "number",
-                                        "format": "number",
-                                        "example": "Esto es la puntuacion de la Valoracion"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": "success"
-                                        },
-                                        "data": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": "error"
-                                        },
-                                        "data": {
-                                            "type": "string",
-                                            "example": "Atributo obligatorio requerido"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
+
         "/api/categoria/{id}": {
             "get": {
                 "tags": [
@@ -3801,6 +3565,155 @@
                 ]
             }
         },
+        "/api/usuario/{id}": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Mostrar un usuario por ID",
+                "operationId": "9bdd375f22e6b3b47c64b31cf6d1646d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del usuario",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del usuario.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "usuario no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/usuario": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Mostrar todas las usuarios",
+                "description": "Lista todas las usuarios.",
+                "operationId": "fed44be6851d27e36d863fc8cddc13a3",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas los usuarios."
+                    }
+                }
+            }
+        },
+        "/api/usuario/borra/{id}": {
+            "delete": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Borra un usuario",
+                "description": "Borra un usuario. Solo por Administradores",
+                "operationId": "e772b269f857167787f8a8076880b645",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/usuario/crea": {
             "post": {
                 "tags": [
@@ -3835,7 +3748,7 @@
                                         "format": "string",
                                         "example": "example@mail.com"
                                     },
-                                    "telefon": {
+                                    "telefono": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "971940971"
@@ -3884,6 +3797,322 @@
                                         "data": {
                                             "type": "string",
                                             "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/usuario/modifica/{id}": {
+            "put": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Modifica un usuario",
+                "description": "Modifica un usuario. Solo por Administradores.",
+                "operationId": "2905e1701f13bf775a805fdc77c09057",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/valoracion/usuario/{usuarioId}/alojamiento/{AlojamientoId}": {
+            "get": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Mostrar una Valoracion",
+                "description": "Descripcion de una Valoracion.",
+                "operationId": "08a0c4b048075af6dc5b7845b367e43a",
+                "parameters": [
+                    {
+                        "name": "usuarioId",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del usuario",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "AlojamientoId",
+                        "in": "path",
+                        "description": "Id del Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Valoracion."
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Valoracion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/valoracion/borra/usuario/{usuarioId}/alojamiento/{AlojamientoId}": {
+            "put": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Modifica una Valoracion",
+                "description": "Modifica una Valoracion. Solo por Administradores",
+                "operationId": "375225e45274239df5be9f0ac4e6e0c0",
+                "parameters": [
+                    {
+                        "name": "usuarioId",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el ID del usuario",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "AlojamientoId",
+                        "in": "path",
+                        "description": "Id del alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Borra una Valoracion",
+                "description": "Borra una Valoracion. Solo por Administradores",
+                "operationId": "e04ded741b3606e127dd3ea5c353a2c2",
+                "parameters": [
+                    {
+                        "name": "usuarioId",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el ID del usuario",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "AlojamientoId",
+                        "in": "path",
+                        "description": "Id del alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
                                         }
                                     },
                                     "type": "object"
