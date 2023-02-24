@@ -3955,13 +3955,13 @@
             }
         },
         "/api/valoracion/borra/usuario/{usuarioId}/alojamiento/{AlojamientoId}": {
-            "put": {
+            "delete": {
                 "tags": [
                     "Valoracion"
                 ],
-                "summary": "Modifica una Valoracion",
-                "description": "Modifica una Valoracion. Solo por Administradores",
-                "operationId": "375225e45274239df5be9f0ac4e6e0c0",
+                "summary": "Borra una Valoracion",
+                "description": "Borra una Valoracion. Solo por Administradores",
+                "operationId": "e04ded741b3606e127dd3ea5c353a2c2",
                 "parameters": [
                     {
                         "name": "usuarioId",
@@ -4040,14 +4040,16 @@
                         "bearerAuth": []
                     }
                 ]
-            },
-            "delete": {
+            }
+        },
+        "/api/valoracion/modifica/usuario/{usuarioId}/alojamiento/{AlojamientoId}": {
+            "put": {
                 "tags": [
                     "Valoracion"
                 ],
-                "summary": "Borra una Valoracion",
-                "description": "Borra una Valoracion. Solo por Administradores",
-                "operationId": "e04ded741b3606e127dd3ea5c353a2c2",
+                "summary": "Modifica una Valoracion",
+                "description": "Modifica una Valoracion. Solo por Administradores",
+                "operationId": "3e5e214dd0ffd9f04dc69d2ea6eecb55",
                 "parameters": [
                     {
                         "name": "usuarioId",

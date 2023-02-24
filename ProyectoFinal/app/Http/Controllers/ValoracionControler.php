@@ -214,7 +214,7 @@ class ValoracionControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      * @OA\Put(
-     *    path="/api/valoracion/borra/usuario/{usuarioId}/alojamiento/{AlojamientoId}",
+     *    path="/api/valoracion/modifica/usuario/{usuarioId}/alojamiento/{AlojamientoId}",
      *    tags={"Valoracion"},
      *    summary="Modifica una Valoracion",
      *    description="Modifica una Valoracion. Solo por Administradores",
