@@ -72,7 +72,7 @@ class AlojamientosController extends Controller
      * )
      */
     public function tots(){
-        $tuples=Alojamiento::paginate(10);
+        $tuples=Alojamiento::paginate(2000);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
     /**
@@ -229,17 +229,17 @@ class AlojamientosController extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="nombre", type="string", format="string", example="Esto es un nuevo nombre de Alojamiento"),
-     *           @OA\Property(property="adresa", type="string", format="string", example="Esto es una nueva direccion"),
+     *           @OA\Property(property="direccion", type="string", format="string", example="Esto es una nueva direccion"),
      *           @OA\Property(property="descripcion", type="string", format="string", example="Esto es una descripción"),
-     *           @OA\Property(property="numpero_personas", type="number", format="number", example="1"),
-     *           @OA\Property(property="numero_habitaciones", type="number", format="number", example="2"),
-     *           @OA\Property(property="numero_camas", type="number", format="number", example="5"),
-     *           @OA\Property(property="numero_banos", type="number", format="number", example="3"),
-     *           @OA\Property(property="tipo_alojamiento", type="number", format="number", example="3"),
-     *           @OA\Property(property="tipo_vacacional", type="number", format="number", example="3"),
+     *           @OA\Property(property="numeroPersonas", type="number", format="number", example="1"),
+     *           @OA\Property(property="numeroHabitaciones", type="number", format="number", example="2"),
+     *           @OA\Property(property="numeroCamas", type="number", format="number", example="5"),
+     *           @OA\Property(property="numeroBanos", type="number", format="number", example="3"),
+     *           @OA\Property(property="tipoAlojamiento", type="number", format="number", example="3"),
+     *           @OA\Property(property="tipoVacacional", type="number", format="number", example="3"),
      *           @OA\Property(property="categoria", type="number", format="number", example="1"),
      *           @OA\Property(property="municipio", type="number", format="number", example="1"),
-     *           @OA\Property(property="usuari", type="number", format="number", example="1"),
+     *           @OA\Property(property="usuario", type="number", format="number", example="1"),
      *        ),
      *     ),
      *    @OA\Response(

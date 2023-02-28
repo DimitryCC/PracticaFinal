@@ -21,6 +21,7 @@ class UsuarioControler extends Controller
      *     path="/api/usuario/{id}",
      *     tags={"Usuarios"},
      *     summary="Mostrar un usuario por ID",
+     *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         description="Id del usuario",
      *         in="path",
@@ -69,6 +70,7 @@ class UsuarioControler extends Controller
          *     path="/api/usuario",
          *     tags={"Usuarios"},
          *     summary="Mostrar todas las usuarios",
+         *     security={{"bearerAuth":{}}},
          *     @OA\Response(
          *         response=200,
          *         description="Mostrar todas los usuarios."
@@ -77,7 +79,7 @@ class UsuarioControler extends Controller
          */
 
     public function tots(){
-        $tuples=Usuario::paginate(10);
+        $tuples=Usuario::paginate(200);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 
@@ -144,7 +146,6 @@ class UsuarioControler extends Controller
      *           @OA\Property(property="correo", type="string", format="string", example="example@mail.com"),
      *           @OA\Property(property="telefono", type="number", format="number", example="971940971"),
      *           @OA\Property(property="contrasena", type="string", format="string", example="3")
-
      *        ),
      *     ),
      *    @OA\Response(
@@ -201,7 +202,23 @@ class UsuarioControler extends Controller
     }
 
     /**
-     * Modificar un usuario.
+     * Modificar un Alojamiento.
+     * @urlParam id integer required ID del Alojamiento.
+     * @bodyParam DNI string Nombre del Alojamiento.
+     * @bodyParam nombreCompleto string Descripcion del Alojamiento.
+     * @bodyParam direccion string Direccion del Alojamiento.
+     * @bodyParam correo string Numero de las max. personas del Alojamiento.
+     * @bodyParam contrasena string Numero de las habitaciones.
+     * @bodyParam telefono string Numero de las camas.
+     * @bodyParam adminisrtador number Numero de los baños.
+     * @response scenario=success {
+     *  "status": "success",
+     * }
+     * @response status=400 scenario="validation error" {"status": "Validation error"}
+     */
+
+    /**
+     * Modificar un Alojamiento.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -216,13 +233,16 @@ class UsuarioControler extends Controller
      *    ),
      *     @OA\RequestBody(
      *        required=true,
-     *           @OA\Property(property="DNI", type="string", format="string", example="Esto es un nuevo DNI del usuario"),
+     *        @OA\JsonContent(
+     *          @OA\Property(property="DNI", type="string", format="string", example="Esto es un nuevo DNI del usuario"),
      *           @OA\Property(property="nombreCompleto", type="string", format="string", example="Esto es el nombre del Usuario"),
      *           @OA\Property(property="direccion", type="string", format="string", example="Calle 1"),
      *           @OA\Property(property="correo", type="string", format="string", example="example@mail.com"),
      *           @OA\Property(property="telefono", type="number", format="number", example="971940971"),
      *           @OA\Property(property="contrasena", type="string", format="string", example="3"),
-     *           @OA\Property(property="administrador", type="boolean", format="boolean", example="1"),
+     *          @OA\Property(property="adminisrtador", type="number", format="number", example="0"),
+     *          @OA\Property(property="propietari", type="number", format="number", example="0"),
+     *        ),
      *     ),
      *    @OA\Response(
      *         response=200,
@@ -248,17 +268,17 @@ class UsuarioControler extends Controller
         $reglesvalidacio=[
             'DNI'=>['filled'],
             'nombreCompleto'=>['filled','max:150'],
-            'direccion'=>[],
-            'correo'=>[ 'unique:usuarios,correo',$id],
+            'correo'=>['filled', 'unique:usuarios,correo'],
             'telefono'=>['filled'],
+            'propietari'=>['filled'],
+            'administrador'=>['filled'],
             'contrasena'=>['filled'],
-            'administrador'=>[]
+            'direccion'=>['filled'],
 
         ];
-
         $missatges=[
             'filled'=>':attribute no pot estar buit',
-            'unique'=>'El correu ja està registrat'
+            'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
@@ -268,4 +288,5 @@ class UsuarioControler extends Controller
             return response()->json(['status'=>'validation error','result'=>$validacio->errors()],400);
         }
     }
+
 }

@@ -51,11 +51,62 @@ class FotografiaControler extends Controller
     {
         try {
             $tupla = Fotografia::findOrFail($id);
-            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+            return response()->json(['status' => 'success', 'result' => $tupla->ruta], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'result' => $e], 400);
         }
     }
+
+    /**
+     * Descripcion de una Fotografia.
+     * @urlParam id integer required ID del alojamiento a mostrar.
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/fotografia/aloja/{id}",
+     *     tags={"Fotografias"},
+     *     summary="Mostrar una Fotografia por ID",
+     *     @OA\Parameter(
+     *         description="Id de la Fotografia",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID de la Fotografia")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Informacion de la Fotografia.",
+     *          @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="success"),
+     *          @OA\Property(property="data",type="object")
+     *           ),
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Hay un error.",
+     *         @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="error"),
+     *          @OA\Property(property="data",type="string", example="Fotografia no encontrada")
+     *           ),
+     *     )
+     * )
+     */
+
+    public function mostraFotosA($idallotjament)
+    {
+        try {
+
+            $tupla = Fotografia::where('AlojamientoId','=', $idallotjament)->get();
+
+            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+        }catch (\Exception $e){
+            return response()->json(['status'=>'error','result'=>$e],400);
+        }
+    }
+
 
     /**
      * Lista todas las Fotografias.
@@ -74,7 +125,7 @@ class FotografiaControler extends Controller
      */
     public function tots()
     {
-        $tuples = Fotografia::paginate(10);
+        $tuples = Fotografia::paginate(2000);
         return response()->json(['status' => 'success', 'result' => $tuples], 200);
     }
 

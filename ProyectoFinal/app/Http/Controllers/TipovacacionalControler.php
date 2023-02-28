@@ -156,7 +156,7 @@ class TipovacacionalControler extends Controller
      */
     public function crea(Request $request){
         $reglesvalidacio=[
-            'nombreTipo'=>['required','max:30','unique:tiposVacacional,nombre_tipo'],
+            'nombreTipo'=>['required','max:30','unique:tiposVacacional,nombreTipo'],
             'idiomaId'=>['required']
         ];
         $missatges=[
@@ -225,7 +225,7 @@ class TipovacacionalControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = Tipovacacional::findOrFail($id);
         $reglesvalidacio=[
-            'nombreTipo'=>['filled','max:30','unique:tiposVacacional,nombre_tipo'],
+            'nombreTipo'=>['filled','max:30','unique:tiposVacacional,nombreTipo'],
             'idiomaId'=>['filled']
         ];
         $missatges=[

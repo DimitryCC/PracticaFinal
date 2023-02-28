@@ -46,14 +46,58 @@ class DescripcionControler extends Controller
      *     )
      * )
      */
-    public function show($alojamientoId){
+    public function show($id){
         try {
-            $tupla = Descripcion::findOrFail($alojamientoId);
+            $tupla = Descripcion::findOrFail($id);
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
         }
     }
+
+    /**
+     * @urlParam id integer required ID de la alojamiento a mostrar.
+     * Display the specified resource.
+     *
+     * @OA\Get(
+     *     path="/api/descripcion/aloja/{AlojamientoId}",
+     *     tags={"Descripcion"},
+     *     summary="Mostrar descripciones",
+     *     security={{"bearerAuth":{}}},
+     *
+     *     @OA\Parameter(
+     *         description="Id del Alojamiento",
+     *         in="path",
+     *         name="AlojamientoId",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID del alojamiento")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Informacion de la Valoracion.",
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Hay un error.",
+     *         @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="error"),
+     *          @OA\Property(property="data",type="string", example="Valoracion no encontrada")
+     *           ),
+     * )
+     * )
+     */
+
+    public function showAllotjament($alojamientoId){
+        try {
+            $tupla = Descripcion::where('alojamientoId',$alojamientoId)->get();
+            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+        }catch (\Exception $e){
+            return response()->json(['status'=>'error','result'=>$e],400);
+        }
+    }
+
+
 
     /**
      * Lista todas las Descripciones.

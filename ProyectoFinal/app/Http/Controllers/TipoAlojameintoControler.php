@@ -156,7 +156,7 @@ class TipoAlojameintoControler extends Controller
      */
     public function crea(Request $request){
         $reglesvalidacio=[
-            'nombreTipo'=>['required','max:30','unique:tiposAlojameintos,nombre_tipo'],
+            'nombreTipo'=>['required','max:30','unique:tiposAlojameintos,nombreTipo'],
             'idiomaId'=>['required']
         ];
         $missatges=[
@@ -225,7 +225,7 @@ class TipoAlojameintoControler extends Controller
     public function modifica(Request $request, $id){
         $tupla = TiposAlojameinto::findOrFail($id);
         $reglesvalidacio=[
-            'nombreTipo'=>['filled','max:30','unique:tiposAlojameintos,nombre_tipo'],
+            'nombreTipo'=>['filled','max:30','unique:tiposAlojameintos,nombreTipo'],
             'idiomaId'=>['filled']
         ];
         $missatges=[

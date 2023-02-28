@@ -273,9 +273,9 @@ insert into valoraciones (usuarioId, AlojamientoId, texto, puntuacion) values
 (4, 2, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 3),
 (5, 3, 'Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.', 5);
 
-INSERT INTO fotografias (ID,ruta, alojamientoId)
-values (1,'http://google.co.jp/a.png', 1),
-(2,'http://uol.com.br/orci/vehicula/condimentum/curabitur/in/libero/ut.aspx', 2),
-(3,'http://techcrunch.com/nulla/pede/ullamcorper.js', 3),
-(4,'https://digg.com/augue/luctus/tincidunt/nulla/mollis.json', 4),
-(5,'https://bloglovin.com/lacinia/erat/vestibulum/sed/magna/at.xml', 5);
+INSERT INTO fotografias (ruta, alojamientoId)
+values ('http://google.co.jp/a.png', 1),
+('http://uol.com.br/orci/vehicula/condimentum/curabitur/in/libero/ut.aspx', 2),
+('http://techcrunch.com/nulla/pede/ullamcorper.js', 3),
+('https://digg.com/augue/luctus/tincidunt/nulla/mollis.json', 4),
+('https://bloglovin.com/lacinia/erat/vestibulum/sed/magna/at.xml', 5);

@@ -326,7 +326,7 @@
                                         "format": "string",
                                         "example": "Esto es un nuevo nombre de Alojamiento"
                                     },
-                                    "adresa": {
+                                    "direccion": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es una nueva direccion"
@@ -336,32 +336,32 @@
                                         "format": "string",
                                         "example": "Esto es una descripción"
                                     },
-                                    "numpero_personas": {
+                                    "numeroPersonas": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
                                     },
-                                    "numero_habitaciones": {
+                                    "numeroHabitaciones": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "2"
                                     },
-                                    "numero_camas": {
+                                    "numeroCamas": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "5"
                                     },
-                                    "numero_banos": {
+                                    "numeroBanos": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "3"
                                     },
-                                    "tipo_alojamiento": {
+                                    "tipoAlojamiento": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "3"
                                     },
-                                    "tipo_vacacional": {
+                                    "tipoVacacional": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "3"
@@ -376,7 +376,7 @@
                                         "format": "number",
                                         "example": "1"
                                     },
-                                    "usuari": {
+                                    "usuario": {
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
@@ -435,15 +435,142 @@
                 ]
             }
         },
-
-        "/api/valoracion": {
+        "/api/AlojaServi/usuari/{servicioId}/allotjament/{idallotjament}": {
             "get": {
                 "tags": [
-                    "Valoracion"
+                    "AlojamientosServicios"
+                ],
+                "summary": "Mostrar una Valoracion por ID usuario i la ID de alojamiento",
+                "description": "Descripcion de una Valoracion.",
+                "operationId": "bd244fb57c546cac8c17ad17a9cf88a7",
+                "parameters": [
+                    {
+                        "name": "servicioId",
+                        "in": "path",
+                        "description": "Id del servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "idallotjament",
+                        "in": "path",
+                        "description": "Id del alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Valoracion.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Valoracion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/AlojaServi/aloja/{AlojamientoId}": {
+            "get": {
+                "tags": [
+                    "AlojamientosServicios"
+                ],
+                "summary": "Mostrar valoraciones",
+                "description": "Descripcion de una AlojamientosServicios.",
+                "operationId": "1361204dad41b441bc3fbe740af63b72",
+                "parameters": [
+                    {
+                        "name": "AlojamientoId",
+                        "in": "path",
+                        "description": "Id del Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del servicio."
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Valoracion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/AlojaServi": {
+            "get": {
+                "tags": [
+                    "AlojamientosServicios"
                 ],
                 "summary": "Mostrar todas las Valoraciones",
                 "description": "Lista todas las Valoraciones.",
-                "operationId": "0873975215914cb7234d09ea87bca771",
+                "operationId": "76abad1771351ed843628af5d4b58b41",
                 "responses": {
                     "200": {
                         "description": "Mostrar todas las Valoraciones."
@@ -451,40 +578,105 @@
                 }
             }
         },
-
-        "/api/valoracion/crea": {
+        "/api/AlojaServi/borra/usuari/{servicioId}/allotjament/{idallotjament}": {
+            "delete": {
+                "tags": [
+                    "AlojamientosServicios"
+                ],
+                "summary": "Borra una Valoracion",
+                "description": "Borra una Valoracion. Solo por Administradores",
+                "operationId": "c13bb73d414cca9bf2b17bbac78f0d8f",
+                "parameters": [
+                    {
+                        "name": "servicioId",
+                        "in": "path",
+                        "description": "Id del servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "idallotjament",
+                        "in": "path",
+                        "description": "Id del alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/AlojaServi/crea": {
             "post": {
                 "tags": [
-                    "Valoracion"
+                    "AlojamientosServicios"
                 ],
-                "summary": "Crea una Valoracion",
-                "description": "Crea una Valoracion. Solo por Administradores.",
-                "operationId": "49369914595fefd48ee9be3aec21d6ed",
+                "summary": "Crea un servicio",
+                "description": "Crea un servicio. Solo por Administradores.",
+                "operationId": "278dc46a7876983948fe9945086beb6e",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "usuarioId": {
+                                    "servicioId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Esta es la id el usuario"
+                                        "example": 2
                                     },
-                                    "AlojamientoId": {
+                                    "alojamientoId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Esta es la id del alojamiento"
-                                    },
-                                    "texto": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Esto es el contenido de la Valoracion"
-                                    },
-                                    "puntuacion": {
-                                        "type": "number",
-                                        "format": "number",
-                                        "example": "Esto es la puntuacion de la Valoracion"
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -540,7 +732,104 @@
                 ]
             }
         },
-
+        "/api/AlojaServi/modifica/servicio/{idservei}/alojamiento/{idallotjament}": {
+            "put": {
+                "tags": [
+                    "AlojamientosServicios"
+                ],
+                "summary": "Modifica una Valoracion",
+                "description": "Modifica una Valoracion. Solo por Administradores.",
+                "operationId": "04e7d9a32db2d1ba5f57aac4cbeceeeb",
+                "parameters": [
+                    {
+                        "name": "idservei",
+                        "in": "path",
+                        "description": "Id del servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "idallotjament",
+                        "in": "path",
+                        "description": "Id del alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "servicioId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "alojamientoId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/categoria/{id}": {
             "get": {
                 "tags": [
@@ -936,6 +1225,62 @@
                 }
             }
         },
+        "/api/descripcion/aloja/{AlojamientoId}": {
+            "get": {
+                "tags": [
+                    "Descripcion"
+                ],
+                "summary": "Mostrar descripciones",
+                "operationId": "273636bd2dea5839d752e9e778969cf1",
+                "parameters": [
+                    {
+                        "name": "AlojamientoId",
+                        "in": "path",
+                        "description": "Id del Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Valoracion."
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Valoracion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/descripcion": {
             "get": {
                 "tags": [
@@ -1198,6 +1543,74 @@
                 "summary": "Mostrar una Fotografia por ID",
                 "description": "Descripcion de una Fotografia.",
                 "operationId": "aea9bc9cb129cdf23fd98c27f85c2339",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id de la Fotografia",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la Fotografia",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Fotografia.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Fotografia no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/fotografia/aloja/{id}": {
+            "get": {
+                "tags": [
+                    "Fotografias"
+                ],
+                "summary": "Mostrar una Fotografia por ID",
+                "description": "Descripcion de una Fotografia.",
+                "operationId": "cd8f664cc82d4747337b4016b09bf0a1",
                 "parameters": [
                     {
                         "name": "id",
@@ -1900,28 +2313,6 @@
                 "summary": "Salir",
                 "description": "Cierre sesión",
                 "operationId": "9a8b677ad08a35acc23392c1e86e9893",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "correo": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "example@mail.com"
-                                    },
-                                    "contrasena": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "contrasena_exemple"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -2295,6 +2686,74 @@
                 "summary": "Mostrar una Reserva por ID",
                 "description": "Descripcion de una Reserva.",
                 "operationId": "7035e5296cf4458d93fcee0d722983fe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id de la Reserva",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la Reserva",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la reserva.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "reserva no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reserva/aloja/{id}": {
+            "get": {
+                "tags": [
+                    "Reservas"
+                ],
+                "summary": "Mostrar una Reserva por ID",
+                "description": "Descripcion de una Reserva.",
+                "operationId": "f478d59958da800dfd88ecbbb0432292",
                 "parameters": [
                     {
                         "name": "id",
@@ -3629,7 +4088,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/usuario": {
@@ -3644,7 +4108,12 @@
                     "200": {
                         "description": "Mostrar todas los usuarios."
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/usuario/borra/{id}": {
@@ -3832,7 +4301,56 @@
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "DNI": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es un nuevo DNI del usuario"
+                                    },
+                                    "nombreCompleto": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el nombre del Usuario"
+                                    },
+                                    "direccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Calle 1"
+                                    },
+                                    "correo": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "example@mail.com"
+                                    },
+                                    "telefono": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "971940971"
+                                    },
+                                    "contrasena": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "3"
+                                    },
+                                    "adminisrtador": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "0"
+                                    },
+                                    "propietari": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
@@ -3954,6 +4472,78 @@
                 ]
             }
         },
+        "/api/valoracion/aloja/{AlojamientoId}": {
+            "get": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Mostrar valoraciones",
+                "description": "Descripcion de una Valoracion.",
+                "operationId": "08bfde3b0855303b3bc424a7793a00df",
+                "parameters": [
+                    {
+                        "name": "AlojamientoId",
+                        "in": "path",
+                        "description": "Id del Alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Valoracion."
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Valoracion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/valoracion": {
+            "get": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Mostrar todas las Valoraciones",
+                "description": "Lista todas las Valoraciones.",
+                "operationId": "c0fec5d072d7cb966af48a924f2adabb",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las Valoraciones."
+                    }
+                }
+            }
+        },
         "/api/valoracion/borra/usuario/{usuarioId}/alojamiento/{AlojamientoId}": {
             "delete": {
                 "tags": [
@@ -4042,6 +4632,94 @@
                 ]
             }
         },
+        "/api/valoracion/crea": {
+            "post": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Crea una Valoracion",
+                "description": "Crea una Valoracion. Solo por Administradores.",
+                "operationId": "4fce15e78b5e54e439f3f2699ebb8997",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "usuarioId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "AlojamientoId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 4
+                                    },
+                                    "texto": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el contenido de la Valoracion"
+                                    },
+                                    "puntuacion": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/valoracion/modifica/usuario/{usuarioId}/alojamiento/{AlojamientoId}": {
             "put": {
                 "tags": [
@@ -4082,6 +4760,38 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "usuarioId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "AlojamientoId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 4
+                                    },
+                                    "texto": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es el contenido de la Valoracion"
+                                    },
+                                    "puntuacion": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Success",

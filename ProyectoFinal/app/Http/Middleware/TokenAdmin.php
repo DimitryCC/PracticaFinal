@@ -32,7 +32,7 @@ class TokenAdmin
                 ->first();
 
             if (!empty($user)){
-                $request->merge(['validat_id' => $user->ID, 'administrador'=>$user->administrador]);
+
                 return $next($request);
             }else {
                 return response()->json(['status' => 'error', 'data' => "Accés no autoritzat"], 401);

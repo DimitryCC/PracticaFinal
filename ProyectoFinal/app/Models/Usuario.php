@@ -9,41 +9,6 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    /**
-     * @var mixed
-     */
-    private $nombreCompleto;
-    /**
-     * @var mixed
-     */
-    private $direccion;
-    /**
-     * @var mixed
-     */
-    private $DNI;
-    /**
-     * @var mixed
-     */
-    private $correo;
-    /**
-     * @var mixed
-     */
-    private $telefono;
-    /**
-     * @var mixed|string
-     */
-    private $contrasena;
-
-    /**
-     * @return string
-     */
-
-
-    /**
-     * @var mixed
-     */
-
-
     private $administrador;
     protected $table='usuarios';
     protected $primaryKey='ID';

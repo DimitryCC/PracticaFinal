@@ -36,7 +36,7 @@ Route::group(['prefix'=>'alojamiento'],function() {
 //Ordenes Usuario
 Route::group(['prefix'=>'usuario'],function (){
     // * /api/usuario/
-    Route::get('', [\App\Http\Controllers\UsuarioControler::class, 'tots'])->middleware('checkTokenAdmin');
+    Route::get('', [\App\Http\Controllers\UsuarioControler::class, 'tots'])->middleware('checkTokenUser');
     // * /api/usuario/1
     Route::get('/{id}', [\App\Http\Controllers\UsuarioControler::class, 'show'])->middleware('checkTokenAdmin');
     // * /api/usuario/borra/1
@@ -53,6 +53,8 @@ Route::group(['prefix'=>'categoria'],function() {
     Route::get('', [\App\Http\Controllers\CategoriaControler::class, 'tots']);
     // * /api/categoria/1
     Route::get('/{id}', [\App\Http\Controllers\CategoriaControler::class, 'show']);
+       // * /api/categoria/1
+    Route::get('/aloja/{id}', [\App\Http\Controllers\CategoriaControler::class, 'showAllotjament']);
     // * /api/categoria/borra/1
     Route::delete('/borra/{id}', [\App\Http\Controllers\CategoriaControler::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/categoria/crea
@@ -66,6 +68,8 @@ Route::group(['prefix'=>'descripcion'],function() {
     Route::get('', [\App\Http\Controllers\DescripcionControler::class, 'tots']);
     // * /api/descripcion/1
     Route::get('/{id}', [\App\Http\Controllers\DescripcionControler::class, 'show']);
+
+    Route::get('/aloja/{id}', [\App\Http\Controllers\DescripcionControler::class, 'showAllotjament']);
     // * /api/descripcion/borra/1
     Route::delete('/borra/{id}', [\App\Http\Controllers\DescripcionControler::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/descripcion/crea
@@ -79,6 +83,8 @@ Route::group(['prefix'=>'fotografia'],function() {
     Route::get('', [\App\Http\Controllers\FotografiaControler::class, 'tots']);
     // * /api/fotografia/1
     Route::get('/{id}', [\App\Http\Controllers\FotografiaControler::class, 'show']);
+
+    Route::get('/aloja/{id}', [\App\Http\Controllers\FotografiaControler::class, 'mostraFotosA']);
     // * /api/fotografia/borra/1
     Route::delete('/borra/{id}', [\App\Http\Controllers\FotografiaControler::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/fotografia/crea
@@ -118,6 +124,8 @@ Route::group(['prefix'=>'servicio'],function() {
     Route::get('', [\App\Http\Controllers\ServicioControler::class, 'tots']);
     // * /api/servicio/1
     Route::get('/{id}', [\App\Http\Controllers\ServicioControler::class, 'show']);
+
+    Route::get('/aloja/{id}', [\App\Http\Controllers\ServicioControler::class, 'showAllotjament']);
     // * /api/servicio/borra/1
     Route::delete('/borra/{id}', [\App\Http\Controllers\ServicioControler::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/servicio/crea
@@ -153,6 +161,7 @@ Route::group(['prefix'=>'tipovacacional'],function() {
 });
 //Ordenes Valoracion
 Route::group(['prefix'=>'valoracion'],function() {
+    Route::get('/aloja/{id}', [\App\Http\Controllers\ValoracionControler::class, 'showAllotjament']);
     // * /api/valoracion/
     Route::get('', [\App\Http\Controllers\ValoracionControler::class, 'tots']);
     // * /api/valoracion/usuari/{idusuari}/allotjament/{idallotjament}
@@ -170,12 +179,30 @@ Route::group(['prefix'=>'reserva'],function() {
     Route::get('', [\App\Http\Controllers\ReservaController::class, 'tots']);
     // * /api/reserva/1
     Route::get('/{id}', [\App\Http\Controllers\ReservaController::class, 'show']);
+
+    Route::get('/aloja/{id}', [\App\Http\Controllers\ReservaController::class, 'showAllotjament']);
     // * /api/reserva/borra/1
     Route::delete('/borra/{id}', [\App\Http\Controllers\ReservaController::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/reserva/crea
     Route::post('/crea', [\App\Http\Controllers\ReservaController::class, 'crea'])->middleware('checkTokenUser');
     // * /api/reserva/modifica/1
     Route::put('/modifica/{id}', [\App\Http\Controllers\ReservaController::class, 'modifica'])->middleware('checkTokenAdmin');
+});
+
+//Ordenes Alojamientos servicios
+Route::group(['prefix'=>'AlojaServi'],function() {
+    // * /api/reserva/
+    Route::get('', [\App\Http\Controllers\AlojamientosServicios::class, 'tots']);
+    // * /api/reserva/1
+    Route::get('/usuari/{servicioId}/allotjament/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'show']);
+
+    Route::get('/aloja/{id}', [\App\Http\Controllers\AlojamientosServicios::class, 'mostraAloSer']);
+    // * /api/reserva/borra/1
+    Route::delete('/borra/usuari/{servicioId}/allotjament/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'borra'])->middleware('checkTokenAdmin');
+    // * /api/reserva/crea
+    Route::post('/crea', [\App\Http\Controllers\AlojamientosServicios::class, 'crea'])->middleware('checkTokenUser');
+    // * /api/reserva/modifica/1
+    Route::put('/modifica/servicio/{idservei}/alojamiento/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'modifica'])->middleware('checkTokenAdmin');
 });
 
 //Ordenes LogIn/LogOut

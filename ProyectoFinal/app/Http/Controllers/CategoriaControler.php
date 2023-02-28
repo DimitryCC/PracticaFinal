@@ -156,7 +156,7 @@ class CategoriaControler extends Controller
     public function crea(Request $request){
         $reglesvalidacio=[
             'nombreCategoria'=>['required','max:30', 'unique:categorias,nombreCategoria'],
-            'tarifaBaija'=>['required'],
+            'tarifaBaja'=>['required'],
             'tarifaAlta'=>['required']
         ];
         $missatges=[
@@ -228,7 +228,7 @@ class CategoriaControler extends Controller
         $tupla = Categoria::findOrFail($id);
         $reglesvalidacio=[
             'nombreCategoria'=>['filled','max:300','unique:categorias,nombreCategoria', $id],
-            'tarifaBaija'=>['filled'],
+            'tarifaBaja'=>['filled'],
             'tarifaAlta'=>['filled']
         ];
         $missatges=[

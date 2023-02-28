@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserva;
+use App\Models\Valoracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -54,6 +55,54 @@ class ReservaController extends Controller
             return response()->json(['status'=>'error','result'=>$e],400);
         }
     }
+
+    /**
+     * Descripcion de una Reserva.
+     * @urlParam id integer required ID de la reserva a mostrar.
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/reserva/aloja/{id}",
+     *     tags={"Reservas"},
+     *     summary="Mostrar una Reserva por ID",
+     *     @OA\Parameter(
+     *         description="id de la Reserva",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID de la Reserva")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Informacion de la reserva.",
+     *          @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="success"),
+     *          @OA\Property(property="data",type="object")
+     *           ),
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Hay un error.",
+     *         @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="error"),
+     *          @OA\Property(property="data",type="string", example="reserva no encontrada")
+     *           ),
+     *     )
+     * )
+     */
+    public function showAllotjament($idallotjament)
+    {
+        try {
+            $tupla = Reserva::where('AlojamientoId', $idallotjament)->get();
+            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+        }catch (\Exception $e){
+            return response()->json(['status'=>'error','result'=>$e],400);
+        }
+    }
+
 
     /**
      * Lista todas las Reservas.
