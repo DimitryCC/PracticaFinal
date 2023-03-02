@@ -330,7 +330,6 @@ class ReservaController extends Controller
     public function modifica(Request $request, $id){
         $tupla = Reserva::findOrFail($id);
         $reglesvalidacio=[
-            'ID'=>['filled','unique:reserves,ID,' . $id],
             'usuarioId'=>['required'],
             'AlojamientoId'=>['required'],
             'FechaInicio'=>['required'],

@@ -279,7 +279,7 @@ class UsuarioControler extends Controller
         $reglesvalidacio=[
             'DNI'=>['filled'],
             'nombreCompleto'=>['filled','max:150'],
-            'correo'=>['filled', 'unique:usuarios,correo'],
+            'correo'=>['filled', 'unique:usuarios,correo,'.$id],
             'telefono'=>['filled'],
             'propietari'=>['filled'],
             'administrador'=>['filled'],

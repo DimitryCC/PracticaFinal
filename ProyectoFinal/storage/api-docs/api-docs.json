@@ -4024,6 +4024,1446 @@
                 ]
             }
         },
+        "/api/tradDesc/descripcio/{iddescripcion}/idioma/{ididioma}": {
+            "get": {
+                "tags": [
+                    "TraduccionDescripcions"
+                ],
+                "summary": "Mostrar una traduccion de descripcion",
+                "description": "Descripcion de un Servicio.",
+                "operationId": "cd3015f5d9cf8bb827af28d230308cec",
+                "parameters": [
+                    {
+                        "name": "iddescripcion",
+                        "in": "path",
+                        "description": "Id del descripcion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la de la descripcion",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id del idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del idioma",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Servicio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Servicio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tradDesc": {
+            "get": {
+                "tags": [
+                    "TraduccionDescripcions"
+                ],
+                "summary": "Mostrar todos las traducciones de descripciones",
+                "description": "Lista todos los Servicios.",
+                "operationId": "1c76ed96e1c875239bf347b139264662",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Servicios."
+                    }
+                }
+            }
+        },
+        "/api/tradDesc/borra/descripcio/{iddescripcion}/idioma/{ididioma}": {
+            "delete": {
+                "tags": [
+                    "TraduccionDescripcions"
+                ],
+                "summary": "Borra una traduccion descripcion",
+                "description": "Borra una traduccion Servicio. Solo por Administradores",
+                "operationId": "e350af67232313a55a4142fd4ec9bccc",
+                "parameters": [
+                    {
+                        "name": "iddescripcion",
+                        "in": "path",
+                        "description": "Id tipo alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradDesc/crea": {
+            "post": {
+                "tags": [
+                    "TraduccionDescripcions"
+                ],
+                "summary": "Crea una traduccion descripcion",
+                "description": "Crea una traduccion Servicio. Solo por Administradores.",
+                "operationId": "a34acab494513eaf8b1e76b22562e16e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "descripcioneId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradDesc/modifica/descripcio/{iddescripcion}/idioma/{ididioma}": {
+            "put": {
+                "tags": [
+                    "TraduccionDescripcions"
+                ],
+                "summary": "Modifica una traduccion descripcion",
+                "description": "Modifica una traduccion Servicio. Solo por Administradores.",
+                "operationId": "3644617623a8d924eb2c837b0b160b4c",
+                "parameters": [
+                    {
+                        "name": "iddescripcion",
+                        "in": "path",
+                        "description": "Id descripcio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "descripcioneId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradServi/servicio/{idservicio}/idioma/{ididioma}": {
+            "get": {
+                "tags": [
+                    "TraduccionServicios"
+                ],
+                "summary": "Mostrar una traduccion de servicio por ID",
+                "description": "Descripcion de un Servicio.",
+                "operationId": "3510ab395e39a7a5d05ec386f118abab",
+                "parameters": [
+                    {
+                        "name": "idservicio",
+                        "in": "path",
+                        "description": "Id del servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la del servicio",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id del idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del idioma",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Servicio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Servicio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tradServi": {
+            "get": {
+                "tags": [
+                    "TraduccionServicios"
+                ],
+                "summary": "Mostrar todos los Servicios",
+                "description": "Lista todos los Servicios.",
+                "operationId": "cd86040cd1bba7f5926759992fd639a0",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Servicios."
+                    }
+                }
+            }
+        },
+        "/api/tradServi/borra/servicio/{idservicio}/idioma/{ididioma}": {
+            "delete": {
+                "tags": [
+                    "TraduccionServicios"
+                ],
+                "summary": "Borra una traduccion servicio",
+                "description": "Borra una traduccion Servicio. Solo por Administradores",
+                "operationId": "49f142f55ff2252e6c09edbeb0b37710",
+                "parameters": [
+                    {
+                        "name": "idservicio",
+                        "in": "path",
+                        "description": "Id servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradServi/crea": {
+            "post": {
+                "tags": [
+                    "TraduccionServicios"
+                ],
+                "summary": "Crea una traduccion Servicio",
+                "description": "Crea una traduccion Servicio. Solo por Administradores.",
+                "operationId": "0cb24b6bd279554ec98c657ba7c13c3c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "servicioId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradServi/modifica/servicio/{idservicio}/idioma/{ididioma}": {
+            "put": {
+                "tags": [
+                    "TraduccionServicios"
+                ],
+                "summary": "Modifica una traduccion Servicio",
+                "description": "Modifica una traduccion Servicio. Solo por Administradores.",
+                "operationId": "8bce976ad30f6416ff03f348b85c401c",
+                "parameters": [
+                    {
+                        "name": "idservicio",
+                        "in": "path",
+                        "description": "Id Servicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "servicioId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradTiposAloja/tipoAlojamiento/{idtipoAloja}/idioma/{ididioma}": {
+            "get": {
+                "tags": [
+                    "TraduccionTiposAloja"
+                ],
+                "summary": "Mostrar una traduccion tipoAlojamiento por ID",
+                "description": "Descripcion de un Servicio.",
+                "operationId": "9a57c54328cb4b29cf0a272a57030e6b",
+                "parameters": [
+                    {
+                        "name": "idtipoAloja",
+                        "in": "path",
+                        "description": "Id del tipo alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la del tipo alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id del idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del idioma",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Servicio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Servicio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tradTiposAloja": {
+            "get": {
+                "tags": [
+                    "TraduccionTiposAloja"
+                ],
+                "summary": "Mostrar todos los tipos alojamiento",
+                "description": "Lista todos los Servicios.",
+                "operationId": "33117ab745d7541bf052209bf879afa9",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Servicios."
+                    }
+                }
+            }
+        },
+        "/api/tradTiposAloja/borra/tipoAlojamiento/{idtipoAloja}/idioma/{ididioma}": {
+            "delete": {
+                "tags": [
+                    "TraduccionTiposAloja"
+                ],
+                "summary": "Borra una traduccion tipo alojamiento",
+                "description": "Borra una traduccion Servicio. Solo por Administradores",
+                "operationId": "c33a066df36d242c95ec9cfda543a43b",
+                "parameters": [
+                    {
+                        "name": "idtipoAloja",
+                        "in": "path",
+                        "description": "Id tipo alojamiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradTiposAloja/crea": {
+            "post": {
+                "tags": [
+                    "TraduccionTiposAloja"
+                ],
+                "summary": "Crea una traduccion tipo alojamiento",
+                "description": "Crea una traduccion Servicio. Solo por Administradores.",
+                "operationId": "46104b924a1b969a4b6351b1c70dad33",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tiposAlojameintosId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradTiposAloja/modifica/tipoAlojamiento/{idtipoAloja}/idioma/{ididioma}": {
+            "put": {
+                "tags": [
+                    "TraduccionTiposAloja"
+                ],
+                "summary": "Modifica una traduccion tipo alojamiento",
+                "description": "Modifica una traduccion Servicio. Solo por Administradores.",
+                "operationId": "e18fd68c0c4dc984a795aed17971c3f9",
+                "parameters": [
+                    {
+                        "name": "idtipoAloja",
+                        "in": "path",
+                        "description": "Id tipoVacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tiposAlojameintosId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradVaca/tipoVacacional/{idvacacional}/idioma/{ididioma}": {
+            "get": {
+                "tags": [
+                    "TraduccionVacacional"
+                ],
+                "summary": "Mostrar una traduccion tipo vacacional",
+                "description": "Descripcion de un Servicio.",
+                "operationId": "28934d75d53cb545f0f3a881ec95ea88",
+                "parameters": [
+                    {
+                        "name": "idvacacional",
+                        "in": "path",
+                        "description": "Id del tipo vacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID de la del tipoVacacional",
+                                "value": "1"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id del idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del idioma",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion del Servicio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Servicio no encontrado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tradVaca": {
+            "get": {
+                "tags": [
+                    "TraduccionVacacional"
+                ],
+                "summary": "Mostrar todos las traducciones de tipo vacacional",
+                "description": "Lista todos los Servicios.",
+                "operationId": "688e3840e79d4619e4e59f14d375b0d9",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los Servicios."
+                    }
+                }
+            }
+        },
+        "/api/tradVaca/borra/tipoVacacional/{idtipoVaca}/idioma/{idiomaId}": {
+            "delete": {
+                "tags": [
+                    "TraduccionVacacional"
+                ],
+                "summary": "Borra una traduccion tipo vacacional",
+                "description": "Borra una traduccion Servicio. Solo por Administradores",
+                "operationId": "a8872ce3de08ccd711371d73a8aa82b0",
+                "parameters": [
+                    {
+                        "name": "idtipoVaca",
+                        "in": "path",
+                        "description": "Id tipoVacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "idiomaId",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "ID no encotrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradVaca/crea": {
+            "post": {
+                "tags": [
+                    "TraduccionVacacional"
+                ],
+                "summary": "Crea una traduccion tipo vacacional",
+                "description": "Crea una traduccion Servicio. Solo por Administradores.",
+                "operationId": "09eb940ae828acdc307bc5c7b82483d3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tiposVacacionalId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tradVaca/modifica/tipoVacacional/{idtipoVaca}/idioma/{ididioma}": {
+            "put": {
+                "tags": [
+                    "TraduccionVacacional"
+                ],
+                "summary": "Modifica una traduccion tipo vacacional",
+                "description": "Modifica una traduccion Servicio. Solo por Administradores.",
+                "operationId": "5717394d9688de71cf05b52027347085",
+                "parameters": [
+                    {
+                        "name": "idtipoVaca",
+                        "in": "path",
+                        "description": "Id tipoVacacional",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "ididioma",
+                        "in": "path",
+                        "description": "Id idioma",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tiposVacacionalId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 1
+                                    },
+                                    "idiomaId": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": 2
+                                    },
+                                    "traduccion": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Esto es una traduccion"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Atributo obligatorio requerido"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/usuario/{id}": {
             "get": {
                 "tags": [

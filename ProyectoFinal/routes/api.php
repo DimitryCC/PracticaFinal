@@ -205,6 +205,63 @@ Route::group(['prefix'=>'AlojaServi'],function() {
     Route::put('/modifica/servicio/{idservei}/alojamiento/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'modifica'])->middleware('checkTokenAdmin');
 });
 
+//Ordenes Traduccion tipoVacacional
+Route::group(['prefix'=>'tradVaca'],function() {
+    // * /api/reserva/
+    Route::get('', [\App\Http\Controllers\TraduccionVacacionalControler::class, 'tots']);
+    // * /api/reserva/1
+    Route::get('/tipoVacacional/{idtipoVaca}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionVacacionalControler::class, 'show']);
+    // * /api/reserva/borra/1
+    Route::delete('/borra/tipoVacacional/{idtipoVaca}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionVacacionalControler::class, 'borra'])->middleware('checkTokenAdmin');
+    // * /api/reserva/crea
+    Route::post('/crea', [\App\Http\Controllers\TraduccionVacacionalControler::class, 'crea'])->middleware('checkTokenUser');
+    // * /api/reserva/modifica/1
+    Route::put('/modifica/tipoVacacional/{idtipoVaca}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionVacacionalControler::class, 'modifica'])->middleware('checkTokenAdmin');
+});
+
+//Ordenes Traduccion tipoAlojamiento
+Route::group(['prefix'=>'tradTiposAloja'],function() {
+    // * /api/reserva/
+    Route::get('', [\App\Http\Controllers\TraduccionTiposAlojaControler::class, 'tots']);
+    // * /api/reserva/1
+    Route::get('/tipoAlojamiento/{idtipoAloja}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionTiposAlojaControler::class, 'show']);
+    // * /api/reserva/borra/1
+    Route::delete('/borra/tipoAlojamiento/{idtipoAloja}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionTiposAlojaControler::class, 'borra'])->middleware('checkTokenAdmin');
+    // * /api/reserva/crea
+    Route::post('/crea', [\App\Http\Controllers\TraduccionTiposAlojaControler::class, 'crea'])->middleware('checkTokenUser');
+    // * /api/reserva/modifica/1
+    Route::put('/modifica/tipoAlojamiento/{idtipoAloja}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionTiposAlojaControler::class, 'modifica'])->middleware('checkTokenAdmin');
+});
+
+//Ordenes Traduccion Servicios
+Route::group(['prefix'=>'tradServi'],function() {
+    // * /api/reserva/
+    Route::get('', [\App\Http\Controllers\TraduccionServiciosControler::class, 'tots']);
+    // * /api/reserva/1
+    Route::get('/servicio/{idservicio}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionServiciosControler::class, 'show']);
+    // * /api/reserva/borra/1
+    Route::delete('/borra/servicio/{idservicio}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionServiciosControler::class, 'borra'])->middleware('checkTokenAdmin');
+    // * /api/reserva/crea
+    Route::post('/crea', [\App\Http\Controllers\TraduccionServiciosControler::class, 'crea'])->middleware('checkTokenUser');
+    // * /api/reserva/modifica/1
+    Route::put('/modifica/servicio/{idservicio}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionServiciosControler::class, 'modifica'])->middleware('checkTokenAdmin');
+});
+
+//Ordenes Traduccion Descripciones
+Route::group(['prefix'=>'tradDesc'],function() {
+    // * /api/reserva/
+    Route::get('', [\App\Http\Controllers\TraduccionDescripcionesControler::class, 'tots']);
+    // * /api/reserva/1
+    Route::get('/descripcio/{iddescripcion}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionDescripcionesControler::class, 'show']);
+    // * /api/reserva/borra/1
+    Route::delete('/borra/descripcio/{iddescripcion}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionDescripcionesControler::class, 'borra'])->middleware('checkTokenAdmin');
+    // * /api/reserva/crea
+    Route::post('/crea', [\App\Http\Controllers\TraduccionDescripcionesControler::class, 'crea'])->middleware('checkTokenUser');
+    // * /api/reserva/modifica/1
+    Route::put('/modifica/descripcio/{iddescripcion}/idioma/{ididioma}', [\App\Http\Controllers\TraduccionDescripcionesControler::class, 'modifica'])->middleware('checkTokenAdmin');
+});
+
+
 //Ordenes LogIn/LogOut
 Route::group(['prefix'=>'Log'],function(){
     Route::post("/in",[\App\Http\Controllers\LogInController::class, 'login']);

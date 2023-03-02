@@ -54,11 +54,8 @@ class FotografiaControler extends Controller
             if($checkFotos==null){
                 return response()->json(['error' => 'La ID foto no existe'], 404);
             }
-            $tupla = Fotografia::findOrFail($id);
-            $ruta = array_get($tupla, 'ruta');
-            $tupla->ruta_imagen = asset($ruta);
 
-            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+            return response()->json(['status' => 'success', 'result' => $checkFotos], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'result' => $e], 400);
         }
@@ -188,7 +185,7 @@ class FotografiaControler extends Controller
     }
 
     /**
-     * Crea un nuevo Municipio.
+     * Crea una nueva FOTOGRAFIA.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -240,6 +237,9 @@ class FotografiaControler extends Controller
 
         $post = new Fotografia();
         $checkAloja = Alojamiento::findOrFail($request->alojamientoId);
+        if($checkAloja==null){
+            return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+        }
         $validacio = Validator::make($request->all(), $reglesvalidacio, $missatges);
 
 
