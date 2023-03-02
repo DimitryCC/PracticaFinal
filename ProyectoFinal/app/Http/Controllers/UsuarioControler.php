@@ -52,6 +52,12 @@ class UsuarioControler extends Controller
     public function show($id){
 
             try {
+
+                $checkUser = Usuario::find($id);
+                if($checkUser==null){
+                    return response()->json(['error' => 'La ID usuario no existe'], 404);
+                }
+
                 $tupla = Usuario::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             } catch (\Exception $e) {
@@ -120,6 +126,11 @@ class UsuarioControler extends Controller
 
     public function borra($id){
         try {
+
+            $checkUser = Usuario::find($id);
+            if($checkUser==null){
+                return response()->json(['error' => 'La ID usuario no existe'], 404);
+            }
             $tupla = Usuario::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -280,6 +291,13 @@ class UsuarioControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+
+        $checkUser = Usuario::find($id);
+
+        if($checkUser==null){
+            return response()->json(['error' => 'La ID usuario no existe'], 404);
+        }
+
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alojamiento;
 use App\Models\Descripcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -48,6 +49,10 @@ class DescripcionControler extends Controller
      */
     public function show($id){
         try {
+            $checkDesc = Descripcion::find($id);
+            if($checkDesc==null){
+                return response()->json(['error' => 'La ID descripcio no existe'], 404);
+            }
             $tupla = Descripcion::findOrFail($id);
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -90,6 +95,10 @@ class DescripcionControler extends Controller
 
     public function showAllotjament($alojamientoId){
         try {
+            $checkDesc = Alojamiento::find($alojamientoId);
+            if($checkDesc==null){
+                return response()->json(['error' => 'La ID alojammiento no existe'], 404);
+            }
             $tupla = Descripcion::where('alojamientoId',$alojamientoId)->get();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -155,6 +164,10 @@ class DescripcionControler extends Controller
      */
     public function borra($id){
         try {
+            $checkDesc = Descripcion::find($id);
+            if($checkDesc==null){
+                return response()->json(['error' => 'La ID descripcio no existe'], 404);
+            }
             $tupla = Descripcion::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -279,6 +292,10 @@ class DescripcionControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkDesc = Descripcion::find($id);
+        if($checkDesc==null){
+            return response()->json(['error' => 'La ID descripcio no existe'], 404);
+        }
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());

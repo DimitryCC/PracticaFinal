@@ -435,17 +435,17 @@
                 ]
             }
         },
-        "/api/AlojaServi/usuari/{servicioId}/allotjament/{idallotjament}": {
+        "/api/AlojaServi/servicio/{idservei}/alojamiento/{idallotjament}": {
             "get": {
                 "tags": [
                     "AlojamientosServicios"
                 ],
-                "summary": "Mostrar una Valoracion por ID usuario i la ID de alojamiento",
+                "summary": "Mostrar una Valoracion por ID servicio y la ID de alojamiento",
                 "description": "Descripcion de una Valoracion.",
-                "operationId": "bd244fb57c546cac8c17ad17a9cf88a7",
+                "operationId": "8687d31a9d8f3d539261cf627be52efe",
                 "parameters": [
                     {
-                        "name": "servicioId",
+                        "name": "idservei",
                         "in": "path",
                         "description": "Id del servicio",
                         "required": true,
@@ -511,7 +511,7 @@
                 "tags": [
                     "AlojamientosServicios"
                 ],
-                "summary": "Mostrar valoraciones",
+                "summary": "Mostrar servicios por ID alojamiento",
                 "description": "Descripcion de una AlojamientosServicios.",
                 "operationId": "1361204dad41b441bc3fbe740af63b72",
                 "parameters": [
@@ -568,8 +568,8 @@
                 "tags": [
                     "AlojamientosServicios"
                 ],
-                "summary": "Mostrar todas las Valoraciones",
-                "description": "Lista todas las Valoraciones.",
+                "summary": "Mostrar todas las servicios con su ID alojamiento",
+                "description": "Lista todas los servicios.",
                 "operationId": "76abad1771351ed843628af5d4b58b41",
                 "responses": {
                     "200": {
@@ -578,17 +578,17 @@
                 }
             }
         },
-        "/api/AlojaServi/borra/usuari/{servicioId}/allotjament/{idallotjament}": {
+        "/api/AlojaServi/borra/servicio/{idservei}/alojamiento/{idallotjament}": {
             "delete": {
                 "tags": [
                     "AlojamientosServicios"
                 ],
-                "summary": "Borra una Valoracion",
-                "description": "Borra una Valoracion. Solo por Administradores",
-                "operationId": "c13bb73d414cca9bf2b17bbac78f0d8f",
+                "summary": "Borra un servicio por su ID y la ID alojamiento",
+                "description": "Borra un servicio asociado a un alojamiento. Solo por Administradores",
+                "operationId": "10c9b3b3e23c23fa571b27876b0a9da1",
                 "parameters": [
                     {
-                        "name": "servicioId",
+                        "name": "idservei",
                         "in": "path",
                         "description": "Id del servicio",
                         "required": true,
@@ -659,7 +659,7 @@
                 "tags": [
                     "AlojamientosServicios"
                 ],
-                "summary": "Crea un servicio",
+                "summary": "Crea un servicio asociado a una ID alojamiento",
                 "description": "Crea un servicio. Solo por Administradores.",
                 "operationId": "278dc46a7876983948fe9945086beb6e",
                 "requestBody": {
@@ -1622,7 +1622,7 @@
                         },
                         "examples": {
                             "id": {
-                                "summary": "Introduce el numero de ID de la Fotografia",
+                                "summary": "Introduce el numero de ID del alojamiento",
                                 "value": "1"
                             }
                         }
@@ -2765,7 +2765,7 @@
                         },
                         "examples": {
                             "id": {
-                                "summary": "Introduce el numero de ID de la Reserva",
+                                "summary": "Introduce el numero de ID del alojamiento",
                                 "value": "1"
                             }
                         }
@@ -2923,12 +2923,12 @@
                                     "FechaInicio": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "2023/1/1"
+                                        "example": "2023-1-1"
                                     },
                                     "FechaFin": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "2023/12/12"
+                                        "example": "2023-12-12"
                                     }
                                 },
                                 "type": "object"
@@ -3022,12 +3022,12 @@
                                     "FechaInicio": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "2023/1/1"
+                                        "example": "2023-1-1"
                                     },
                                     "FechaFin": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "2023/12/12"
+                                        "example": "2023-12-12"
                                     }
                                 },
                                 "type": "object"
@@ -3397,7 +3397,7 @@
                 ],
                 "summary": "Mostrar un Tipo Alojamiento por ID",
                 "description": "Descripcion de un Tipo Alojamiento.",
-                "operationId": "e4b72eca73bc20e1468a5acf2c0a7844",
+                "operationId": "188e0a1c3d32dff9694e64d4c20574c2",
                 "parameters": [
                     {
                         "name": "id",
@@ -3465,7 +3465,7 @@
                 ],
                 "summary": "Mostrar todos los Tipos de Alojamiento",
                 "description": "Lista todos los Tipos Alojamiento.",
-                "operationId": "04dd7ac6dd212dc36575cc32f56ed418",
+                "operationId": "2edf8d77ec85f6fd53b22678763b9aec",
                 "responses": {
                     "200": {
                         "description": "Mostrar todos los Tipos de Alojamiento."
@@ -3480,7 +3480,7 @@
                 ],
                 "summary": "Borra un Tipo Alojamiento",
                 "description": "Borra un Tipo Alojamiento. Solo por Administradores",
-                "operationId": "85c0ef05108f158580ad7970fe1aa9ef",
+                "operationId": "96f2cea1f97c302ed62b64971c8a22f2",
                 "parameters": [
                     {
                         "name": "id",
@@ -3547,7 +3547,7 @@
                 ],
                 "summary": "Crea un Tipo Alojamiento",
                 "description": "Crea un Tipo Alojamiento. Solo por Administradores.",
-                "operationId": "8d98c2ba666466c11bbed1ea3a5c6a6f",
+                "operationId": "b837a60d2bfa63c2cc81f8d187235978",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -3562,7 +3562,7 @@
                                     "idiomaId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Esto es la ID del Idioma del Tipo Alojamiento"
+                                        "example": 2
                                     }
                                 },
                                 "type": "object"
@@ -3618,14 +3618,14 @@
                 ]
             }
         },
-        "/api/tipovaalojamiento/modifica/{id}": {
+        "/api/tipoalojamiento/modifica/{id}": {
             "put": {
                 "tags": [
                     "Tipo Alojamiento"
                 ],
                 "summary": "Modifica un Tipo Alojamiento",
                 "description": "Modifica un Tipo Alojamiento. Solo por Administradores.",
-                "operationId": "5200f3f21ec5746a1aca0f371ce4ec1c",
+                "operationId": "f5e0518dd22f8d08ffa0aa6c26afed10",
                 "parameters": [
                     {
                         "name": "id",
@@ -3643,15 +3643,15 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "nombre_tipo": {
+                                    "nombreTipo": {
                                         "type": "string",
                                         "format": "string",
                                         "example": "Esto es un nuevo nombre de Tipo Alojamiento"
                                     },
-                                    "idioma_id": {
+                                    "idiomaId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Esto es la ID del Idioma del Tipo Alojamiento"
+                                        "example": 2
                                     }
                                 },
                                 "type": "object"
@@ -3879,7 +3879,7 @@
                                     "idiomaId": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Esto es la ID del Idioma del Tipo"
+                                        "example": 2
                                     }
                                 },
                                 "type": "object"
@@ -3968,7 +3968,7 @@
                                     "idioma_id": {
                                         "type": "number",
                                         "format": "number",
-                                        "example": "Esto es la ID del Idioma del Tipo"
+                                        "example": 2
                                     }
                                 },
                                 "type": "object"
@@ -4405,7 +4405,7 @@
                 "tags": [
                     "Valoracion"
                 ],
-                "summary": "Mostrar una Valoracion",
+                "summary": "Mostrar una Valoracion con un ID usuario y la ID de alojamiento",
                 "description": "Descripcion de una Valoracion.",
                 "operationId": "08a0c4b048075af6dc5b7845b367e43a",
                 "parameters": [
@@ -4477,7 +4477,7 @@
                 "tags": [
                     "Valoracion"
                 ],
-                "summary": "Mostrar valoraciones",
+                "summary": "Mostrar valoraciones por su ID alojamiento",
                 "description": "Descripcion de una Valoracion.",
                 "operationId": "08bfde3b0855303b3bc424a7793a00df",
                 "parameters": [
@@ -4725,7 +4725,7 @@
                 "tags": [
                     "Valoracion"
                 ],
-                "summary": "Modifica una Valoracion",
+                "summary": "Modifica una Valoracion con el ID usuario y su ID alojamiento",
                 "description": "Modifica una Valoracion. Solo por Administradores",
                 "operationId": "3e5e214dd0ffd9f04dc69d2ea6eecb55",
                 "parameters": [

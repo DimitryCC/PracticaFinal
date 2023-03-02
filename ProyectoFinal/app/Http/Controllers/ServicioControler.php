@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\servicio;
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -48,6 +48,10 @@ class ServicioControler extends Controller
      */
     public function show($id){
         try {
+            $checkServi = Servicio::find($id);
+            if($checkServi==null){
+                return response()->json(['error' => 'La ID servicio no existe'], 404);
+            }
             $tupla = Servicio::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             }catch (\Exception $e){
@@ -111,6 +115,12 @@ class ServicioControler extends Controller
      */
     public function borra($id){
         try {
+
+            $checkServi = Servicio::find($id);
+            if($checkServi==null){
+                return response()->json(['error' => 'La ID servicio no existe'], 404);
+            }
+
             $tupla = Servicio::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -227,6 +237,10 @@ class ServicioControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkServi = Servicio::find($id);
+        if($checkServi==null){
+            return response()->json(['error' => 'La ID servicio no existe'], 404);
+        }
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());

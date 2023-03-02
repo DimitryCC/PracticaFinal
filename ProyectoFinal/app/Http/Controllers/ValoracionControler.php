@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alojamiento;
+use App\Models\Usuario;
 use App\Models\Valoracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +21,7 @@ class ValoracionControler extends Controller
      * @OA\Get(
      *     path="/api/valoracion/usuario/{usuarioId}/alojamiento/{AlojamientoId}",
      *     tags={"Valoracion"},
-     *     summary="Mostrar una Valoracion",
+     *     summary="Mostrar una Valoracion con un ID usuario y la ID de alojamiento",
      *     security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *         description="Id del usuario",
@@ -56,6 +58,14 @@ class ValoracionControler extends Controller
     public function show($idusuari, $idallotjament)
     {
         try {
+            $checkUser = Usuario::find($idusuari);
+            if($checkUser==null){
+                return response()->json(['error' => 'La ID usuario no existe'], 404);
+            }
+            $checkAloja = Alojamiento::find($idallotjament);
+            if($checkAloja==null){
+                return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+            }
             $tupla = Valoracion::where('usuarioId', '=', $idusuari)
                 ->where('AlojamientoId', '=', $idallotjament)
                 ->first();
@@ -77,7 +87,7 @@ class ValoracionControler extends Controller
      * @OA\Get(
      *     path="/api/valoracion/aloja/{AlojamientoId}",
      *     tags={"Valoracion"},
-     *     summary="Mostrar valoraciones",
+     *     summary="Mostrar valoraciones por su ID alojamiento",
      *     security={{"bearerAuth":{}}},
      *
      *     @OA\Parameter(
@@ -106,6 +116,11 @@ class ValoracionControler extends Controller
     public function showAllotjament($idallotjament)
     {
         try {
+
+            $checkAloja = Alojamiento::find($idallotjament);
+            if($checkAloja==null){
+                return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+            }
 
             $tupla = Valoracion::where('AlojamientoId','=', $idallotjament)->get();
 
@@ -178,6 +193,14 @@ class ValoracionControler extends Controller
     public function borra($idusuari, $idallotjament)
     {
         try {
+            $checkUser = Usuario::find($idusuari);
+            if($checkUser==null){
+                return response()->json(['error' => 'La ID usuario no existe'], 404);
+            }
+            $checkAloja = Alojamiento::find($idallotjament);
+            if($checkAloja==null){
+                return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+            }
             $tupla = Valoracion::where('usuarioId', '=', $idusuari)
                 ->where('AlojamientoId', '=', $idallotjament)
                 ->delete();
@@ -263,7 +286,7 @@ class ValoracionControler extends Controller
      * @OA\Put(
      *    path="/api/valoracion/modifica/usuario/{usuarioId}/alojamiento/{AlojamientoId}",
      *    tags={"Valoracion"},
-     *    summary="Modifica una Valoracion",
+     *    summary="Modifica una Valoracion con el ID usuario y su ID alojamiento",
      *    description="Modifica una Valoracion. Solo por Administradores",
      *    security={{"bearerAuth":{}}},
      *    @OA\Parameter(name="usuarioId", in="path", description="Id del usuario", required=true,
@@ -315,6 +338,14 @@ class ValoracionControler extends Controller
             'filled' => ':attribute no pot estar buit',
             'unique' => 'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkUser = Usuario::find($idusuari);
+        if($checkUser==null){
+            return response()->json(['error' => 'La ID usuario no existe'], 404);
+        }
+        $checkAloja = Alojamiento::find($idallotjament);
+        if($checkAloja==null){
+            return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+        }
         $validacio = Validator::make($request->all(), $reglesvalidacio, $missatges);
         if (!$validacio->fails()) {
             Valoracion::where('usuarioId', '=', $idusuari)

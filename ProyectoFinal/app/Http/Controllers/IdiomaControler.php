@@ -48,6 +48,10 @@ class IdiomaControler extends Controller
      */
     public function show($id){
         try {
+            $checkIdioma = Idioma::find($id);
+            if($checkIdioma==null){
+                return response()->json(['error' => 'La ID municipio no existe'], 404);
+            }
             $tupla = Idioma::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             }catch (\Exception $e){
@@ -111,6 +115,10 @@ class IdiomaControler extends Controller
      */
     public function borra($id){
         try {
+            $checkIdioma = Idioma::find($id);
+            if($checkIdioma==null){
+                return response()->json(['error' => 'La ID municipio no existe'], 404);
+            }
             $tupla = Idioma::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -227,6 +235,10 @@ class IdiomaControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkIdioma = Idioma::find($id);
+        if($checkIdioma==null){
+            return response()->json(['error' => 'La ID municipio no existe'], 404);
+        }
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());

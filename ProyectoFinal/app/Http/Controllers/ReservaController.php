@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alojamiento;
 use App\Models\Reserva;
+use App\Models\Usuario;
 use App\Models\Valoracion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -49,6 +51,13 @@ class ReservaController extends Controller
      */
     public function show($id){
         try {
+
+            $checkReserva = Reserva::find($id);
+
+            if($checkReserva==null){
+                return response()->json(['error' => 'La ID de reserva no existe'], 404);
+            }
+
             $tupla = Reserva::findOrFail($id);
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -73,7 +82,7 @@ class ReservaController extends Controller
      *         name="id",
      *         required=true,
      *         @OA\Schema(type="string"),
-     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID de la Reserva")
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID del alojamiento")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -96,6 +105,13 @@ class ReservaController extends Controller
     public function showAllotjament($idallotjament)
     {
         try {
+
+            $checkAloja = Alojamiento::find($idallotjament);
+
+            if($checkAloja==null){
+                return response()->json(['error' => 'La ID de alojamiento no existe'], 404);
+            }
+
             $tupla = Reserva::where('AlojamientoId', $idallotjament)->get();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -159,6 +175,11 @@ class ReservaController extends Controller
      */
     public function borra($id){
         try {
+            $checkReserva = Reserva::find($id);
+
+            if($checkReserva==null){
+                return response()->json(['error' => 'La ID de reserva no existe'], 404);
+            }
             $tupla = Reserva::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -181,8 +202,8 @@ class ReservaController extends Controller
      *        @OA\JsonContent(
      *           @OA\Property(property="usuarioId", type="number", format="number", example="1"),
      *           @OA\Property(property="AlojamientoId", type="number", format="number", example="2"),
-     *           @OA\Property(property="FechaInicio", type="number", format="number", example="2023/1/1"),
-     *           @OA\Property(property="FechaFin", type="number", format="number", example="2023/12/12"),
+     *           @OA\Property(property="FechaInicio", type="number", format="number", example="2023-1-1"),
+     *           @OA\Property(property="FechaFin", type="number", format="number", example="2023-12-12"),
      *        ),
      *     ),
      *    @OA\Response(
@@ -214,6 +235,29 @@ class ReservaController extends Controller
             'required'=>'El camp :attribute es obligat',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkAloja = Alojamiento::find($request->input('AlojamientoId'));
+        $checkUser = Usuario::find($request->input('usuarioId'));
+
+        if($checkAloja==null){
+            return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+        }
+
+        if($checkUser==null){
+            return response()->json(['error' => 'La ID usuario no existe'], 404);
+        }
+
+        $fechaInicio = strtotime($request->input('FechaInicio'));
+        $fechaFin = strtotime($request->input('FechaFin'));
+        $fechaActual = strtotime(date('Y-m-d'));
+
+        if ($fechaInicio < $fechaActual) {
+            return response()->json(['error' => 'La fecha de inicio debe ser posterior a la fecha actual.'], 400);
+        }
+
+        if ($fechaFin <= $fechaInicio) {
+            return response()->json(['error' => 'La fecha de fin debe ser posterior a la fecha de inicio.'], 400);
+        }
+
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla=Reserva::create($request->all());
@@ -261,8 +305,8 @@ class ReservaController extends Controller
      *        @OA\JsonContent(
      *           @OA\Property(property="usuari_id", type="number", format="number", example="1"),
      *           @OA\Property(property="Alojamiento_id", type="number", format="number", example="2"),
-     *           @OA\Property(property="FechaInicio", type="number", format="number", example="2023/1/1"),
-     *           @OA\Property(property="FechaFin", type="number", format="number", example="2023/12/12"),
+     *           @OA\Property(property="FechaInicio", type="number", format="number", example="2023-1-1"),
+     *           @OA\Property(property="FechaFin", type="number", format="number", example="2023-12-12"),
      *        ),
      *     ),
      *    @OA\Response(

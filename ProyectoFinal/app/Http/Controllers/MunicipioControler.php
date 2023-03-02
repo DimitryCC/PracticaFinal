@@ -48,6 +48,10 @@ class MunicipioControler extends Controller
      */
     public function show($id){
         try {
+            $checkMunicipio = Municipio::find($id);
+            if($checkMunicipio==null){
+                return response()->json(['error' => 'La ID municipio no existe'], 404);
+            }
             $tupla = Municipio::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             }catch (\Exception $e){
@@ -111,6 +115,10 @@ class MunicipioControler extends Controller
      */
     public function borra($id){
         try {
+            $checkMunicipio = Municipio::find($id);
+            if($checkMunicipio==null){
+                return response()->json(['error' => 'La ID municipio no existe'], 404);
+            }
             $tupla = Municipio::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -232,6 +240,10 @@ class MunicipioControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkMunicipio = Municipio::find($id);
+        if($checkMunicipio==null){
+            return response()->json(['error' => 'La ID municipio no existe'], 404);
+        }
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());

@@ -50,8 +50,15 @@ class FotografiaControler extends Controller
     public function show($id)
     {
         try {
+            $checkFotos = Fotografia::find($id);
+            if($checkFotos==null){
+                return response()->json(['error' => 'La ID foto no existe'], 404);
+            }
             $tupla = Fotografia::findOrFail($id);
-            return response()->json(['status' => 'success', 'result' => $tupla->ruta], 200);
+            $ruta = array_get($tupla, 'ruta');
+            $tupla->ruta_imagen = asset($ruta);
+
+            return response()->json(['status' => 'success', 'result' => $tupla], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'result' => $e], 400);
         }
@@ -74,7 +81,7 @@ class FotografiaControler extends Controller
      *         name="id",
      *         required=true,
      *         @OA\Schema(type="string"),
-     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID de la Fotografia")
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID del alojamiento")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -98,7 +105,10 @@ class FotografiaControler extends Controller
     public function mostraFotosA($idallotjament)
     {
         try {
-
+            $checkFotos = Alojamiento::find($idallotjament);
+            if($checkFotos==null){
+                return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+            }
             $tupla = Fotografia::where('AlojamientoId','=', $idallotjament)->get();
 
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
@@ -166,6 +176,10 @@ class FotografiaControler extends Controller
     public function borra($id)
     {
         try {
+            $checkFotos = Fotografia::find($id);
+            if($checkFotos==null){
+                return response()->json(['error' => 'La ID foto no existe'], 404);
+            }
             $tupla = Fotografia::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         } catch (\Exception $e) {
@@ -309,6 +323,11 @@ class FotografiaControler extends Controller
             'filled' => ':attribute no pot estar buit',
             'unique' => 'Camp :attribute amb valor :input ja hi es'
         ];
+
+        $checkFotos = Fotografia::find($id);
+        if($checkFotos==null){
+            return response()->json(['error' => 'La ID foto no existe'], 404);
+        }
 
         $validacio = Validator::make($reglesvalidacio, $missatges);
 

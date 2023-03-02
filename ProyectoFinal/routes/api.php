@@ -136,15 +136,15 @@ Route::group(['prefix'=>'servicio'],function() {
 //Ordenes TipoAlojamiento
 Route::group(['prefix'=>'tipoalojamiento'],function() {
     // * /api/tipoalojamiento/
-    Route::get('', [\App\Http\Controllers\TipoAlojameintoControler::class, 'tots']);
+    Route::get('', [\App\Http\Controllers\TipoAlojamientoControler::class, 'tots']);
     // * /api/tipoalojamiento/1
-    Route::get('/{id}', [\App\Http\Controllers\TipoAlojameintoControler::class, 'show']);
+    Route::get('/{id}', [\App\Http\Controllers\TipoAlojamientoControler::class, 'show']);
     // * /api/tipoalojamiento/borra/1
-    Route::delete('/borra/{id}', [\App\Http\Controllers\TipoAlojameintoControler::class, 'borra'])->middleware('checkTokenAdmin');
+    Route::delete('/borra/{id}', [\App\Http\Controllers\TipoAlojamientoControler::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/tipoalojamiento/crea
-    Route::post('/crea', [\App\Http\Controllers\TipoAlojameintoControler::class, 'crea'])->middleware('checkTokenAdmin');
+    Route::post('/crea', [\App\Http\Controllers\TipoAlojamientoControler::class, 'crea'])->middleware('checkTokenAdmin');
     // * /api/tipoalojamiento/modifica/1
-    Route::put('/modifica/{id}', [\App\Http\Controllers\TipoAlojameintoControler::class, 'modifica'])->middleware('checkTokenAdmin');
+    Route::put('/modifica/{id}', [\App\Http\Controllers\TipoAlojamientoControler::class, 'modifica'])->middleware('checkTokenAdmin');
 });
 //Ordenes TipoVacacional
 Route::group(['prefix'=>'tipovacacional'],function() {
@@ -194,11 +194,11 @@ Route::group(['prefix'=>'AlojaServi'],function() {
     // * /api/reserva/
     Route::get('', [\App\Http\Controllers\AlojamientosServicios::class, 'tots']);
     // * /api/reserva/1
-    Route::get('/usuari/{servicioId}/allotjament/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'show']);
+    Route::get('/servicio/{idservei}/alojamiento/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'show']);
 
     Route::get('/aloja/{id}', [\App\Http\Controllers\AlojamientosServicios::class, 'mostraAloSer']);
     // * /api/reserva/borra/1
-    Route::delete('/borra/usuari/{servicioId}/allotjament/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'borra'])->middleware('checkTokenAdmin');
+    Route::delete('/borra/servicio/{idservei}/alojamiento/{idallotjament}', [\App\Http\Controllers\AlojamientosServicios::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/reserva/crea
     Route::post('/crea', [\App\Http\Controllers\AlojamientosServicios::class, 'crea'])->middleware('checkTokenUser');
     // * /api/reserva/modifica/1

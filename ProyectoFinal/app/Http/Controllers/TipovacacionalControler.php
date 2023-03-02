@@ -48,7 +48,12 @@ class TipovacacionalControler extends Controller
      */
     public function show($id){
         try {
-            $tupla = Tipovacacional::findOrFail($id);
+            $checkTipoVaca = TipoVacacional::find($id);
+            if($checkTipoVaca==null){
+                return response()->json(['error' => 'La ID tipo vacacional no existe'], 404);
+            }
+
+            $tupla = TipoVacacional::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -71,7 +76,7 @@ class TipovacacionalControler extends Controller
      * )
      */
     public function tots(){
-        $tuples= Tipovacacional::paginate(10);
+        $tuples= TipoVacacional::paginate(10);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 
@@ -111,7 +116,12 @@ class TipovacacionalControler extends Controller
      */
     public function borra($id){
         try {
-            $tupla = Tipovacacional::findOrFail($id)->delete();
+            $checkTipoVaca = TipoVacacional::find($id);
+            if($checkTipoVaca==null){
+                return response()->json(['error' => 'La ID tipo vacacional no existe'], 404);
+            }
+
+            $tupla = TipoVacacional::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -133,7 +143,7 @@ class TipovacacionalControler extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="nombreTipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Vacacional"),
-     *           @OA\Property(property="idiomaId", type="number", format="number", example="Esto es la ID del Idioma del Tipo")
+     *           @OA\Property(property="idiomaId", type="number", format="number", example=2)
      *        ),
      *     ),
      *    @OA\Response(
@@ -165,7 +175,7 @@ class TipovacacionalControler extends Controller
         ];
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
-            $tupla= Tipovacacional::create($request->all());
+            $tupla= TipoVacacional::create($request->all());
             return response()->json(['status'=>'success','result'=>$tupla],200);
         }else {
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
@@ -201,7 +211,7 @@ class TipovacacionalControler extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="nombre_tipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Vacacional"),
-     *           @OA\Property(property="idioma_id", type="number", format="number", example="Esto es la ID del Idioma del Tipo")
+     *           @OA\Property(property="idioma_id", type="number", format="number", example=2)
      *        ),
      *     ),
      *    @OA\Response(
@@ -223,7 +233,7 @@ class TipovacacionalControler extends Controller
      *  )
      */
     public function modifica(Request $request, $id){
-        $tupla = Tipovacacional::findOrFail($id);
+        $tupla = TipoVacacional::findOrFail($id);
         $reglesvalidacio=[
             'nombreTipo'=>['filled','max:30','unique:tiposVacacional,nombreTipo'],
             'idiomaId'=>['filled']
@@ -232,6 +242,11 @@ class TipovacacionalControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkTipoVaca = TipoVacacional::find($id);
+        if($checkTipoVaca==null){
+            return response()->json(['error' => 'La ID tipo vacacional no existe'], 404);
+        }
+
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());

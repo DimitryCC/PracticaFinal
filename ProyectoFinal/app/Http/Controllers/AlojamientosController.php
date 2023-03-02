@@ -49,6 +49,10 @@ class AlojamientosController extends Controller
      */
     public function show($id){
             try {
+                $checkAloja = Alojamiento::find($id);
+                if($checkAloja==null){
+                    return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+                }
                 $tupla = Alojamiento::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             }catch (\Exception $e){
@@ -111,6 +115,10 @@ class AlojamientosController extends Controller
      */
     public function borra($id){
         try {
+            $checkAloja = Alojamiento::find($id);
+            if($checkAloja==null){
+                return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+            }
             $tupla = Alojamiento::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
@@ -281,6 +289,10 @@ class AlojamientosController extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkAloja = Alojamiento::find($id);
+        if($checkAloja==null){
+            return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+        }
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());

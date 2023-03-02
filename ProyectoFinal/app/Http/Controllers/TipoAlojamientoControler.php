@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TiposAlojameinto;
+use App\Models\TiposAlojamiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class TipoAlojameintoControler extends Controller
+class TipoAlojamientoControler extends Controller
 {
     //
     /**
@@ -48,7 +48,11 @@ class TipoAlojameintoControler extends Controller
      */
     public function show($id){
         try {
-            $tupla = TiposAlojameinto::findOrFail($id);
+            $checkTipoAloja = TiposAlojamiento::find($id);
+            if($checkTipoAloja==null){
+                return response()->json(['error' => 'La ID tipo alojamiento no existe'], 404);
+            }
+            $tupla = TiposAlojamiento::findOrFail($id);
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -71,7 +75,7 @@ class TipoAlojameintoControler extends Controller
      * )
      */
     public function tots(){
-        $tuples= TiposAlojameinto::paginate(10);
+        $tuples= TiposAlojamiento::paginate(10);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
 
@@ -111,7 +115,11 @@ class TipoAlojameintoControler extends Controller
      */
     public function borra($id){
         try {
-            $tupla = TiposAlojameinto::findOrFail($id)->delete();
+            $checkTipoAloja = TiposAlojamiento::find($id);
+            if($checkTipoAloja==null){
+                return response()->json(['error' => 'La ID tipo alojamiento no existe'], 404);
+            }
+            $tupla = TiposAlojamiento::findOrFail($id)->delete();
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -133,7 +141,7 @@ class TipoAlojameintoControler extends Controller
      *        required=true,
      *        @OA\JsonContent(
      *           @OA\Property(property="nombreTipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Alojamiento"),
-     *           @OA\Property(property="idiomaId", type="number", format="number", example="Esto es la ID del Idioma del Tipo Alojamiento")
+     *           @OA\Property(property="idiomaId", type="number", format="number", example=2)
      *        ),
      *     ),
      *    @OA\Response(
@@ -165,7 +173,7 @@ class TipoAlojameintoControler extends Controller
         ];
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
-            $tupla= TiposAlojameinto::create($request->all());
+            $tupla= TiposAlojamiento::create($request->all());
             return response()->json(['status'=>'success','result'=>$tupla],200);
         }else {
             return response()->json(['status'=>'error','result'=>$validacio->errors()],400);
@@ -189,7 +197,7 @@ class TipoAlojameintoControler extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      * @OA\Put(
-     *    path="/api/tipovaalojamiento/modifica/{id}",
+     *    path="/api/tipoalojamiento/modifica/{id}",
      *    tags={"Tipo Alojamiento"},
      *    summary="Modifica un Tipo Alojamiento",
      *    description="Modifica un Tipo Alojamiento. Solo por Administradores.",
@@ -200,8 +208,8 @@ class TipoAlojameintoControler extends Controller
      *     @OA\RequestBody(
      *        required=true,
      *        @OA\JsonContent(
-     *           @OA\Property(property="nombre_tipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Alojamiento"),
-     *           @OA\Property(property="idioma_id", type="number", format="number", example="Esto es la ID del Idioma del Tipo Alojamiento")
+     *           @OA\Property(property="nombreTipo", type="string", format="string", example="Esto es un nuevo nombre de Tipo Alojamiento"),
+     *           @OA\Property(property="idiomaId", type="number", format="number", example=2)
      *        ),
      *     ),
      *    @OA\Response(
@@ -223,7 +231,7 @@ class TipoAlojameintoControler extends Controller
      *  )
      */
     public function modifica(Request $request, $id){
-        $tupla = TiposAlojameinto::findOrFail($id);
+        $tupla = TiposAlojamiento::findOrFail($id);
         $reglesvalidacio=[
             'nombreTipo'=>['filled','max:30','unique:tiposAlojameintos,nombreTipo'],
             'idiomaId'=>['filled']
@@ -232,6 +240,11 @@ class TipoAlojameintoControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkTipoAloja = TiposAlojamiento::find($id);
+        if($checkTipoAloja==null){
+            return response()->json(['error' => 'La ID tipo alojamiento no existe'], 404);
+        }
+
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla->update($request->all());
