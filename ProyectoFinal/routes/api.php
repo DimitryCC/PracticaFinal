@@ -25,6 +25,8 @@ Route::group(['prefix'=>'alojamiento'],function() {
     Route::get('', [AlojamientosController::class, 'tots']);
     // * /api/alojamiento/1
     Route::get('/{id}', [AlojamientosController::class, 'show']);
+    // * /api/alojamiento/usuario/2
+    Route::get('/usuario/{idusuario}', [AlojamientosController::class, 'alojasUser']);
     // * /api/alojamiento/borra/1
     Route::delete('/borra/{id}', [AlojamientosController::class, 'borra'])->middleware('checkTokenAdmin');
     // * /api/alojamiento/crea

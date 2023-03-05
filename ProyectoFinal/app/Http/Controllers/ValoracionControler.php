@@ -117,12 +117,16 @@ class ValoracionControler extends Controller
     {
         try {
 
-            $checkAloja = Alojamiento::find($idallotjament);
-            if($checkAloja==null){
+            $checkAloja = Alojamiento::where('ID','=', $idallotjament)->get();
+            if($checkAloja->count() == 0){
                 return response()->json(['error' => 'La ID alojamiento no existe'], 404);
             }
 
             $tupla = Valoracion::where('AlojamientoId','=', $idallotjament)->get();
+
+            if($tupla->count() == 0){
+                return response()->json(['error' => 'La ID alojamiento no tiene una valoracion asignada'], 404);
+            }
 
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){

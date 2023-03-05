@@ -95,11 +95,18 @@ class DescripcionControler extends Controller
 
     public function showAllotjament($alojamientoId){
         try {
-            $checkDesc = Alojamiento::find($alojamientoId);
-            if($checkDesc==null){
-                return response()->json(['error' => 'La ID alojammiento no existe'], 404);
+            $checkAloja = Alojamiento::where('ID','=', $alojamientoId)->get();
+            if($checkAloja->count() == 0){
+                return response()->json(['error' => 'La ID alojamiento no existe'], 404);
             }
+
             $tupla = Descripcion::where('alojamientoId',$alojamientoId)->get();
+
+            if($tupla->count() == 0){
+                return response()->json(['error' => 'La ID alojamiento no tiene una descripcion asignada'], 404);
+            }
+
+
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);

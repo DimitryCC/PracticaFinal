@@ -20,7 +20,7 @@ class TraduccionDescripcionesControler extends Controller
      * @return \Illuminate\Http\Response
      * @OA\Get(
      *     path="/api/tradDesc/descripcio/{iddescripcion}/idioma/{ididioma}",
-     *     tags={"TraduccionDescripcions"},
+     *     tags={"TraduccionDescripciones"},
      *     summary="Mostrar una traduccion de descripcion",
      *     @OA\Parameter(
      *         description="Id del descripcion",
@@ -87,7 +87,7 @@ class TraduccionDescripcionesControler extends Controller
      * @return \Illuminate\Http\Response
      * @OA\Get(
      *     path="/api/tradDesc",
-     *     tags={"TraduccionDescripcions"},
+     *     tags={"TraduccionDescripciones"},
      *     summary="Mostrar todos las traducciones de descripciones",
      *     @OA\Response(
      *         response=200,
@@ -108,7 +108,7 @@ class TraduccionDescripcionesControler extends Controller
      * @return \Illuminate\Http\Response
      * @OA\Delete(
      *    path="/api/tradDesc/borra/descripcio/{iddescripcion}/idioma/{ididioma}",
-     *    tags={"TraduccionDescripcions"},
+     *    tags={"TraduccionDescripciones"},
      *    summary="Borra una traduccion descripcion",
      *    description="Borra una traduccion Servicio. Solo por Administradores",
      *    security={{"bearerAuth":{}}},
@@ -168,7 +168,7 @@ class TraduccionDescripcionesControler extends Controller
      * @return \Illuminate\Http\Response
      * @OA\Post(
      *    path="/api/tradDesc/crea",
-     *    tags={"TraduccionDescripcions"},
+     *    tags={"TraduccionDescripciones"},
      *    summary="Crea una traduccion descripcion",
      *    description="Crea una traduccion Servicio. Solo por Administradores.",
      *    security={{"bearerAuth":{}}},
@@ -235,7 +235,7 @@ class TraduccionDescripcionesControler extends Controller
      * @return \Illuminate\Http\Response
      * @OA\Put(
      *    path="/api/tradDesc/modifica/descripcio/{iddescripcion}/idioma/{ididioma}",
-     *    tags={"TraduccionDescripcions"},
+     *    tags={"TraduccionDescripciones"},
      *    summary="Modifica una traduccion descripcion",
      *    description="Modifica una traduccion Servicio. Solo por Administradores.",
      *    security={{"bearerAuth":{}}},

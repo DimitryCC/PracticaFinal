@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Editor;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Models\Alojamiento;
 use Illuminate\Support\Facades\Validator;
@@ -49,8 +50,8 @@ class AlojamientosController extends Controller
      */
     public function show($id){
             try {
-                $checkAloja = Alojamiento::find($id);
-                if($checkAloja==null){
+                $checkAloja = Alojamiento::where('ID','=', $id)->get();
+                if($checkAloja->count() == 0){
                     return response()->json(['error' => 'La ID alojamiento no existe'], 404);
                 }
                 $tupla = Alojamiento::findOrFail($id);
@@ -59,6 +60,57 @@ class AlojamientosController extends Controller
                 return response()->json(['status'=>'error','result'=>$e],400);
             }
         }
+
+    /**
+     * @urlParam id integer required ID de la alojamiento a mostrar.
+     * Display the specified resource.
+     *
+     * @OA\Get(
+     *     path="/api/alojamiento/usuario/{idusuario}",
+     *     tags={"Alojamientos"},
+     *     summary="Mostrar alojamientos por ID usuario",
+     *     security={{"bearerAuth":{}}},
+     *
+     *     @OA\Parameter(
+     *         description="Id del usuario",
+     *         in="path",
+     *         name="idusuario",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID del usuario")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Informacion de los alojamientos.",
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Hay un error.",
+     *         @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="error"),
+     *          @OA\Property(property="data",type="string", example="Alojamiento no encontrada")
+     *           ),
+     * )
+     * )
+     */
+
+    public function alojasUser($idusuari){
+        try {
+            $checkUser = Usuario::where('ID','=',$idusuari);
+            if($checkUser->count() == 0){
+                return response()->json(['error' => 'La ID usuario no existe'], 404);
+            }
+            $checkAlojaUser = Alojamiento::where('usuario', "=",$idusuari)->get();
+
+            if($checkAlojaUser->count() == 0){
+                return response()->json(['error' => 'La ID usuario no tiene un alojamiento asignado'], 404);
+            }
+
+            return response()->json(['status' => 'success', 'result' => $checkAlojaUser], 200);
+        }catch (\Exception $e){
+            return response()->json(['status'=>'error','result'=>$e],400);
+        }
+    }
 
     /**
      * Lista todos los Alojamientos.

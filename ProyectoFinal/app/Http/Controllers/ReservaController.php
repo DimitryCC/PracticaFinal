@@ -106,13 +106,20 @@ class ReservaController extends Controller
     {
         try {
 
-            $checkAloja = Alojamiento::find($idallotjament);
+            $checkAloja = Alojamiento::where('ID', "=",$idallotjament)->get();
 
-            if($checkAloja==null){
+            if($checkAloja->count() == 0){
+
                 return response()->json(['error' => 'La ID de alojamiento no existe'], 404);
             }
 
             $tupla = Reserva::where('AlojamientoId', $idallotjament)->get();
+
+            if($tupla->count() == 0){
+                return response()->json(['error' => 'La ID alojamiento no tiene una reserva asignada'], 404);
+            }
+
+
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
@@ -235,14 +242,13 @@ class ReservaController extends Controller
             'required'=>'El camp :attribute es obligat',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
-        $checkAloja = Alojamiento::find($request->input('AlojamientoId'));
-        $checkUser = Usuario::find($request->input('usuarioId'));
 
-        if($checkAloja==null){
+        $checkAloja = Alojamiento::where('ID','=', $request->input('AlojamientoId'))->get();
+        if($checkAloja->count() == 0){
             return response()->json(['error' => 'La ID alojamiento no existe'], 404);
         }
-
-        if($checkUser==null){
+        $checkUser = Usuario::where('ID','=',$request->input('usuarioId'));
+        if($checkUser->count() == 0){
             return response()->json(['error' => 'La ID usuario no existe'], 404);
         }
 
@@ -256,6 +262,27 @@ class ReservaController extends Controller
 
         if ($fechaFin <= $fechaInicio) {
             return response()->json(['error' => 'La fecha de fin debe ser posterior a la fecha de inicio.'], 400);
+        }
+
+        $reservasExistentes = Reserva::where('AlojamientoId', $request->input('AlojamientoId'))
+            ->where(function ($query) use ($fechaInicio, $fechaFin) {
+                $query->where(function ($query) use ($fechaInicio, $fechaFin) {
+                    $query->where('FechaInicio', '>=', date('Y-m-d', $fechaInicio))
+                        ->where('FechaInicio', '<', date('Y-m-d', $fechaFin));
+                })
+                    ->orWhere(function ($query) use ($fechaInicio, $fechaFin) {
+                        $query->where('FechaFin', '>', date('Y-m-d', $fechaInicio))
+                            ->where('FechaFin', '<=', date('Y-m-d', $fechaFin));
+                    })
+                    ->orWhere(function ($query) use ($fechaInicio, $fechaFin) {
+                        $query->where('FechaInicio', '<=', date('Y-m-d', $fechaInicio))
+                            ->where('FechaFin', '>=', date('Y-m-d', $fechaFin));
+                    });
+            })
+            ->get();
+
+        if ($reservasExistentes->count() > 0) {
+            return response()->json(['error' => 'Las fechas ya están reservadas.'], 400);
         }
 
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);

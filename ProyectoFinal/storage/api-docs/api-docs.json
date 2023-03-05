@@ -86,6 +86,62 @@
                 }
             }
         },
+        "/api/alojamiento/usuario/{idusuario}": {
+            "get": {
+                "tags": [
+                    "Alojamientos"
+                ],
+                "summary": "Mostrar alojamientos por ID usuario",
+                "operationId": "5fd59b90dc973684ebe1fb5cca27c67d",
+                "parameters": [
+                    {
+                        "name": "idusuario",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del usuario",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de los alojamientos."
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Alojamiento no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/alojamiento": {
             "get": {
                 "tags": [
@@ -4027,7 +4083,7 @@
         "/api/tradDesc/descripcio/{iddescripcion}/idioma/{ididioma}": {
             "get": {
                 "tags": [
-                    "TraduccionDescripcions"
+                    "TraduccionDescripciones"
                 ],
                 "summary": "Mostrar una traduccion de descripcion",
                 "description": "Descripcion de un Servicio.",
@@ -4110,7 +4166,7 @@
         "/api/tradDesc": {
             "get": {
                 "tags": [
-                    "TraduccionDescripcions"
+                    "TraduccionDescripciones"
                 ],
                 "summary": "Mostrar todos las traducciones de descripciones",
                 "description": "Lista todos los Servicios.",
@@ -4125,7 +4181,7 @@
         "/api/tradDesc/borra/descripcio/{iddescripcion}/idioma/{ididioma}": {
             "delete": {
                 "tags": [
-                    "TraduccionDescripcions"
+                    "TraduccionDescripciones"
                 ],
                 "summary": "Borra una traduccion descripcion",
                 "description": "Borra una traduccion Servicio. Solo por Administradores",
@@ -4201,7 +4257,7 @@
         "/api/tradDesc/crea": {
             "post": {
                 "tags": [
-                    "TraduccionDescripcions"
+                    "TraduccionDescripciones"
                 ],
                 "summary": "Crea una traduccion descripcion",
                 "description": "Crea una traduccion Servicio. Solo por Administradores.",
@@ -4284,7 +4340,7 @@
         "/api/tradDesc/modifica/descripcio/{iddescripcion}/idioma/{ididioma}": {
             "put": {
                 "tags": [
-                    "TraduccionDescripcions"
+                    "TraduccionDescripciones"
                 ],
                 "summary": "Modifica una traduccion descripcion",
                 "description": "Modifica una traduccion Servicio. Solo por Administradores.",
