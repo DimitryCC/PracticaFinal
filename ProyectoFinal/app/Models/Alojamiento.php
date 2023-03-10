@@ -14,5 +14,5 @@ class Alojamiento extends Model
     public $timestamps=false;
     protected $fillable=['ID','nombre','descripcion','direccion','numeroPersonas','numeroHabitaciones',
         'numeroCamas','numeroBanos','tipoAlojamiento','tipoVacacional',
-        'categoria','municipio','usuario'];
+        'categoria','municipio','usuario', 'destacado'];
 }

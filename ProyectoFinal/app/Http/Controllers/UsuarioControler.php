@@ -59,6 +59,7 @@ class UsuarioControler extends Controller
                 }
 
                 $tupla = Usuario::findOrFail($id);
+
                 return response()->json(['status' => 'success', 'result' => $tupla], 200);
             } catch (\Exception $e) {
                 return response()->json(['status' => 'error', 'result' => $e], 400);
@@ -88,6 +89,45 @@ class UsuarioControler extends Controller
         $tuples=Usuario::paginate(200);
         return response()->json(['status'=>'success','result'=>$tuples],200);
     }
+
+
+    /**
+     * Lista todas las usuarios.
+     *
+     *
+     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/usuario/datos",
+     *     tags={"Usuarios"},
+     *     summary="Mostrar ID, nombreCompleto,telefono, correo de los usuarios",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Mostrar todas los usuarios."
+     *     ),
+     * )
+     */
+
+    public function totsSimple(){
+
+        $tuples=Usuario::paginate(200);
+
+        $users = [];
+
+        foreach($tuples as $tuple) {
+            $user = [
+                'id' => $tuple->ID,
+                'nombreCompleto' => $tuple->nombreCompleto,
+                'telefono' => $tuple->telefono,
+                'correo' => $tuple->correo,
+            ];
+
+            $users[] = $user;
+        }
+
+        return response()->json(['status' => 'success', 'result' => $users], 200);
+    }
+
 
     /**
      * Borra un Usuario.
@@ -188,7 +228,8 @@ class UsuarioControler extends Controller
             'direccion'=>[],
             'correo'=>['required', 'unique:usuarios,correo'],
             'telefono'=>['required'],
-            'contrasena'=>['required']
+            'contrasena'=>['required'],
+
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -283,7 +324,6 @@ class UsuarioControler extends Controller
             'telefono'=>['filled'],
             'propietari'=>['filled'],
             'administrador'=>['filled'],
-            'contrasena'=>['filled'],
             'direccion'=>['filled'],
 
         ];
@@ -300,6 +340,11 @@ class UsuarioControler extends Controller
 
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
+            if($request->has("contrasena") && $request->input('contrasena') && $request->contrasena !==""){
+                $request->merge(['contrasena'=> Hash::make($request->input('contrasena'))]);
+            }else{
+                unset($request['contrasena']);
+            }
             $tupla->update($request->all());
             return response()->json(['status'=>'success','result'=>$tupla],200);
         }else {

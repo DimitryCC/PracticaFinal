@@ -19,7 +19,7 @@ class Usuario extends Model
     'direccion','correo','apiTocken'];
     protected $hidden= ['apiTocken'];
     */
-    protected $fillable=['DNI','nombreCompleto','telefono',
-    'direccion','correo','contrasena'];
+    protected $fillable=['ID','DNI','nombreCompleto','telefono',
+    'direccion','correo','contrasena','propietari'];
     protected $hidden= ['contrasena'];
 }

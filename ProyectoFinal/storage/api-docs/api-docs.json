@@ -297,6 +297,11 @@
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
+                                    },
+                                    "destacado": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "boolean"
                                     }
                                 },
                                 "type": "object"
@@ -436,6 +441,11 @@
                                         "type": "number",
                                         "format": "number",
                                         "example": "1"
+                                    },
+                                    "destacado": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "boolean"
                                     }
                                 },
                                 "type": "object"
@@ -2822,6 +2832,74 @@
                         "examples": {
                             "id": {
                                 "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la reserva.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "reserva no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reserva/usuario/{usuarioId}": {
+            "get": {
+                "tags": [
+                    "Reservas"
+                ],
+                "summary": "Mostrar una Reserva por ID usuario",
+                "description": "Descripcion de una Reserva.",
+                "operationId": "605c987566032c170600fab2efabe162",
+                "parameters": [
+                    {
+                        "name": "usuarioId",
+                        "in": "path",
+                        "description": "id deL usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del usuario",
                                 "value": "1"
                             }
                         }
@@ -5612,6 +5690,26 @@
                 ]
             }
         },
+        "/api/usuario/datos": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Mostrar ID, nombreCompleto,telefono, correo de los usuarios",
+                "description": "Lista todas las usuarios.",
+                "operationId": "842b5d296b3c3927404e1515af8de83a",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas los usuarios."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/usuario/borra/{id}": {
             "delete": {
                 "tags": [
@@ -5988,6 +6086,63 @@
                         "examples": {
                             "id": {
                                 "summary": "Introduce el numero de ID del alojamiento",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Informacion de la Valoracion."
+                    },
+                    "400": {
+                        "description": "Hay un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": "Valoracion no encontrada"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/valoracion/usuario/{usuarioId}": {
+            "get": {
+                "tags": [
+                    "Valoracion"
+                ],
+                "summary": "Mostrar valoraciones por su ID usuario",
+                "description": "Descripcion de una Valoracion.",
+                "operationId": "f42010e89c139e3e14191a0c6f25f66e",
+                "parameters": [
+                    {
+                        "name": "usuarioId",
+                        "in": "path",
+                        "description": "Id del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "id": {
+                                "summary": "Introduce el numero de ID del usuario",
                                 "value": "1"
                             }
                         }

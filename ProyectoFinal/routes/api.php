@@ -37,6 +37,8 @@ Route::group(['prefix'=>'alojamiento'],function() {
 
 //Ordenes Usuario
 Route::group(['prefix'=>'usuario'],function (){
+
+    Route::get('/datos', [\App\Http\Controllers\UsuarioControler::class, 'totsSimple']);
     // * /api/usuario/
     Route::get('', [\App\Http\Controllers\UsuarioControler::class, 'tots'])->middleware('checkTokenUser');
     // * /api/usuario/1
@@ -46,7 +48,7 @@ Route::group(['prefix'=>'usuario'],function (){
     // * /api/usuario/crea
     Route::post('/crea', [\App\Http\Controllers\UsuarioControler::class, 'crea']);
     // * /api/usuario/modifica/1
-    Route::put('/modifica/{id}', [\App\Http\Controllers\UsuarioControler::class, 'modifica'])->middleware('checkTokenAdmin');
+    Route::put('/modifica/{id}', [\App\Http\Controllers\UsuarioControler::class, 'modifica'])->middleware('checkTokenUser');
 });
 
 //Ordenes Categorias
@@ -163,6 +165,9 @@ Route::group(['prefix'=>'tipovacacional'],function() {
 });
 //Ordenes Valoracion
 Route::group(['prefix'=>'valoracion'],function() {
+    // * /api/valoracion/usuario/{usuarioId}
+    Route::get('/usuario/{usuarioId}', [\App\Http\Controllers\ValoracionControler::class, 'mostraUser'])->middleware('checkTokenUser');
+    // * /api/valoracion/aloja/{id}
     Route::get('/aloja/{id}', [\App\Http\Controllers\ValoracionControler::class, 'showAllotjament']);
     // * /api/valoracion/
     Route::get('', [\App\Http\Controllers\ValoracionControler::class, 'tots']);
@@ -181,7 +186,9 @@ Route::group(['prefix'=>'reserva'],function() {
     Route::get('', [\App\Http\Controllers\ReservaController::class, 'tots']);
     // * /api/reserva/1
     Route::get('/{id}', [\App\Http\Controllers\ReservaController::class, 'show']);
-
+    // * /api/reserva/1/{usuarioId}
+    Route::get('/usuario/{usuarioId}', [\App\Http\Controllers\ReservaController::class, 'mostraUser']);
+    // * /api/reserva/aloja/{id}
     Route::get('/aloja/{id}', [\App\Http\Controllers\ReservaController::class, 'showAllotjament']);
     // * /api/reserva/borra/1
     Route::delete('/borra/{id}', [\App\Http\Controllers\ReservaController::class, 'borra'])->middleware('checkTokenAdmin');

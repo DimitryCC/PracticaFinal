@@ -107,7 +107,7 @@ class FotografiaControler extends Controller
                 return response()->json(['error' => 'La ID alojamiento no existe'], 404);
             }
 
-            $tupla = Fotografia::where('AlojamientoId','=', $idallotjament)->get();
+            $tupla = Fotografia::where('alojamientoId','=', $idallotjament)->get();
 
             if($tupla->count() == 0){
                 return response()->json(['error' => 'La ID alojamiento no tiene una fotografia asignada'], 404);

@@ -135,6 +135,61 @@ class ValoracionControler extends Controller
     }
 
     /**
+     * Descripcion de una Valoracion.
+     * @urlParam id integer required ID de la alojamiento a mostrar.
+     * Display the specified resource.
+     *
+     * @OA\Get(
+     *     path="/api/valoracion/usuario/{usuarioId}",
+     *     tags={"Valoracion"},
+     *     summary="Mostrar valoraciones por su ID usuario",
+     *     security={{"bearerAuth":{}}},
+     *
+     *     @OA\Parameter(
+     *         description="Id del usuario",
+     *         in="path",
+     *         name="usuarioId",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID del usuario")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Informacion de la Valoracion.",
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Hay un error.",
+     *         @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="error"),
+     *          @OA\Property(property="data",type="string", example="Valoracion no encontrada")
+     *           ),
+     * )
+     * )
+     */
+
+
+    public function mostraUser($usuari)
+    {
+        try {
+
+            $checkUser = Usuario::find($usuari);
+            if($checkUser==null){
+                return response()->json(['error' => 'La ID usuario no existe'], 404);
+            }
+
+            $checkValor = Valoracion::where('usuarioId','=', $usuari)->get();
+            if($checkValor->count() == 0){
+                return response()->json(['error' => 'La ID usuario no tiene alojamiento asignado'], 404);
+            }
+
+            return response()->json(['status' => 'success', 'result' => $checkValor], 200);
+        }catch (\Exception $e){
+            return response()->json(['status'=>'error','result'=>$e],400);
+        }
+    }
+
+    /**
      * Lista todas las Valoraciones.
      *
      *

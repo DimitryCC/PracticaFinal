@@ -203,6 +203,8 @@ class AlojamientosController extends Controller
      *           @OA\Property(property="categoria", type="number", format="number", example="1"),
      *           @OA\Property(property="municipio", type="number", format="number", example="1"),
      *           @OA\Property(property="usuario", type="number", format="number", example="1"),
+     *           @OA\Property(property="destacado", type="number", format="number", example="boolean"),
+     *
      *        ),
      *     ),
      *    @OA\Response(
@@ -236,7 +238,8 @@ class AlojamientosController extends Controller
             'tipoVacacional'=>['required'],
             'categoria'=>['required'],
             'municipio'=>['required'],
-            'usuario'=>['required']
+            'usuario'=>['required'],
+            'destacado'=>['required'],
         ];
         $missatges=[
             'required'=>'El camp :attribute es obligat',
@@ -300,6 +303,7 @@ class AlojamientosController extends Controller
      *           @OA\Property(property="categoria", type="number", format="number", example="1"),
      *           @OA\Property(property="municipio", type="number", format="number", example="1"),
      *           @OA\Property(property="usuario", type="number", format="number", example="1"),
+     *           @OA\Property(property="destacado", type="number", format="number", example="boolean"),
      *        ),
      *     ),
      *    @OA\Response(
@@ -334,7 +338,8 @@ class AlojamientosController extends Controller
             'tipoVacacional'=>['filled'],
             'categoria'=>['filled'],
             'municipio'=>['filled'],
-            'usuario'=>['filled']
+            'usuario'=>['filled'],
+            'destacado'=>['filled'],
         ];
         $missatges=[
             'filled'=>':attribute no pot estar buit',

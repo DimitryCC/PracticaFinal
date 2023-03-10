@@ -52,14 +52,12 @@ class ReservaController extends Controller
     public function show($id){
         try {
 
-            $checkReserva = Reserva::find($id);
-
-            if($checkReserva==null){
-                return response()->json(['error' => 'La ID de reserva no existe'], 404);
+            $checkReserva = Reserva::where('ID','=', $id)->get();
+            if($checkReserva->count() == 0){
+                return response()->json(['error' => 'La ID reserva no existe'], 404);
             }
 
-            $tupla = Reserva::findOrFail($id);
-            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+            return response()->json(['status' => 'success', 'result' => $checkReserva], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
         }
@@ -126,6 +124,67 @@ class ReservaController extends Controller
         }
     }
 
+    /**
+     * Descripcion de una Reserva.
+     * @urlParam id integer required ID de la reserva a mostrar.
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/reserva/usuario/{usuarioId}",
+     *     tags={"Reservas"},
+     *     summary="Mostrar una Reserva por ID usuario",
+     *     @OA\Parameter(
+     *         description="id deL usuario",
+     *         in="path",
+     *         name="usuarioId",
+     *         required=true,
+     *         @OA\Schema(type="string"),
+     *         @OA\Examples(example="id", value="1", summary="Introduce el numero de ID del usuario")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Informacion de la reserva.",
+     *          @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="success"),
+     *          @OA\Property(property="data",type="object")
+     *           ),
+     *      ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Hay un error.",
+     *         @OA\JsonContent(
+     *          @OA\Property(property="status", type="string", example="error"),
+     *          @OA\Property(property="data",type="string", example="reserva no encontrada")
+     *           ),
+     *     )
+     * )
+     */
+
+
+    public function mostraUser($usuarioId)
+    {
+        try {
+
+            $checkUser = Usuario::find($usuarioId);
+            if($checkUser==null){
+                return response()->json(['error' => 'La ID usuario no existe'], 404);
+            }
+
+            $checkReserva = Reserva::where('usuarioId','=', $usuarioId)->get();
+
+            if($checkReserva->count() == 0){
+                return response()->json(['error' => 'La ID usuario no tiene una reserva asignada'], 404);
+            }
+
+
+            return response()->json(['status' => 'success', 'result' => $checkReserva], 200);
+        }catch (\Exception $e){
+            return response()->json(['status'=>'error','result'=>$e],400);
+        }
+    }
+
 
     /**
      * Lista todas las Reservas.
@@ -182,12 +241,13 @@ class ReservaController extends Controller
      */
     public function borra($id){
         try {
-            $checkReserva = Reserva::find($id);
-
-            if($checkReserva==null){
-                return response()->json(['error' => 'La ID de reserva no existe'], 404);
+            $checkReserva = Reserva::where('ID','=', $id)->get();
+            if($checkReserva->count() == 0){
+                return response()->json(['error' => 'La ID reserva no existe'], 404);
             }
-            $tupla = Reserva::findOrFail($id)->delete();
+
+            $tupla = Reserva::where('ID','=', $id)->delete();
+
             return response()->json(['status' => 'success', 'result' => $tupla], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);

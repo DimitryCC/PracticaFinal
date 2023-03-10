@@ -49,12 +49,14 @@ class DescripcionControler extends Controller
      */
     public function show($id){
         try {
-            $checkDesc = Descripcion::find($id);
-            if($checkDesc==null){
+
+            $checkDesc = Descripcion::where('ID',$id)->get();
+
+            if($checkDesc->count() == 0){
                 return response()->json(['error' => 'La ID descripcio no existe'], 404);
             }
-            $tupla = Descripcion::findOrFail($id);
-            return response()->json(['status' => 'success', 'result' => $tupla], 200);
+
+            return response()->json(['status' => 'success', 'result' => $checkDesc], 200);
         }catch (\Exception $e){
             return response()->json(['status'=>'error','result'=>$e],400);
         }
@@ -229,6 +231,18 @@ class DescripcionControler extends Controller
             'required'=>'El camp :attribute es obligat',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+
+        $checkAloja = Alojamiento::where('ID','=', $request->alojamientoId)->get();
+        if($checkAloja->count() == 0){
+
+            return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+        }
+        $checkAlojaDesc = Descripcion::where('alojamientoId',$request->alojamientoId)->get();
+
+        if($checkAlojaDesc->count() == 1){
+
+            return response()->json(['error' => 'La ID alojamiento ya tiene una descripcion asignada'], 404);
+        }
         $validacio=Validator::make($request->all(),$reglesvalidacio,$missatges);
         if(!$validacio->fails()){
             $tupla=Descripcion::create($request->all());
@@ -299,6 +313,11 @@ class DescripcionControler extends Controller
             'filled'=>':attribute no pot estar buit',
             'unique'=>'Camp :attribute amb valor :input ja hi es'
         ];
+        $checkAloja = Alojamiento::where('ID','=', $request->alojamientoId)->get();
+        if($checkAloja->count() == 0){
+
+            return response()->json(['error' => 'La ID alojamiento no existe'], 404);
+        }
         $checkDesc = Descripcion::find($id);
         if($checkDesc==null){
             return response()->json(['error' => 'La ID descripcio no existe'], 404);
